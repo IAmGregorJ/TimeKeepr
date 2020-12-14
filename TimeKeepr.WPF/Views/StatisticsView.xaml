@@ -1,0 +1,108 @@
+﻿<UserControl x:Class="TimeKeepr.WPF.Views.StatisticsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TimeKeepr.WPF.Views"
+             xmlns:me="clr-namespace:TimeKeepr.WPF.ViewModels" d:DataContext="{d:DesignInstance Type=me:StatisticsViewModel}"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="450">
+    <UserControl.DataContext>
+        <me:StatisticsViewModel/>
+    </UserControl.DataContext>
+    <ScrollViewer>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="120" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="150" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="150" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="150" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Style="{StaticResource header_font}" Focusable="True"
+                       AutomationProperties.Name="User information - header" AutomationProperties.HelpText="The folloiwng information pertains to the current user's information"
+                       Text="User information" />
+            <Grid Grid.Row="1" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150" />
+                    <ColumnDefinition Width="auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Name="Name" Content="Name:" />
+                <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource normal_font}" Focusable="True" KeyboardNavigation.TabIndex="1"
+                           AutomationProperties.Name="{Binding FullName}" AutomationProperties.HelpText="Full name"
+                           Text="{Binding FullName}" />
+                <Label Grid.Row="1" Grid.Column="0" Name="Workplace" Content="Workplace:" />
+                <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource normal_font}" Focusable="True" KeyboardNavigation.TabIndex="2"
+                           AutomationProperties.Name="{Binding WorkPlace}" AutomationProperties.HelpText="Workplace"
+                           Text="{Binding WorkPlace}" />
+                <Label Grid.Row="2" Grid.Column="0" Name="Hours_Per_Week" Content="Hours Per Week:" />
+                <TextBlock Grid.Row="2" Grid.Column="1" Style="{StaticResource normal_font}" Focusable="True" KeyboardNavigation.TabIndex="3"
+                           AutomationProperties.Name="{Binding HoursPerWeek}" AutomationProperties.HelpText="Hours Per week"
+                           Text="{Binding HoursPerWeek}" />
+                <Label Grid.Row="3" Grid.Column="0" Name="Current_balance" Content="Current balance: " />
+                <TextBlock Grid.Row="3" Grid.Column="1" Style="{StaticResource normal_font}" Focusable="True" KeyboardNavigation.TabIndex="4"
+                           AutomationProperties.Name="{Binding Saldo}" AutomationProperties.HelpText="Current balance"
+                           Text="{Binding Saldo}" />
+            </Grid>
+
+            <TextBlock Grid.Row="2" Style="{StaticResource header_font}" Focusable="True" KeyboardNavigation.TabIndex="5" 
+                       AutomationProperties.Name="Hours per year - Header" AutomationProperties.HelpText="THe following table lists the number of hours per year"
+                       Text="Total Hours per Year" />
+            <Grid Grid.Row="3">
+                <ListView ItemsSource="{Binding DataHappeningsByYear}" KeyboardNavigation.TabIndex="6" >
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Year" DisplayMemberBinding="{Binding Year}" Width="60"/>
+                            <GridViewColumn Header="Category" DisplayMemberBinding="{Binding Category}" Width="250" />
+                            <GridViewColumn Header="Total Hours" DisplayMemberBinding="{Binding TimeInHours}" />
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
+
+            <TextBlock Grid.Row="4" Style="{StaticResource header_font}" Focusable="True" KeyboardNavigation.TabIndex="7" 
+                       AutomationProperties.Name="Hours per week - Header" AutomationProperties.HelpText="THe following table lists the number of hours per week"
+                       Text="Total Hours Per Week - all categories" />
+            <Grid Grid.Row="5">
+                <ListView ItemsSource="{Binding DataHappeningsByWeek}" KeyboardNavigation.TabIndex="8" >
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Year" DisplayMemberBinding="{Binding Year}" Width="60"/>
+                            <GridViewColumn Header="WeekNr" DisplayMemberBinding="{Binding WeekNr}" Width="60" />
+                            <GridViewColumn Header="Category" DisplayMemberBinding="{Binding Category}" Width="200" />
+                            <GridViewColumn Header="Total Hours" DisplayMemberBinding="{Binding TimeInHours}" />
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
+            <TextBlock Grid.Row="6" Style="{StaticResource header_font}" Focusable="True" KeyboardNavigation.TabIndex="9" 
+                       AutomationProperties.Name="Work hours per week - Header" AutomationProperties.HelpText="THe following table lists the number of work hours per week"
+                       Text="Total Work Hours Per Week" />
+            <Grid Grid.Row="7">
+                <ListView ItemsSource="{Binding DataHappeningsByWeekFiltered}" KeyboardNavigation.TabIndex="10" >
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Year" DisplayMemberBinding="{Binding Year}" Width="60"/>
+                            <GridViewColumn Header="WeekNr" DisplayMemberBinding="{Binding WeekNr}" Width="60" />
+                            <GridViewColumn Header="Total Hours" DisplayMemberBinding="{Binding TimeInHours}" />
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Grid>
+        </Grid>
+    </ScrollViewer>
+</UserControl>

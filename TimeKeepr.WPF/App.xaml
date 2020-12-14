@@ -1,0 +1,28 @@
+﻿<Application x:Class="TimeKeepr.WPF.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:viewmodels="clr-namespace:TimeKeepr.WPF.ViewModels"
+             xmlns:views="clr-namespace:TimeKeepr.WPF.Views"
+             xmlns:local="clr-namespace:TimeKeepr.WPF">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Styles/Common.xaml" />
+                <ResourceDictionary Source="/Styles/NavigationBar.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <DataTemplate DataType="{x:Type viewmodels:HomeViewModel}">
+                <views:HomeView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:CategoriesViewModel}">
+                <views:CategoriesView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:StatisticsViewModel}">
+                <views:StatisticsView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewmodels:HelpPageViewModel}">
+                <views:HelpView/>
+            </DataTemplate>
+
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

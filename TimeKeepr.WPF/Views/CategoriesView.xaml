@@ -1,0 +1,74 @@
+﻿<UserControl x:Class="TimeKeepr.WPF.Views.CategoriesView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TimeKeepr.WPF.Views"
+             xmlns:me="clr-namespace:TimeKeepr.WPF.ViewModels" d:DataContext="{d:DesignInstance Type=me:CategoriesViewModel}"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="450">
+    <UserControl.DataContext>
+        <me:CategoriesViewModel/>
+    </UserControl.DataContext>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="350" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <ListView ItemsSource="{Binding Categories}" 
+                  SelectedItem="{Binding SelectedCategory, Mode=TwoWay}"
+                  HorizontalAlignment="Stretch">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Category" DisplayMemberBinding="{Binding Category}" />
+                    <GridViewColumn Header="IsActive" DisplayMemberBinding="{Binding IsActive}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
+        </Grid>
+        <Grid Grid.Row="1" HorizontalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Row="1" Grid.Column="0" x:Name="id" Margin="10"
+                       Text="{Binding SelectedCategory.Id, Mode=TwoWay}" Visibility="Collapsed" />
+            <TextBox Grid.Row="1" Grid.Column="1" Width="225" x:Name="Category_textbox" Margin="10"
+                       AutomationProperties.Name="Selected or New Category"
+                       AutomationProperties.HelpText="The name of the category to add or to modify"
+                       Text="{Binding SelectedCategory.Category, Mode=TwoWay}" />
+            <CheckBox Grid.Row="1" Grid.Column="2" x:Name="sactive_checkbox" Margin="10"
+                      AutomationProperties.Name="Is Active"
+                      AutomationProperties.HelpText="Check this if the category you are adding or modifying is an active category"
+                      IsChecked="{Binding SelectedCategory.IsActive, Mode=TwoWay}" />
+            <Button Grid.Row="3" Grid.Column="0" x:Name="update_button" Margin="10"
+                    IsEnabled="{Binding ButtonIsEnabled}" Content="Update"
+                    AutomationProperties.Name="Update the chosen category"
+                    AutomationProperties.HelpText="CLick to modify the category"
+                    Command="{Binding UpdateCommand}" />
+            <Button Grid.Row="3" Grid.Column="1" x:Name="add_button" Margin="10"
+                    IsEnabled="{Binding ButtonIsEnabled}" Content="Add New Categpry"
+                    AutomationProperties.Name="Add New Category"
+                    AutomationProperties.HelpText="Click to add the category"
+                    Command="{Binding AddCommand}" />
+            <Button Grid.Row="3" Grid.Column="2" x:Name="delete_button" Margin="10"
+                    IsEnabled="{Binding ButtonIsEnabled}" Content="Delete"
+                    AutomationProperties.Name="Delete category"
+                    AutomationProperties.HelpText="Click to delete the chosen property"
+                    Command="{Binding DeleteCommand}" />
+        </Grid>
+
+    </Grid>
+</UserControl>

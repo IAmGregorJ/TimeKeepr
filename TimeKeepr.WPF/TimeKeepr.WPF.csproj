@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Konscious.Security.Cryptography.Argon2" Version="1.2.1" />
+    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.664.37" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TimeKeepr.Domain\TimeKeepr.Domain.csproj" />
+    <ProjectReference Include="..\TimeKeepr.EntityFramework\TimeKeepr.EntityFramework.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="ArgonCrypto">
+      <HintPath>Assemblies\ArgonCrypto.dll</HintPath>
+    </Reference>
+    <Reference Include="TimeHelper">
+      <HintPath>Assemblies\TimeHelper.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
