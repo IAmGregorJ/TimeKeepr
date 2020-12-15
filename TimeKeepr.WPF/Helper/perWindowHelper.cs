@@ -3,6 +3,7 @@ using System.Windows;
 
 namespace TimeKeepr.WPF.Helper
 {
+    //NOT USED in the final solution - but I'm still playing around with it so not deleting quite yet
     public static class perWindowHelper
     {
         public static readonly DependencyProperty CloseWindowProperty = DependencyProperty.RegisterAttached(

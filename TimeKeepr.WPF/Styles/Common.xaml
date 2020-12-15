@@ -5,6 +5,10 @@
     <Color x:Key="ColorPrimary1">#9ddb75</Color>
     <Color x:Key="ColorPrimary2">#447025</Color>
     <Color x:Key="ColorPrimary3">#367ec6</Color>
+    <Color x:Key="ColorPrimary4">#ffff33</Color>
+    <Color x:Key="ColorPrimary5">#ff8333</Color>
+    <Color x:Key="ColorPrimary6">#33abf2</Color>
+    <Color x:Key="ColorPrimary7">#ff439a</Color>
 
     <!-- "Vejle" colors
         #9ddb75 green
@@ -21,12 +25,17 @@
     <SolidColorBrush x:Key="BrushPrimary1" Color="{StaticResource ColorPrimary1}"/>
     <SolidColorBrush x:Key="BrushPrimary2" Color="{StaticResource ColorPrimary2}"/>
     <SolidColorBrush x:Key="BrushPrimary3" Color="{StaticResource ColorPrimary3}"/>
+    <SolidColorBrush x:Key="BrushPrimary4" Color="{StaticResource ColorPrimary4}"/>
+    <SolidColorBrush x:Key="BrushPrimary5" Color="{StaticResource ColorPrimary5}"/>
+    <SolidColorBrush x:Key="BrushPrimary6" Color="{StaticResource ColorPrimary6}"/>
+    <SolidColorBrush x:Key="BrushPrimary7" Color="{StaticResource ColorPrimary7}"/>
 
     <!--fonts-->
     <Style x:Key="title_font" TargetType="TextBlock">
         <Setter Property="FontFamily" Value="Century Gothic" />
         <Setter Property="FontSize" Value="25" />
         <Setter Property="FontWeight" Value="Bold" />
+        <Setter Property="Margin" Value="10,0,0,0" />
         <Setter Property="Foreground" Value="{StaticResource ResourceKey=BrushPrimary3}" />
     </Style>
     

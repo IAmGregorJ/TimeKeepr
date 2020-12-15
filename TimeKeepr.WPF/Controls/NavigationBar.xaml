@@ -12,7 +12,20 @@
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
-        <TextBlock Grid.Row="0" Text="TimeKeepr" Name="TimeKeepr_title" Style="{StaticResource title_font}"/>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="390" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <TextBlock Grid.Row="0" Grid.Column="0" Text="TimeKeepr" Name="TimeKeepr_title" Style="{StaticResource title_font}"/>
+            <Button Grid.Row="0" Grid.Column="1" Style="{StaticResource MinButton}"
+                    Content="-" Command="{Binding MinimizeCommand}"
+                    AutomationProperties.Name="Minimize the application" AutomationProperties.HelpText="Click to minimize the application" />
+            <Button Grid.Row="0" Grid.Column="2" Style="{StaticResource CloseButton}"
+                    Content="X" Command="{Binding CloseCommand}"
+                    AutomationProperties.Name="Close the app" AutomationProperties.HelpText="Click to close this app" />
+        </Grid>
         <Grid Grid.Row="1" RenderOptions.EdgeMode="Aliased" Background="{StaticResource BrushPrimary2}">
             <Grid.Resources>
                 <Style TargetType="RadioButton" BasedOn="{StaticResource NavButton}" />

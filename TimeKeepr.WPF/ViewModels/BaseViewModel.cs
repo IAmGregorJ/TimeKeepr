@@ -51,7 +51,7 @@ namespace TimeKeepr.WPF.ViewModels
             Application.Current.MainWindow.DragMove();
         }
 
-        private static void CloseApplication()
+        protected static void CloseApplication()
         {
             Application.Current.Shutdown();
         }
@@ -64,7 +64,7 @@ namespace TimeKeepr.WPF.ViewModels
                 Application.Current.MainWindow.WindowState = WindowState.Maximized;
         }
 
-        private static void MinimizeApplication()
+        protected static void MinimizeApplication()
         {
             if (Application.Current.MainWindow.WindowState == WindowState.Minimized)
                 Application.Current.MainWindow.WindowState = WindowState.Normal;
