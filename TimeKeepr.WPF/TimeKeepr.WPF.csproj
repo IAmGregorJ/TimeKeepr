@@ -17,11 +17,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="ArgonCrypto">
-      <HintPath>Assemblies\ArgonCrypto.dll</HintPath>
-    </Reference>
-    <Reference Include="PBKDF2">
-      <HintPath>Assemblies\PBKDF2.dll</HintPath>
+    <Reference Include="GJEncryption">
+      <HintPath>Assemblies\GJEncryption.dll</HintPath>
     </Reference>
     <Reference Include="TimeHelper">
       <HintPath>Assemblies\TimeHelper.dll</HintPath>

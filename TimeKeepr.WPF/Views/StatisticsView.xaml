@@ -41,9 +41,9 @@
                     <ColumnDefinition Width="auto" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Label Grid.Row="0" Grid.Column="0" Name="Name" Content="Name:" />
+                <Label Grid.Row="0" Grid.Column="0" Name="Name" Content="Full Name:" />
                 <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource normal_font}" Focusable="True" KeyboardNavigation.TabIndex="1"
-                           AutomationProperties.Name="{Binding FullName}" AutomationProperties.HelpText="Full name"
+                           AutomationProperties.Name="{Binding FullName}" AutomationProperties.HelpText="User"
                            Text="{Binding FullName}" />
                 <Label Grid.Row="1" Grid.Column="0" Name="Workplace" Content="Workplace:" />
                 <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource normal_font}" Focusable="True" KeyboardNavigation.TabIndex="2"

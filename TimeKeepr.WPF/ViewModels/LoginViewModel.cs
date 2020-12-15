@@ -1,11 +1,11 @@
-﻿using ArgoCrypto;
-using System;
+﻿using System;
 using System.Windows.Input;
 using TimeKeepr.Domain.Models;
 using TimeKeepr.EntityFramework;
 using TimeKeepr.EntityFramework.Services;
 using TimeKeepr.WPF.Globals;
 using TimeKeepr.WPF.Helper;
+using GJEncryption;
 
 namespace TimeKeepr.WPF.ViewModels
 {
@@ -124,7 +124,7 @@ namespace TimeKeepr.WPF.ViewModels
             else
             {
                 byte[] saltByte = Convert.FromBase64String(user.Salt); //salt from database
-                var hashNow = ArgonCrypto.HashPassword(Password, saltByte); //hash of the password from the input
+                var hashNow = PBKDF2.HashPassword(Password, saltByte); //hash of the password from the input
                 string newHash = Convert.ToBase64String(hashNow);
                 if (user.PasswordHash == newHash)
                 {
@@ -143,12 +143,12 @@ namespace TimeKeepr.WPF.ViewModels
         private async void ClickAddUser()
         {
             ButtonIsEnabled = "false";
-            var _salt = ArgonCrypto.CreateSalt();
+            var _salt = PBKDF2.CreateSalt();
             User user = new User()
             {
                 EMail = _email,
                 UserName = _username,
-                PasswordHash = Convert.ToBase64String(ArgonCrypto.HashPassword(_password, _salt)),
+                PasswordHash = Convert.ToBase64String(PBKDF2.HashPassword(_password, _salt)),
                 FirstName = _firstname,
                 LastName = _lastname,
                 WorkPlace = _workplace,
