@@ -38,10 +38,10 @@
             ValidatesOnDataErrors=True, ValidatesOnExceptions=True, NotifyOnValidationError=true}"/>
 
         <Label Grid.Row="3" Grid.Column="1" Style="{StaticResource label_font}" Content="Password:" />
-        <TextBox Grid.Row="3" Grid.Column="2" Height="18" VerticalAlignment="Center" 
-                 AutomationProperties.Name="Password" AutomationProperties.HelpText="Enter your passsword here"
-                 Name="Password_txtbox" Text="{Binding Password, UpdateSourceTrigger=PropertyChanged, 
-            ValidatesOnDataErrors=True, ValidatesOnExceptions=True, NotifyOnValidationError=true}"/>
+        <com:BindablePasswordBox Grid.Row="3" Grid.Column="2" Height="18" VerticalAlignment="Center"
+                                 AutomationProperties.Name="Password" AutomationProperties.HelpText="Enter your password here"
+                                 x:Name="Password_passbox" Password="{Binding Password, UpdateSourceTrigger=PropertyChanged, 
+            ValidatesOnDataErrors=True, ValidatesOnExceptions=True, NotifyOnSourceUpdated=True}" />
 
         <Button Name="Loginbutton" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Width="130" Content="Login" 
                 AutomationProperties.Name="Login button" AutomationProperties.HelpText="Click here to submit your login information"

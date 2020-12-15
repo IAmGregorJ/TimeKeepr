@@ -24,19 +24,22 @@ namespace TimeKeepr.WPF.Components
     public partial class BindablePasswordBox : UserControl
     {
         private bool _isPasswordChanging;
-        // Using a DependencyProperty as the backing store for Password.  This enables animation, styling, binding, etc...
+
+
         public static readonly DependencyProperty PasswordProperty =
-            DependencyProperty.Register("Password", typeof(string), typeof(BindablePasswordBox), 
+            DependencyProperty.Register("Password", typeof(string), typeof(BindablePasswordBox),
                 new FrameworkPropertyMetadata(string.Empty, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault,
                     PasswordPropertyChanged, null, false, UpdateSourceTrigger.PropertyChanged));
 
+
         private static void PasswordPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            if(d is BindablePasswordBox passwordBox)
+            if (d is BindablePasswordBox passwordBox)
             {
                 passwordBox.UpdatePassword();
             }
         }
+
 
         public string Password
         {
@@ -44,22 +47,27 @@ namespace TimeKeepr.WPF.Components
             set { SetValue(PasswordProperty, value); }
         }
 
+
         public BindablePasswordBox()
         {
             InitializeComponent();
         }
 
+
         private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
         {
             _isPasswordChanging = true;
             Password = passwordBox.Password;
-            //_isPasswordChanging = false;
-        }
-        private void UpdatePassword()
-        {
-            if(!_isPasswordChanging)
-                passwordBox.Password = Password;
+            _isPasswordChanging = false;
         }
 
+
+        private void UpdatePassword()
+        {
+            if (!_isPasswordChanging)
+            {
+                passwordBox.Password = Password;
+            }
+        }
     }
 }
