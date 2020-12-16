@@ -94,10 +94,20 @@ namespace TimeKeepr.WPF.ViewModels
             }
         }
 
+        private int _year;
+        public int Year
+        {
+            get => _year;
+            set
+            {
+                _year = value;
+                OnPropertyChanged(() => Year);
+            }
+        }
+
         //Iso9601 format - from TImeHelper:
         //public static int GetIso8601WeekOfYear(DateTime time)
         private int _weekNr;
-
         public int WeekNr
         {
             get => _weekNr;
@@ -253,6 +263,7 @@ namespace TimeKeepr.WPF.ViewModels
                 IsMeeting = _isMeeting,
                 TimeInHours = TimeHelper.TimeHelper.NumberOfHoursElapsed(StartTimeWork, StopTimeWork),
                 EventDate = DateTime.Now,
+                Year = EventDate.Year,
                 WeekNr = TimeHelper.TimeHelper.GetIso8601WeekOfYear(DateTime.Now)
             };
 
@@ -302,6 +313,7 @@ namespace TimeKeepr.WPF.ViewModels
                 IsMeeting = _isMeeting,
                 TimeInHours = TimeHelper.TimeHelper.NumberOfHoursElapsed(StartTime, StopTime),
                 EventDate = DateTime.Now,
+                Year = EventDate.Year,
                 WeekNr = TimeHelper.TimeHelper.GetIso8601WeekOfYear(DateTime.Now)
             };
 

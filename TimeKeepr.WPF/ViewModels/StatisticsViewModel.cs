@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Data;
 using TimeKeepr.Domain.Models;
 using TimeKeepr.EntityFramework;
 using TimeKeepr.EntityFramework.Services;
@@ -11,58 +12,37 @@ namespace TimeKeepr.WPF.ViewModels
     public class StatisticsViewModel : BaseViewModel
     {
         #region lists properties
-        private List<Happening> _filteredList;
-        public List<Happening> FilteredList
+
+        private List<Happening> _workHoursWeek;
+        public List<Happening> WorkHoursWeek
         {
-            get => _filteredList;
+            get => _workHoursWeek;
             set
             {
-                _filteredList = value;
-                OnPropertyChanged(() => FilteredList);
+                _workHoursWeek = value;
+                OnPropertyChanged(() => WorkHoursWeek);
             }
         }
 
-        private List<Happening> _filteredListWeek;
-        public List<Happening> FilteredListWeek
+        private List<Happening> _hoursInMeeting;
+        public List<Happening> HoursInMeeting
         {
-            get => _filteredListWeek;
+            get => _hoursInMeeting;
             set
             {
-                _filteredListWeek = value;
-                OnPropertyChanged(() => FilteredListWeek);
+                _hoursInMeeting = value;
+                OnPropertyChanged(() => HoursInMeeting);
             }
         }
 
-        private List<HappeningsFilteredYearCategory> _datahappeningsByYear;
-        public List<HappeningsFilteredYearCategory> DataHappeningsByYear
+        private List<Happening> _categoryHoursWeek;
+        public List<Happening> CategoryHoursWeek
         {
-            get => _datahappeningsByYear;
+            get => _categoryHoursWeek;
             set
             {
-                _datahappeningsByYear = value;
-                OnPropertyChanged(() => DataHappeningsByYear);
-            }
-        }
-
-        private List<HappeningsFilteredWeekCategory> _datahappeningsByWeek;
-        public List<HappeningsFilteredWeekCategory> DataHappeningsByWeek
-        {
-            get => _datahappeningsByWeek;
-            set
-            {
-                _datahappeningsByWeek = value;
-                OnPropertyChanged(() => DataHappeningsByWeek);
-            }
-        }
-
-        private List<HappeningsFilteredWeekCategory> _datahappeningsByWeekFiltered;
-        public List<HappeningsFilteredWeekCategory> DataHappeningsByWeekFiltered
-        {
-            get => _datahappeningsByWeekFiltered;
-            set
-            {
-                _datahappeningsByWeekFiltered = value;
-                OnPropertyChanged(() => DataHappeningsByWeekFiltered);
+                _categoryHoursWeek = value;
+                OnPropertyChanged(() => CategoryHoursWeek);
             }
         }
 
@@ -182,7 +162,7 @@ namespace TimeKeepr.WPF.ViewModels
             }
         }
 
-        private string _fullName;
+        private string _fullName = string.Empty;
         public string FullName
         {
             get => _fullName;
@@ -193,7 +173,7 @@ namespace TimeKeepr.WPF.ViewModels
             }
         }
 
-        private string _workPlace;
+        private string _workPlace = string.Empty;
         public string WorkPlace
         {
             get => _workPlace;
@@ -215,7 +195,7 @@ namespace TimeKeepr.WPF.ViewModels
             }
         }
 
-        private string _saldo;
+        private string _saldo = string.Empty;
         public string Saldo
         {
             get => _saldo;
@@ -248,25 +228,11 @@ namespace TimeKeepr.WPF.ViewModels
             //I still struggle with this syntax - hoping future projects will be more streamlined
             var service = new DataService<Happening>(new TimeKeeprDbContextFactory());
             var UngroupedList = (List<Happening>)await service.GetAll();
-            FilteredList = UngroupedList
-                .Where(x => x.UserName.Contains(MyGlobals.userLoggedIn))
-                .ToList();
-            FilteredListWeek = FilteredList
-                .Where(y => y.Category.Contains("WorkDay"))
-                .ToList();
 
-            DataHappeningsByYear = FilteredList
-                .GroupBy(a => (a.Category, a.EventDate.Year))
-                .Select(c => new HappeningsFilteredYearCategory
-                {
-                    Category = c.Key.Category,
-                    Year = c.Key.Year,
-                    TimeInHours = c.Sum(c => c.TimeInHours)
-                }).ToList();
-
-            DataHappeningsByWeek = FilteredList
-                .GroupBy(a => (a.Category, a.EventDate.Year, a.WeekNr))
-                .Select(c => new HappeningsFilteredWeekCategory
+            CategoryHoursWeek = UngroupedList
+                .Where(x => x.UserName.Contains(MyGlobals.userLoggedIn) && !x.Category.Contains("WorkDay"))
+                .GroupBy(a => (a.Category, a.Year, a.WeekNr))
+                .Select(c => new Happening
                 {
                     Category = c.Key.Category,
                     Year = c.Key.Year,
@@ -274,18 +240,30 @@ namespace TimeKeepr.WPF.ViewModels
                     TimeInHours = c.Sum(c => c.TimeInHours)
                 }).ToList();
 
-            DataHappeningsByWeekFiltered = FilteredListWeek
-                .GroupBy(a => (a.Category, a.EventDate.Year, a.WeekNr))
-                .Select(c => new HappeningsFilteredWeekCategory
+            WorkHoursWeek = UngroupedList
+                .Where(x => x.UserName.Contains(MyGlobals.userLoggedIn) && x.Category.Contains("WorkDay"))
+                .GroupBy(a => (a.Category, a.Year, a.WeekNr))
+                .Select(c => new Happening
                 {
                     Category = c.Key.Category,
                     Year = c.Key.Year,
                     WeekNr = c.Key.WeekNr,
-                    TimeInHours = c.Sum(c => c.TimeInHours),
+                    TimeInHours = c.Sum(c => c.TimeInHours)
                 }).ToList();
 
-            Saldo = (DataHappeningsByWeekFiltered.Sum(item => item.TimeInHours) - 
-                (HoursPerWeek * DataHappeningsByWeekFiltered.Count)).ToString("F2") + " hours";
+            HoursInMeeting = UngroupedList
+                .Where(x => x.UserName.Contains(MyGlobals.userLoggedIn) && !x.Category.Contains("WorkDay") && x.IsMeeting == true)
+                .GroupBy(a => (a.Category, a.Year, a.WeekNr))
+                .Select(c => new Happening
+                {
+                    Category = c.Key.Category,
+                    Year = c.Key.Year,
+                    WeekNr = c.Key.WeekNr,
+                    TimeInHours = c.Sum(c => c.TimeInHours)
+                }).ToList();
+
+            Saldo = (WorkHoursWeek.Sum(item => item.TimeInHours) - 
+                (HoursPerWeek * WorkHoursWeek.Count)).ToString("F2") + " hours";
         }
     }
 }
