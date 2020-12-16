@@ -11,7 +11,7 @@
         <me:StatisticsViewModel/>
     </UserControl.DataContext>
     <ScrollViewer>
-        <Grid>
+        <Grid Margin="10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="120" />
@@ -64,7 +64,13 @@
                        Text="Total Work Hours Per Week" />
             <Grid Grid.Row="3">
                 <DataGrid ItemsSource="{Binding WorkHoursWeek}" 
-                          CanUserAddRows="False" AutoGenerateColumns="false" KeyboardNavigation.TabIndex="11">
+                          HorizontalAlignment="Left"
+                          CanUserAddRows="False" 
+                          CanUserReorderColumns="False"
+                          AutoGenerateColumns="false" 
+                          IsReadOnly="True" 
+                          SelectionMode="Single" 
+                          KeyboardNavigation.TabIndex="11">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Year" Binding="{Binding Year}" />
                         <DataGridTextColumn Header="WeekNr" Binding="{Binding WeekNr}" />
@@ -78,7 +84,13 @@
                        Text="Total Hours Per Week, per Category" />
             <Grid Grid.Row="5">
                 <DataGrid ItemsSource="{Binding CategoryHoursWeek}" 
-                          CanUserAddRows="False" AutoGenerateColumns="false" KeyboardNavigation.TabIndex="11">
+                          HorizontalAlignment="Left"
+                          CanUserAddRows="False" 
+                          CanUserReorderColumns="False"
+                          AutoGenerateColumns="false" 
+                          IsReadOnly="True" 
+                          SelectionMode="Single" 
+                          KeyboardNavigation.TabIndex="11">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Year" Binding="{Binding Year}" />
                         <DataGridTextColumn Header="Category" Binding="{Binding Category}" />
@@ -93,7 +105,13 @@
                        Text="Total Hours in Meetings, per Category" />
             <Grid Grid.Row="7">
                 <DataGrid ItemsSource="{Binding HoursInMeeting}" 
-                          CanUserAddRows="False" AutoGenerateColumns="false" KeyboardNavigation.TabIndex="11">
+                          HorizontalAlignment="Left"
+                          CanUserAddRows="False" 
+                          CanUserReorderColumns="False"
+                          AutoGenerateColumns="false" 
+                          IsReadOnly="True" 
+                          SelectionMode="Single" 
+                          KeyboardNavigation.TabIndex="11">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Year" Binding="{Binding Year}" />
                         <DataGridTextColumn Header="Category" Binding="{Binding Category}" />
@@ -102,7 +120,6 @@
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>
-
         </Grid>
     </ScrollViewer>
 </UserControl>

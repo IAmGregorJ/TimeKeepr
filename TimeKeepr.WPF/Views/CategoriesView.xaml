@@ -11,7 +11,7 @@
         <me:CategoriesViewModel/>
     </UserControl.DataContext>
 
-    <Grid>
+    <Grid Margin="10">
         <Grid.RowDefinitions>
             <RowDefinition Height="350" />
             <RowDefinition Height="auto" />
@@ -20,16 +20,21 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
-            <ListView ItemsSource="{Binding Categories}" 
-                  SelectedItem="{Binding SelectedCategory, Mode=TwoWay}"
-                  HorizontalAlignment="Stretch">
-            <ListView.View>
-                <GridView>
-                    <GridViewColumn Header="Category" DisplayMemberBinding="{Binding Category}" />
-                    <GridViewColumn Header="IsActive" DisplayMemberBinding="{Binding IsActive}" />
-                </GridView>
-            </ListView.View>
-        </ListView>
+            <DataGrid ItemsSource="{Binding Categories}"  
+                      SelectedItem="{Binding SelectedCategory, Mode=TwoWay}"
+                      HorizontalAlignment="Center"
+                      VerticalAlignment="Center"
+                      CanUserAddRows="False"
+                      CanUserReorderColumns="False"
+                      AutoGenerateColumns="false"
+                      IsReadOnly="True"
+                      SelectionMode="Single">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Category" Binding="{Binding Category}" Width="300" />
+                    <DataGridCheckBoxColumn Header="IsActive" Binding="{Binding IsActive}" />
+                </DataGrid.Columns>
+            </DataGrid>
+
         </Grid>
         <Grid Grid.Row="1" HorizontalAlignment="Center">
             <Grid.RowDefinitions>
@@ -43,18 +48,22 @@
                 <ColumnDefinition Width="auto" />
                 <ColumnDefinition Width="auto" />
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Row="1" Grid.Column="0" x:Name="id" Margin="10"
+            <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.ColumnSpan="3" 
+                        Margin="0,0,0,10" HorizontalAlignment="center">
+                <TextBlock x:Name="id" 
                        Text="{Binding SelectedCategory.Id, Mode=TwoWay}" Visibility="Collapsed" />
-            <TextBox Grid.Row="1" Grid.Column="1" Width="225" x:Name="Category_textbox" Margin="10"
+                <TextBox Width="225" Height="20" x:Name="Category_textbox"
                        AutomationProperties.Name="Selected or New Category"
                        AutomationProperties.HelpText="The name of the category to add or to modify"
                        Text="{Binding SelectedCategory.Category, Mode=TwoWay}" />
-            <CheckBox Grid.Row="1" Grid.Column="2" x:Name="sactive_checkbox" Margin="10"
+                <CheckBox x:Name="sactive_checkbox" Margin="10,0,0,0"
                       AutomationProperties.Name="Is Active"
                       AutomationProperties.HelpText="Check this if the category you are adding or modifying is an active category"
                       IsChecked="{Binding SelectedCategory.IsActive, Mode=TwoWay}" />
+
+            </StackPanel>
             <Button Grid.Row="3" Grid.Column="0" x:Name="update_button" Margin="10"
-                    IsEnabled="{Binding ButtonIsEnabled}" Content="Update"
+                    IsEnabled="{Binding ButtonIsEnabled}" Content="Update" Background="{StaticResource BrushPrimary6}"
                     AutomationProperties.Name="Update the chosen category"
                     AutomationProperties.HelpText="CLick to modify the category"
                     Command="{Binding UpdateCommand}" />
@@ -64,7 +73,7 @@
                     AutomationProperties.HelpText="Click to add the category"
                     Command="{Binding AddCommand}" />
             <Button Grid.Row="3" Grid.Column="2" x:Name="delete_button" Margin="10"
-                    IsEnabled="{Binding ButtonIsEnabled}" Content="Delete"
+                    IsEnabled="{Binding ButtonIsEnabled}" Content="Delete" Background="{StaticResource BrushPrimary7}"
                     AutomationProperties.Name="Delete category"
                     AutomationProperties.HelpText="Click to delete the chosen property"
                     Command="{Binding DeleteCommand}" />

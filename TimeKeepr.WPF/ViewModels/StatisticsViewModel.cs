@@ -71,17 +71,6 @@ namespace TimeKeepr.WPF.ViewModels
             }
         }
 
-        private string _userName = MyGlobals.userLoggedIn;
-        public string Username
-        {
-            get => _userName;
-            set
-            {
-                _userName = value;
-                OnPropertyChanged(() => Username);
-            }
-        }
-
         private bool _isMeeting;
         public bool IsMeeting
         {
@@ -224,7 +213,6 @@ namespace TimeKeepr.WPF.ViewModels
             WorkPlace = user.WorkPlace;
             HoursPerWeek = user.HoursPerWeek;
 
-            //OMG filtering a list by creating other lists... somthing I think this SHOULD have been easier
             //I still struggle with this syntax - hoping future projects will be more streamlined
             var service = new DataService<Happening>(new TimeKeeprDbContextFactory());
             var UngroupedList = (List<Happening>)await service.GetAll();
@@ -237,6 +225,7 @@ namespace TimeKeepr.WPF.ViewModels
                     Category = c.Key.Category,
                     Year = c.Key.Year,
                     WeekNr = c.Key.WeekNr,
+                    IsMeeting = c.Any(c => c.IsMeeting),
                     TimeInHours = c.Sum(c => c.TimeInHours)
                 }).ToList();
 
@@ -261,6 +250,28 @@ namespace TimeKeepr.WPF.ViewModels
                     WeekNr = c.Key.WeekNr,
                     TimeInHours = c.Sum(c => c.TimeInHours)
                 }).ToList();
+
+            var SomethingDouble = (WorkHoursWeek
+                .Where(item => item.IsMeeting)
+                .Sum(item => item.TimeInHours));
+
+            //If I ever need to filter something like Saldo a bit more... percentage spent in meetings
+            //##############################################################
+            var TimeSpentInMeetingsThisMonth = UngroupedList
+                .Where(x => x.UserName.Contains(MyGlobals.userLoggedIn) && !x.Category.Contains("WorkDay"))
+                .Where(a => a.IsMeeting)
+                .Where(a => a.EventDate.Month == DateTime.Now.Month)
+                .Sum(a => a.TimeInHours);
+
+            var TimeSpentOnProjectsThisMonth = UngroupedList
+                .Where(x => x.UserName.Contains(MyGlobals.userLoggedIn) && !x.Category.Contains("WorkDay"))
+                .Where(a => a.EventDate.Month == DateTime.Now.Month)
+                .Sum(a => a.TimeInHours);
+
+            var PercentSpentInMeetingsThisMonth = ((TimeSpentInMeetingsThisMonth / TimeSpentOnProjectsThisMonth) * 100).ToString("P");
+            //##############################################################
+
+
 
             Saldo = (WorkHoursWeek.Sum(item => item.TimeInHours) - 
                 (HoursPerWeek * WorkHoursWeek.Count)).ToString("F2") + " hours";

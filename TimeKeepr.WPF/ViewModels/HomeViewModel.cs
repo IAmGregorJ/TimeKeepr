@@ -331,7 +331,7 @@ namespace TimeKeepr.WPF.ViewModels
             var UnfilteredList = (List<EventCategory>)await service.GetAll();
             Categories = UnfilteredList
                 .Where(x => x.IsActive)
-                .Where(x => !x.Category.Contains("WorkDay"))
+                .Where(x => !x.Category.Contains("WorkDay") && x.UserName == MyGlobals.userLoggedIn)
                 .ToList();
         }
     }

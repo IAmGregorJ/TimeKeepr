@@ -8,7 +8,7 @@
     <Color x:Key="ColorPrimary4">#ffff33</Color>
     <Color x:Key="ColorPrimary5">#ff8333</Color>
     <Color x:Key="ColorPrimary6">#33abf2</Color>
-    <Color x:Key="ColorPrimary7">#ff439a</Color>
+    <Color x:Key="ColorPrimary7">#dd4cc0</Color>
 
     <!-- "Vejle" colors
         #9ddb75 green
@@ -64,24 +64,13 @@
         <Setter Property="FontSize" Value="14" />
     </Style>
 
-    <Style TargetType="ListView">
-        <Setter Property="FontFamily" Value="Century Gothic" />
-        <Setter Property="FontSize" Value="14" />
-    </Style>
-
-    <Style TargetType="Button">
-        <Setter Property="FontFamily" Value="Century Gothic" />
-        <Setter Property="FontSize" Value="14" />
-        <Setter Property="Padding" Value="5" />
-        <Setter Property="Background" Value="{StaticResource BrushPrimary1}" />
-    </Style>
-    
     <!--DataGrid-->
     <Style TargetType="DataGrid">
         <!-- Make the border and grid lines a little less imposing -->
         <Setter Property="BorderBrush" Value="#DDDDDD" />
         <Setter Property="HorizontalGridLinesBrush" Value="#DDDDDD" />
         <Setter Property="VerticalGridLinesBrush" Value="#DDDDDD" />
+        <Setter Property="FontFamily" Value="Century Gothic" />
 
         <Setter Property="RowStyle">
             <Setter.Value>
@@ -89,7 +78,7 @@
                     <Style.Triggers>
                         <!-- Highlight a grid row as the mouse passes over -->
                         <Trigger Property="IsMouseOver" Value="True">
-                            <Setter Property="Background" Value="LightCyan" />
+                            <Setter Property="Background" Value="{StaticResource BrushPrimary4}" />
                         </Trigger>
                     </Style.Triggers>
                 </Style>
@@ -101,14 +90,14 @@
                     <Style.Triggers>
                         <!-- Highlight selected rows -->
                         <Trigger Property="IsSelected" Value="True">
-                            <Setter Property="Background" Value="#ff66ccff" />
+                            <Setter Property="Background" Value="{StaticResource BrushPrimary4}" />
                             <Setter Property="BorderBrush" Value="Transparent" />
                             <Setter Property="Foreground" Value="Black" />
                         </Trigger>
                         <Trigger Property="IsFocused" Value="True">
-                            <Setter Property="Background" Value="#ff66ccff" />
+                            <Setter Property="Background" Value="{StaticResource BrushPrimary4}" />
                             <Setter Property="BorderBrush" Value="Black" />
-                            <Setter Property="BorderThickness" Value="1"/>
+                            <Setter Property="BorderThickness" Value="0"/>
                             <Setter Property="Foreground" Value="Black" />
                         </Trigger>
                     </Style.Triggers>
@@ -139,5 +128,63 @@
             </Setter.Value>
         </Setter>
     </Style>
+<!--METRO BUTTON-->
+    <Style
+        x:Key="ButtonFocusVisual">
+        <Setter
+            Property="Control.Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Rectangle Margin="2" SnapsToDevicePixels="true" Stroke="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" StrokeThickness="1" StrokeDashArray="1 2" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
+
+    <Style TargetType="{x:Type Button}">
+        <Setter Property="FocusVisualStyle" Value="{StaticResource ButtonFocusVisual}"/>
+        <Setter Property="Background" Value="{StaticResource BrushPrimary1}"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Padding" Value="10 5"/>
+        <Setter Property="FontFamily" Value="Century Gothic" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="BorderThickness" Value="2" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid>
+                        <Border
+                                x:Name="Border"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}" />
+
+                        <ContentPresenter
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                Margin="{TemplateBinding Padding}"
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                RecognizesAccessKey="True" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="OpacityMask" Value="#AA888888"/>
+                            <Setter Property="Margin" Value="2 1" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="BorderThickness" Value="0"/>
+                            <!--<Setter Property="Background" Value="DimGray"/>-->
+                            <Setter Property="Foreground" Value="White"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="false">
+                            <Setter Property="Foreground" Value="#ADADAD"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
 </ResourceDictionary>

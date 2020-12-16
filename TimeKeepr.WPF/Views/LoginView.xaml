@@ -17,7 +17,7 @@
             <RowDefinition Height="40" />
             <RowDefinition Height="30" />
             <RowDefinition Height="30" />
-            <RowDefinition Height="30" />
+            <RowDefinition Height="50" />
             <RowDefinition Height="40" />
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
@@ -43,7 +43,7 @@
                                  x:Name="Password_passbox" Password="{Binding Password, UpdateSourceTrigger=PropertyChanged, 
             ValidatesOnDataErrors=True, ValidatesOnExceptions=True, NotifyOnSourceUpdated=True}" />
 
-        <Button Name="Loginbutton" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Width="130" Content="Login" 
+        <Button Name="Loginbutton" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Width="130" VerticalAlignment="Bottom" Content="Login"
                 AutomationProperties.Name="Login button" AutomationProperties.HelpText="Click here to submit your login information"
                 IsEnabled="{Binding ButtonIsEnabled}" Command="{Binding LoginCommand}" />
         
@@ -61,8 +61,8 @@
                     <RowDefinition Height="30" />
                     <RowDefinition Height="30" />
                     <RowDefinition Height="30" />
-                    <RowDefinition Height="30" />
-                    <RowDefinition Height="30" />
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="10" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="69.6"/>
@@ -107,7 +107,8 @@
                  Text="{Binding HoursPerWeek, UpdateSourceTrigger=PropertyChanged, 
             ValidatesOnDataErrors=True, ValidatesOnExceptions=True, NotifyOnValidationError=true, TargetNullValue=''}"/>
 
-                <Button IsEnabled="{Binding ButtonIsEnabled}" Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2" Width="130" 
+                <Button IsEnabled="{Binding ButtonIsEnabled}" Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2" 
+                        Width="130" VerticalAlignment="Bottom"
                         AutomationProperties.Name="Register button" AutomationProperties.HelpText="Click to register and log in"
                         Name="Register_Button" Content="Register / Login"  Command="{Binding CreateCommand}" Margin="85,0,85,0" />
             </Grid>

@@ -5,18 +5,13 @@ using TimeKeepr.Domain.Models;
 using TimeKeepr.EntityFramework;
 using TimeKeepr.EntityFramework.Services;
 using TimeKeepr.WPF.Helper;
+using TimeKeepr.WPF.Globals;
 
 namespace TimeKeepr.WPF.ViewModels
 {
-    /*Oh crap.
-     * I forgot that it MIGHT be a good idea to have these categories be user-specific.
-     * As of now, all categories are visible/usable for all users.
-     * My bad. Right now I'm too far along in the process, and have too much left to do to go back
-     * and make it all good. Sorry!*/
-
     public class CategoriesViewModel : BaseViewModel
     {
-        #region catebories property
+        #region catebories properties
         private int _id;
         public int Id
         {
@@ -136,7 +131,8 @@ namespace TimeKeepr.WPF.ViewModels
                 EventCategory eventCategory = new EventCategory()
                 {
                     Category = _category,
-                    IsActive = _isActive
+                    IsActive = _isActive,
+                    UserName = MyGlobals.userLoggedIn
                 };
                 var service = new DataService<EventCategory>(new TimeKeeprDbContextFactory());
                 await service.Create(eventCategory);
@@ -166,13 +162,12 @@ namespace TimeKeepr.WPF.ViewModels
             ButtonIsEnabled = "true";
         }
 
-        //method SHOULD be removed to some sort of methods class with similar methods from other VMs
         private async void GetCategories()
         {
             var service = new DataService<EventCategory>(new TimeKeeprDbContextFactory());
             var UnfilteredList = (List<EventCategory>)await service.GetAll();
             Categories = UnfilteredList
-                .Where(x => !x.Category.Contains("WorkDay"))
+                .Where(x => !x.Category.Contains("WorkDay") && x.UserName == MyGlobals.userLoggedIn)
                 .ToList();
 
             SelectedCategory = Categories.First();

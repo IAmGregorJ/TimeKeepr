@@ -120,6 +120,7 @@ namespace TimeKeepr.WPF.ViewModels
             if (user == null)
             {
                 ShowMessageBox("There is no such user!");
+                ButtonIsEnabled = "true";
             }
             else
             {
