@@ -29,7 +29,7 @@ namespace TimeKeepr.WPF.Commands
                 switch (viewType)
                 {
                     case ViewType.Home:
-                        _navigator.CurrentViewModel = new HomeViewModel();
+                        _navigator.CurrentViewModel = new LoggingViewModel();
                         break;
 
                     case ViewType.Categories:

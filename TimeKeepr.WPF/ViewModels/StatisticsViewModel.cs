@@ -184,6 +184,20 @@ namespace TimeKeepr.WPF.ViewModels
             }
         }
 
+        private double? _previousSaldo = 0.0;
+        public double? PreviousSaldo
+        {
+            get => _previousSaldo;
+            set
+            {
+                if (_previousSaldo != value)
+                {
+                    _previousSaldo = value;
+                    OnPropertyChanged(() => PreviousSaldo);
+                }
+            }
+        }
+
         private string _saldo = string.Empty;
         public string Saldo
         {
@@ -212,6 +226,7 @@ namespace TimeKeepr.WPF.ViewModels
             FullName = FirstName + " " + LastName;
             WorkPlace = user.WorkPlace;
             HoursPerWeek = user.HoursPerWeek;
+            PreviousSaldo = user.PreviousSaldo;
 
             //I still struggle with this syntax - hoping future projects will be more streamlined
             var service = new DataService<Happening>(new TimeKeeprDbContextFactory());
@@ -273,8 +288,8 @@ namespace TimeKeepr.WPF.ViewModels
 
 
 
-            Saldo = (WorkHoursWeek.Sum(item => item.TimeInHours) - 
-                (HoursPerWeek * WorkHoursWeek.Count)).ToString("F2") + " hours";
+            Saldo = (PreviousSaldo + (WorkHoursWeek.Sum(item => item.TimeInHours) - 
+                (HoursPerWeek * WorkHoursWeek.Count)).ToString("F2")) + " hours";
         }
     }
 }

@@ -7,14 +7,14 @@
         xmlns:me="clr-namespace:TimeKeepr.WPF.ViewModels" d:DataContext="{d:DesignInstance Type=me:LoginViewModel}"
         xmlns:com="clr-namespace:TimeKeepr.WPF.Components"
         mc:Ignorable="d"
-        Title="TimeKeepr - Login" Height="600" Width="450" ResizeMode="NoResize" WindowStyle="None" Loaded="Window_Loaded">
+        Title="TimeKeepr - Login" Height="600" Width="450" ResizeMode="NoResize" WindowStyle="None"  Loaded="Window_Loaded" MouseLeftButtonDown="WindowMouseLeftButtonDown">
     <Window.DataContext>
         <me:LoginViewModel />
     </Window.DataContext>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50" />
-            <RowDefinition Height="40" />
+            <RowDefinition Height="30" />
             <RowDefinition Height="30" />
             <RowDefinition Height="30" />
             <RowDefinition Height="50" />
@@ -48,6 +48,7 @@
                 IsEnabled="{Binding ButtonIsEnabled}" Command="{Binding LoginCommand}" />
         
         <Separator Grid.Row="5" Grid.ColumnSpan="4" Width="300" />
+        
         <Expander Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="4" HorizontalAlignment="Left" 
                   AutomationProperties.Name="Page expander" AutomationProperties.HelpText="Click to expand the registration menu"
                   Name="Page_expander" Header="New to TimeKeepr? Create a login here:">
@@ -61,8 +62,8 @@
                     <RowDefinition Height="30" />
                     <RowDefinition Height="30" />
                     <RowDefinition Height="30" />
+                    <RowDefinition Height="30" />
                     <RowDefinition Height="50" />
-                    <RowDefinition Height="10" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="69.6"/>
@@ -102,12 +103,18 @@
                  Text="{Binding WorkPlace, UpdateSourceTrigger=PropertyChanged, 
             ValidatesOnDataErrors=True, ValidatesOnExceptions=True, NotifyOnValidationError=true}"/>
                 <Label Grid.Row="7" Grid.Column="1" Style="{StaticResource label_font}" Content="Hours per week:" />
+                
                 <TextBox Grid.Row="7" Grid.Column="2" Height="18" VerticalAlignment="Center" Name="hoursperweek_txt"
                          AutomationProperties.Name="Hours per Week" AutomationProperties.HelpText="Enter the number of hours you work per week"
-                 Text="{Binding HoursPerWeek, UpdateSourceTrigger=PropertyChanged, 
+                 Text="{Binding HoursPerWeek, Mode=TwoWay, 
             ValidatesOnDataErrors=True, ValidatesOnExceptions=True, NotifyOnValidationError=true, TargetNullValue=''}"/>
-
-                <Button IsEnabled="{Binding ButtonIsEnabled}" Grid.Row="8" Grid.Column="1" Grid.ColumnSpan="2" 
+                
+                <Label Grid.Row="8" Grid.Column="1" Style="{StaticResource label_font}" Content="Previous overtime hours:" />
+                <TextBox Grid.Row="8" Grid.Column="2" Height="18" VerticalAlignment="Center" Name="previoussaldo_txt"
+                         AutomationProperties.Name="Previous overtime" AutomationProperties.HelpText="Enter the number of previous overtime hours you have, if any"
+                         Text="{Binding PreviousSaldo, Mode=TwoWay,
+            ValidatesOnDataErrors=True, ValidatesOnExceptions=True, NotifyOnValidationError=true, TargetNullValue=''}"/>
+                <Button IsEnabled="{Binding ButtonIsEnabled}" Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="2" 
                         Width="130" VerticalAlignment="Bottom"
                         AutomationProperties.Name="Register button" AutomationProperties.HelpText="Click to register and log in"
                         Name="Register_Button" Content="Register / Login"  Command="{Binding CreateCommand}" Margin="85,0,85,0" />

@@ -10,8 +10,8 @@ using TimeKeepr.WPF.Helper;
 
 namespace TimeKeepr.WPF.ViewModels
 {
-    //This really shouldn't be named HomeViewModel - but it was a lot the last moment that I renamed the section to "Logging"
-    public class HomeViewModel : BaseViewModel
+    //This really shouldn't be named LoggingViewModel - but it was a lot the last moment that I renamed the section to "Logging"
+    public class LoggingViewModel : BaseViewModel
     {
         #region Happenings properties
         private int _id;
@@ -237,7 +237,7 @@ namespace TimeKeepr.WPF.ViewModels
         #endregion Combobox
 
         //constructor
-        public HomeViewModel()
+        public LoggingViewModel()
         {
             GetCategories();
         }

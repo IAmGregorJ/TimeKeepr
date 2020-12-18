@@ -3,11 +3,11 @@
 namespace TimeKeepr.WPF.Views
 {
     /// <summary>
-    /// Interaction logic for HomeView.xaml
+    /// Interaction logic for LoggingView.xaml
     /// </summary>
-    public partial class HomeView : UserControl
+    public partial class LoggingView : UserControl
     {
-        public HomeView()
+        public LoggingView()
         {
             InitializeComponent();
         }

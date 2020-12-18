@@ -25,14 +25,14 @@
       <FileName>ViewModels\HelpPageViewModel.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="TimeKeepr.WPF.ViewModels.HomeViewModel">
+  <Class Name="TimeKeepr.WPF.ViewModels.LoggingViewModel">
     <Position X="0.5" Y="5" Width="1.5" />
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
       <HashCode>CEySAABAIAAAboQgEIBAQBgoMQACkAQAARIAAABBKCA=</HashCode>
-      <FileName>ViewModels\HomeViewModel.cs</FileName>
+      <FileName>ViewModels\LoggingViewModel.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="TimeKeepr.WPF.ViewModels.LoginViewModel">

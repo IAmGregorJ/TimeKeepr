@@ -6,6 +6,7 @@ using TimeKeepr.EntityFramework.Services;
 using TimeKeepr.WPF.Globals;
 using TimeKeepr.WPF.Helper;
 using GJEncryption;
+using System.IO;
 
 namespace TimeKeepr.WPF.ViewModels
 {
@@ -79,16 +80,33 @@ namespace TimeKeepr.WPF.ViewModels
             }
         }
 
-        private double? _hoursperweek;
+        private double? _hoursperweek = 0;
         public double? HoursPerWeek
         {
             get => _hoursperweek;
             set
             {
-                _hoursperweek = value;
-                OnPropertyChanged(() => HoursPerWeek);
+                if(_hoursperweek != value)
+                {
+                    _hoursperweek = value;
+                    OnPropertyChanged(() => HoursPerWeek);
+                }
             }
         }
+        private double? _previousSaldo = 0;
+        public double? PreviousSaldo
+        {
+            get => _previousSaldo;
+            set
+            {
+                if (_previousSaldo != value)
+                {
+                    _previousSaldo = value;
+                    OnPropertyChanged(() => PreviousSaldo);
+                }
+            }
+        }
+
         #endregion
         //Button disable
         private string _buttonIsEnabled = "true";
@@ -154,6 +172,7 @@ namespace TimeKeepr.WPF.ViewModels
                 LastName = _lastname,
                 WorkPlace = _workplace,
                 HoursPerWeek = (double)_hoursperweek,
+                PreviousSaldo = (double)_previousSaldo,
                 Salt = Convert.ToBase64String(_salt)
             };
             //instantiate DataService

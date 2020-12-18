@@ -16,11 +16,11 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="TimeKeepr.WPF.Views.HomeView" Collapsed="true" BaseTypeListCollapsed="true">
+  <Class Name="TimeKeepr.WPF.Views.LoggingView" Collapsed="true" BaseTypeListCollapsed="true">
     <Position X="18.25" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Views\HomeView.xaml.cs</FileName>
+      <FileName>Views\LoggingView.xaml.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
@@ -65,14 +65,14 @@
       <FileName>ViewModels\HelpPageViewModel.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="TimeKeepr.WPF.ViewModels.HomeViewModel">
+  <Class Name="TimeKeepr.WPF.ViewModels.LoggingViewModel">
     <Position X="10.75" Y="10.5" Width="1.5" />
     <Compartments>
       <Compartment Name="Fields" Collapsed="true" />
     </Compartments>
     <TypeIdentifier>
       <HashCode>CEySAABAIAAAboQgEIBAQBgoMQACkAQAARIAAABBKCA=</HashCode>
-      <FileName>ViewModels\HomeViewModel.cs</FileName>
+      <FileName>ViewModels\LoggingViewModel.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="TimeKeepr.WPF.ViewModels.LoginViewModel">

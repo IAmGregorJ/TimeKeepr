@@ -16,11 +16,11 @@
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="TimeKeepr.WPF.Views.HomeView" BaseTypeListCollapsed="true">
+  <Class Name="TimeKeepr.WPF.Views.LoggingView" BaseTypeListCollapsed="true">
     <Position X="4" Y="1" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Views\HomeView.xaml.cs</FileName>
+      <FileName>Views\LoggingView.xaml.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
