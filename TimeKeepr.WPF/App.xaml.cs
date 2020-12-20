@@ -16,12 +16,13 @@ namespace TimeKeepr.WPF
     {
         protected override void OnStartup(StartupEventArgs e)
         {
+            //making sure the decimal character is either , or . depending on locale
             FrameworkElement.LanguageProperty.OverrideMetadata(
             typeof(FrameworkElement),
             new FrameworkPropertyMetadata(
                 XmlLanguage.GetLanguage(CultureInfo.CurrentCulture.IetfLanguageTag)));
+            //System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("da-DK");
             Window window = new LoginView();
-            //window.DataContext = new LoginViewModel();
             window.ResizeMode = ResizeMode.NoResize;
             window.ShowDialog();
             InitializeComponent();

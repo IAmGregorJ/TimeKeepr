@@ -6,6 +6,8 @@ using TimeKeepr.EntityFramework;
 using TimeKeepr.EntityFramework.Services;
 using TimeKeepr.WPF.Helper;
 using TimeKeepr.WPF.Globals;
+using TimeKeepr.WPF.Localizations;
+using System.Resources;
 
 namespace TimeKeepr.WPF.ViewModels
 {
@@ -80,6 +82,9 @@ namespace TimeKeepr.WPF.ViewModels
             }
         }
         #endregion
+
+        ResourceManager rm = new ResourceManager(typeof(Resources));
+
         //constructor
         public CategoriesViewModel()
         {
@@ -102,12 +107,12 @@ namespace TimeKeepr.WPF.ViewModels
             EventCategory eventCategory = await service.Get(SelectedCategory.Id);
             if (eventCategory == null)
             {
-                ShowMessageBox("There is no such category. Please add a new one or chose another");
+                ShowMessageBox(rm.GetString("Category_notexist"));
             }
             else
             {
                 eventCategory = await service.Update(SelectedCategory.Id, categoryToUpdate);
-                ShowMessageBox("The Category is updated.");
+                ShowMessageBox(rm.GetString("Category_updated"));
             }
 
             GetCategories();
@@ -136,13 +141,13 @@ namespace TimeKeepr.WPF.ViewModels
                 };
                 var service = new DataService<EventCategory>(new TimeKeeprDbContextFactory());
                 await service.Create(eventCategory);
-                ShowMessageBox("The category is added.");
+                ShowMessageBox(rm.GetString("Category_added"));
 
                 //GetCategories forces the list to update in the ListView - is there a better way to do this? Dunno. It works.
                 GetCategories();
             }
             else
-                ShowMessageBox("A category by that name already exists. Please try another.");
+                ShowMessageBox(rm.GetString("Category_exists"));
 
             ButtonIsEnabled = "true";
         }
@@ -156,7 +161,7 @@ namespace TimeKeepr.WPF.ViewModels
             Id = SelectedCategory.Id;
             var service = new DataService<EventCategory>(new TimeKeeprDbContextFactory());
             await service.Delete(Id);
-            ShowMessageBox("The category is deleted");
+            ShowMessageBox(rm.GetString("Category_deleted"));
 
             GetCategories();
             ButtonIsEnabled = "true";

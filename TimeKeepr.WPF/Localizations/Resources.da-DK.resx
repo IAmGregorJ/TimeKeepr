@@ -118,285 +118,361 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Balance" xml:space="preserve">
-    <value>Current Balance</value>
+    <value>Saldo</value>
   </data>
   <data name="Balance_txt" xml:space="preserve">
-    <value>Current Balance:</value>
+    <value>Saldo:</value>
   </data>
   <data name="Categories" xml:space="preserve">
-    <value>Categories</value>
+    <value>Kategori</value>
   </data>
   <data name="Categories_help" xml:space="preserve">
-    <value>Click to define the categories</value>
+    <value>Klik for at definere kategorier</value>
   </data>
   <data name="Categories_menu" xml:space="preserve">
-    <value>Categories menu</value>
+    <value>Kategori menu</value>
+  </data>
+  <data name="Category" xml:space="preserve">
+    <value>Kategori</value>
+  </data>
+  <data name="CategoryChoose_error" xml:space="preserve">
+    <value>Du skal vælge en kategori inden du begynder</value>
+  </data>
+  <data name="Category_add" xml:space="preserve">
+    <value>Tilføj ny kategori</value>
+  </data>
+  <data name="Category_added" xml:space="preserve">
+    <value>Kategori er blevet tilføjet</value>
+  </data>
+  <data name="Category_add_help" xml:space="preserve">
+    <value>Klik for at tilføje ny kategori</value>
   </data>
   <data name="Category_choose" xml:space="preserve">
-    <value>Choose the category</value>
+    <value>Vælg kategori</value>
   </data>
   <data name="Category_choose_help" xml:space="preserve">
-    <value>Clcik to choose the category</value>
+    <value>Klik for at vælge kategori</value>
   </data>
   <data name="Category_delete" xml:space="preserve">
-    <value>Delete Category</value>
+    <value>Slet kategori</value>
+  </data>
+  <data name="Category_deleted" xml:space="preserve">
+    <value>Kategori er blevet slettet.</value>
   </data>
   <data name="Category_delete_help" xml:space="preserve">
-    <value>Click to delete the chosen category</value>
+    <value>Klik for at slette valgte kategori</value>
   </data>
   <data name="Category_dropdown" xml:space="preserve">
-    <value>Category Dropdown</value>
+    <value>Kategori menu</value>
+  </data>
+  <data name="Category_exists" xml:space="preserve">
+    <value>A category by that name already exists. Please try another.</value>
   </data>
   <data name="Category_name_help" xml:space="preserve">
-    <value>The name of the category to add or to modify</value>
+    <value>Navn på kategori at ændre eller tilføje</value>
+  </data>
+  <data name="Category_notexist" xml:space="preserve">
+    <value>Kategori eksisterer ikke. Vælg en anden eller tilføj en ny.</value>
   </data>
   <data name="Category_update" xml:space="preserve">
-    <value>Update the chosen category</value>
+    <value>Opdatere kategori</value>
+  </data>
+  <data name="Category_updated" xml:space="preserve">
+    <value>Kategori er blevet opdateret</value>
   </data>
   <data name="Category_update_help" xml:space="preserve">
-    <value>Click to modify the category</value>
+    <value>Klik for at opdatere kategori</value>
   </data>
   <data name="Close" xml:space="preserve">
-    <value>Close the app</value>
+    <value>Luk TimeKeepr</value>
   </data>
   <data name="Close_help" xml:space="preserve">
-    <value>Click to close this app</value>
+    <value>Klik for at lukke TimeKeepr</value>
   </data>
   <data name="Email" xml:space="preserve">
-    <value>Email</value>
+    <value>E-mail</value>
   </data>
   <data name="Email_hlelp" xml:space="preserve">
-    <value>Enter your email</value>
+    <value>Indtast e-mail</value>
   </data>
   <data name="Email_txt" xml:space="preserve">
-    <value>Email:</value>
+    <value>E-mail:</value>
+  </data>
+  <data name="Exit" xml:space="preserve">
+    <value>Hvis du lukker TimeKeeper, bliver ændringer ikke gemt.
+Afslut alligevel?</value>
   </data>
   <data name="Expander" xml:space="preserve">
-    <value>Click to expand the registration menu</value>
+    <value>Klik for at udvide registrerings menu</value>
+  </data>
+  <data name="Expander_title" xml:space="preserve">
+    <value>Side udvider</value>
+  </data>
+  <data name="Expander_txt" xml:space="preserve">
+    <value>Ny TimeKeepr bruger? Opret login her:</value>
   </data>
   <data name="FirstName" xml:space="preserve">
-    <value>First Name</value>
+    <value>Fornavn</value>
   </data>
   <data name="FirstName_txt" xml:space="preserve">
-    <value>First Name:</value>
+    <value>Fornavn:</value>
+  </data>
+  <data name="FullName_txt" xml:space="preserve">
+    <value>Navn:</value>
   </data>
   <data name="Help" xml:space="preserve">
-    <value>Help</value>
+    <value>Hjælp</value>
   </data>
   <data name="Help_help" xml:space="preserve">
-    <value>Click to access the help menu</value>
+    <value>Klik for hjælpæ menu</value>
   </data>
   <data name="Help_menu" xml:space="preserve">
-    <value>Help menu</value>
+    <value>Hjælpemenu</value>
+  </data>
+  <data name="Hours" xml:space="preserve">
+    <value> timer</value>
   </data>
   <data name="HoursPerWeek" xml:space="preserve">
-    <value>Hours per Week</value>
+    <value>Timer pr uge</value>
   </data>
   <data name="HoursPerWeek_help" xml:space="preserve">
-    <value>Enter the number of hours you work per week</value>
+    <value>Indtast arbejdstimer pr uge</value>
   </data>
   <data name="HoursPerWeek_txt" xml:space="preserve">
-    <value>Hours Per Week:</value>
+    <value>Timer pr uge:</value>
   </data>
   <data name="IsActive" xml:space="preserve">
-    <value>Is Active</value>
+    <value>Er Aktiv</value>
   </data>
   <data name="IsActive_help" xml:space="preserve">
-    <value>Click this if the category you are adding or modifying is an active category</value>
+    <value>Klik her hvis den kategori der tilføjes eller ændres er aktiv</value>
   </data>
   <data name="IsMeeting_help" xml:space="preserve">
-    <value>Check this box if this is a meeting</value>
+    <value>Klik dette box hvis dette er et møde.</value>
   </data>
   <data name="IsMeeting_question" xml:space="preserve">
-    <value>Is this a meeting?</value>
+    <value>Er dette et møde?</value>
   </data>
   <data name="LastName" xml:space="preserve">
-    <value>Last Name</value>
+    <value>Efternavn</value>
   </data>
   <data name="LastName_help" xml:space="preserve">
-    <value>Enter your last name</value>
+    <value>Indtast dit efternavn</value>
   </data>
   <data name="LastName_txt" xml:space="preserve">
-    <value>Last Name:</value>
+    <value>Efternavn:</value>
   </data>
   <data name="Logging" xml:space="preserve">
-    <value>Logging</value>
+    <value>Tidsregistrering</value>
   </data>
   <data name="Logging_help" xml:space="preserve">
-    <value>Click to access the logging menu</value>
+    <value>Klik for tidsregistrerings menu</value>
   </data>
   <data name="Logging_menu" xml:space="preserve">
-    <value>Logging menu</value>
+    <value>Tidregistrerings menu</value>
   </data>
   <data name="Login" xml:space="preserve">
-    <value>Login</value>
+    <value>Log på</value>
   </data>
   <data name="Login_button" xml:space="preserve">
-    <value>Login button</value>
+    <value>Login knap</value>
   </data>
   <data name="Login_help" xml:space="preserve">
-    <value>CLick here to submit your login information</value>
+    <value>Klik for at gemme din login information</value>
   </data>
   <data name="Login_txt" xml:space="preserve">
     <value>Login:</value>
   </data>
+  <data name="Login_window_title" xml:space="preserve">
+    <value>TimeKeepr - Login</value>
+  </data>
   <data name="Meetings_header" xml:space="preserve">
-    <value>Time spent in meetings - header</value>
+    <value>Tid brugt på møde - overskrift</value>
   </data>
   <data name="Meetings_title" xml:space="preserve">
-    <value>Total Hours in Meetings, per Category</value>
+    <value>Total tid brugt på møde pr kategori</value>
   </data>
   <data name="Meetings_txt" xml:space="preserve">
-    <value>The following table lists the number of hours in meetings per category</value>
+    <value>Denne tabel viser antal timer brugt på møder pr kategori</value>
   </data>
   <data name="Minimize" xml:space="preserve">
-    <value>Minimize the application</value>
+    <value>Minimere appen</value>
   </data>
   <data name="Minimize_help" xml:space="preserve">
-    <value>Click to minimize the application</value>
+    <value>Klik for at minimere appen</value>
   </data>
   <data name="Password" xml:space="preserve">
-    <value>Password</value>
+    <value>Adgangskode</value>
   </data>
   <data name="Password_help" xml:space="preserve">
-    <value>Enter your password here</value>
+    <value>Indtast adgangskoden her</value>
+  </data>
+  <data name="Password_notcorrect" xml:space="preserve">
+    <value>Forkert adgangskode.</value>
   </data>
   <data name="Password_txt" xml:space="preserve">
-    <value>Password:</value>
+    <value>Adgangskode:</value>
   </data>
   <data name="PreviousSaldo" xml:space="preserve">
-    <value>Previous overtime</value>
+    <value>Tidligere flekstimer</value>
   </data>
   <data name="PreviousSaldo_help" xml:space="preserve">
-    <value>Enter the number of previous overtime hours you have, if any</value>
+    <value>Indtast dine tidligere flekstimer</value>
   </data>
   <data name="PreviousSaldo_txt" xml:space="preserve">
-    <value>Previous overtime hours:</value>
+    <value>Tidligere flekstimer</value>
   </data>
   <data name="Register" xml:space="preserve">
-    <value>Register</value>
+    <value>Gem</value>
   </data>
   <data name="Register_but" xml:space="preserve">
-    <value>Register button</value>
+    <value>Registrerringsknap</value>
   </data>
   <data name="Register_button" xml:space="preserve">
-    <value>Register / Login</value>
+    <value>Registrere/Log på</value>
   </data>
   <data name="Register_help" xml:space="preserve">
-    <value>Click to register and log in</value>
+    <value>Klik for at registrere og logge på</value>
   </data>
   <data name="Register_task" xml:space="preserve">
-    <value>Register Task</value>
+    <value>Gem opgave</value>
   </data>
   <data name="Register_task_help" xml:space="preserve">
-    <value>Click when you're finished to register your task</value>
+    <value>Klik når du er færdig for at gemme opgaven</value>
   </data>
   <data name="Register_task_txt" xml:space="preserve">
-    <value>Register your task</value>
+    <value>Gem opgaven</value>
   </data>
   <data name="Register_time" xml:space="preserve">
-    <value>Register the time in the format xx.xx</value>
+    <value>Registrere tiden i format xx.xx</value>
   </data>
   <data name="Register_txt" xml:space="preserve">
-    <value>Register:</value>
+    <value>Registrere</value>
   </data>
   <data name="Register_workday_help" xml:space="preserve">
-    <value>Click when you're finished to register your workday</value>
+    <value>Klik når du er færdig for at gemme arbejdsdagen.</value>
   </data>
   <data name="Register_workday_txt" xml:space="preserve">
-    <value>Register your workday</value>
+    <value>Gem arbejdsdagen</value>
   </data>
   <data name="Selected_category" xml:space="preserve">
-    <value>Selected or New Category</value>
+    <value>Valgt eller ny kategori</value>
   </data>
   <data name="Start_task" xml:space="preserve">
-    <value>Start Task</value>
+    <value>Start opgave</value>
   </data>
   <data name="Start_task_help" xml:space="preserve">
-    <value>click to start your task</value>
+    <value>Klik for at starte opgaven</value>
   </data>
   <data name="Start_task_txt" xml:space="preserve">
-    <value>Start the task</value>
+    <value>Start opgaven</value>
   </data>
   <data name="Start_work" xml:space="preserve">
-    <value>Start Work</value>
+    <value>Start arbejdstid</value>
   </data>
   <data name="Start_work_help" xml:space="preserve">
-    <value>Click to begin your workday</value>
+    <value>Klik for at starte arbejdstiden</value>
   </data>
   <data name="Start_work_txt" xml:space="preserve">
-    <value>Start the workday</value>
+    <value>Klik for at starte arbejdsdagen</value>
   </data>
   <data name="Statistics" xml:space="preserve">
-    <value>Statistics</value>
+    <value>Statistik</value>
   </data>
   <data name="Statistics_help" xml:space="preserve">
-    <value>Click to access your statistics</value>
+    <value>Klik for adgang til din statistik</value>
   </data>
   <data name="Statistics_menu" xml:space="preserve">
-    <value>Statistics menu</value>
+    <value>Statistik menu</value>
   </data>
   <data name="Stop_task" xml:space="preserve">
-    <value>Stop Task</value>
+    <value>Stop opgave</value>
   </data>
   <data name="Stop_task_help" xml:space="preserve">
-    <value>Click to stop your task</value>
+    <value>Klik for at stoppe opgaven</value>
   </data>
   <data name="Stop_task_txt" xml:space="preserve">
-    <value>Stop the task</value>
+    <value>Stop opgaven</value>
   </data>
   <data name="Stop_work" xml:space="preserve">
-    <value>Stop Work</value>
+    <value>Stop arbejdstid</value>
   </data>
   <data name="Stop_work_help" xml:space="preserve">
-    <value>Click to stop your workday</value>
+    <value>Klik for at stoppe arbejdsdagen</value>
   </data>
   <data name="Stop_work_txt" xml:space="preserve">
-    <value>Stop the workday</value>
+    <value>Stop arbejdsdagen</value>
+  </data>
+  <data name="TimeKeepr_txt" xml:space="preserve">
+    <value>TimeKeepr</value>
+  </data>
+  <data name="Time_error" xml:space="preserve">
+    <value>Du skal registrere gyldige tidspunkter - prøv igen</value>
+  </data>
+  <data name="Total_hours" xml:space="preserve">
+    <value>timer i alt</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>Bruger</value>
   </data>
   <data name="Username" xml:space="preserve">
-    <value>Username</value>
+    <value>Brugernavn</value>
   </data>
   <data name="Username_help" xml:space="preserve">
-    <value>Enter your username here</value>
+    <value>Indtast brugernavnet her</value>
   </data>
   <data name="Username_txt" xml:space="preserve">
-    <value>Username:</value>
+    <value>Brugernavn:</value>
   </data>
   <data name="User_info_header" xml:space="preserve">
-    <value>User information - header</value>
+    <value>Bruger information - overskrift</value>
   </data>
   <data name="User_info_help" xml:space="preserve">
-    <value>The following information pertains to the current user's information</value>
+    <value>Følgende information vedrører brugerens oplysninger</value>
+  </data>
+  <data name="User_notexist" xml:space="preserve">
+    <value>Brugernavnet eksisterer ikke.</value>
+  </data>
+  <data name="WeekNr" xml:space="preserve">
+    <value>Ugenr.</value>
+  </data>
+  <data name="WorkBegin_error" xml:space="preserve">
+    <value>Du skal påbegynde din arbejdsdag inden du kan starte en opgave</value>
   </data>
   <data name="Workday" xml:space="preserve">
-    <value>Workday</value>
+    <value>Arbejdsdag</value>
   </data>
   <data name="WorkPerWeekCategory_header" xml:space="preserve">
-    <value>Work hours per week per category - header</value>
+    <value>Arbejdstimer pr uge pr kategory - overskrift</value>
   </data>
   <data name="WorkPerWeekCategory_title" xml:space="preserve">
-    <value>Total Hours Per Week, per Category</value>
+    <value>Sum af arbejdstimer pr uge, pr kategori</value>
   </data>
   <data name="WorkPerWeekCategory_txt" xml:space="preserve">
-    <value>The following table lists the number of work hours per week per category</value>
+    <value>Følgende tabel viser antallet af arbejdstimer pr uge, pr kategori</value>
   </data>
   <data name="WorkPerWeek_header" xml:space="preserve">
-    <value>Work hours per week - header</value>
+    <value>Arbejdstimer pr uge - overskrift</value>
   </data>
   <data name="WorkPerWeek_title" xml:space="preserve">
-    <value>Total Work Hours Per Week</value>
+    <value>Sum af arbejdstimer pr uge</value>
   </data>
   <data name="WorkPerWeek_txt" xml:space="preserve">
-    <value>The following table lists the number of work hours per week</value>
+    <value>Følgende tabel viser antallet af arbejdstimer pr uge</value>
   </data>
   <data name="Workplace" xml:space="preserve">
-    <value>Workplace</value>
+    <value>Arbejdsplads</value>
   </data>
   <data name="Workplace_help" xml:space="preserve">
-    <value>Enter the name of your workplace</value>
+    <value>Indtast navnet på din arbejdsplads</value>
   </data>
   <data name="Workplace_txt" xml:space="preserve">
-    <value>Workplace:</value>
+    <value>Arbejdsplads:</value>
+  </data>
+  <data name="Worktask" xml:space="preserve">
+    <value>Arbejdsopgave</value>
+  </data>
+  <data name="Year" xml:space="preserve">
+    <value>År</value>
   </data>
 </root>

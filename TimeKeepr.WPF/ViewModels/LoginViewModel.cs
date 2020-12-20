@@ -7,6 +7,8 @@ using TimeKeepr.WPF.Globals;
 using TimeKeepr.WPF.Helper;
 using GJEncryption;
 using System.IO;
+using System.Resources;
+using TimeKeepr.WPF.Localizations;
 
 namespace TimeKeepr.WPF.ViewModels
 {
@@ -121,6 +123,8 @@ namespace TimeKeepr.WPF.ViewModels
             }
         }
 
+        ResourceManager rm = new ResourceManager(typeof(Resources));
+
         #region login logic
         public ICommand LoginCommand { get { return new BaseCommand(ClickLogin); } }
         private async void ClickLogin()
@@ -137,7 +141,7 @@ namespace TimeKeepr.WPF.ViewModels
             User user = await service.GetByUserName(UserName);
             if (user == null)
             {
-                ShowMessageBox("There is no such user!");
+                ShowMessageBox(rm.GetString("User_notexist"));
                 ButtonIsEnabled = "true";
             }
             else
@@ -151,7 +155,7 @@ namespace TimeKeepr.WPF.ViewModels
                 }
                 else
                 {
-                    ShowMessageBox("Wrong password, loser!");
+                    ShowMessageBox(rm.GetString("Password_notcorrect"));
                     Environment.Exit(1);
                 }
             }

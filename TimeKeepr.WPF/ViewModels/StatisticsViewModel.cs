@@ -211,6 +211,7 @@ namespace TimeKeepr.WPF.ViewModels
 
         #endregion userinfo properties
 
+
         //constructor
         public StatisticsViewModel()
         {
@@ -286,13 +287,11 @@ namespace TimeKeepr.WPF.ViewModels
             var PercentSpentInMeetingsThisMonth = ((TimeSpentInMeetingsThisMonth / TimeSpentOnProjectsThisMonth) * 100).ToString("P");
             //##############################################################
 
-
-
             var overTime = (WorkHoursWeek.Sum(item => item.TimeInHours) - (HoursPerWeek * WorkHoursWeek.Count));
             var overTimeT = overTime + PreviousSaldo;
             var overTimeTotal = Math.Round(Convert.ToDecimal(overTimeT), 2);
 
-            Saldo = Convert.ToString(overTimeTotal) + " hours";
+            Saldo = Convert.ToString(overTimeTotal);
 
             //Saldo = (PreviousSaldo + (WorkHoursWeek.Sum(item => item.TimeInHours) - 
             //    (HoursPerWeek * WorkHoursWeek.Count))) + " hours";

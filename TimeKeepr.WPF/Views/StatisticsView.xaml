@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TimeKeepr.WPF.Views"
+             xmlns:p="clr-namespace:TimeKeepr.WPF.Localizations"
              xmlns:me="clr-namespace:TimeKeepr.WPF.ViewModels" d:DataContext="{d:DesignInstance Type=me:StatisticsViewModel}"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="450">
@@ -26,7 +27,7 @@
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <TextBlock Grid.Row="0" Style="{StaticResource header_font}" Focusable="True"
-                       AutomationProperties.Name="User information - header" AutomationProperties.HelpText="The folloiwng information pertains to the current user's information"
+                       AutomationProperties.Name="{x:Static p:Resources.User_info_header}" AutomationProperties.HelpText="{x:Static p:Resources.User_info_help}"
                        Text="User information" />
             <Grid Grid.Row="1" >
                 <Grid.RowDefinitions>
@@ -41,27 +42,30 @@
                     <ColumnDefinition Width="auto" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Label Grid.Row="0" Grid.Column="0" Name="Nome" Content="Full Name:" />
+                <Label Grid.Row="0" Grid.Column="0" Name="Nome" Content="{x:Static p:Resources.FullName_txt}" />
                 <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource normal_font}" Focusable="True" KeyboardNavigation.TabIndex="1"
-                           AutomationProperties.Name="{Binding FullName}" AutomationProperties.HelpText="User"
+                           AutomationProperties.Name="{Binding FullName}" AutomationProperties.HelpText="{x:Static p:Resources.User}"
                            Text="{Binding FullName}" />
-                <Label Grid.Row="1" Grid.Column="0" Name="Workplace" Content="Workplace:" />
+                <Label Grid.Row="1" Grid.Column="0" Name="Workplace" Content="{x:Static p:Resources.Workplace_txt}" />
                 <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource normal_font}" Focusable="True" KeyboardNavigation.TabIndex="2"
-                           AutomationProperties.Name="{Binding WorkPlace}" AutomationProperties.HelpText="Workplace"
+                           AutomationProperties.Name="{Binding WorkPlace}" AutomationProperties.HelpText="{x:Static p:Resources.Workplace}"
                            Text="{Binding WorkPlace}" />
-                <Label Grid.Row="2" Grid.Column="0" Name="Hours_Per_Week" Content="Hours Per Week:" />
+                <Label Grid.Row="2" Grid.Column="0" Name="Hours_Per_Week" Content="{x:Static p:Resources.HoursPerWeek_txt}" />
                 <TextBlock Grid.Row="2" Grid.Column="1" Style="{StaticResource normal_font}" Focusable="True" KeyboardNavigation.TabIndex="3"
-                           AutomationProperties.Name="{Binding HoursPerWeek}" AutomationProperties.HelpText="Hours Per week"
+                           AutomationProperties.Name="{Binding HoursPerWeek}" AutomationProperties.HelpText="{x:Static p:Resources.HoursPerWeek}"
                            Text="{Binding HoursPerWeek}" />
-                <Label Grid.Row="3" Grid.Column="0" Name="Current_balance" Content="Current balance: " />
-                <TextBlock Grid.Row="3" Grid.Column="1" Style="{StaticResource normal_font}" Focusable="True" KeyboardNavigation.TabIndex="4"
-                           AutomationProperties.Name="{Binding Saldo}" AutomationProperties.HelpText="Current balance"
+                <Label Grid.Row="3" Grid.Column="0" Name="Current_balance" Content="{x:Static p:Resources.Balance_txt}" />
+                <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal">
+                    <TextBlock Style="{StaticResource normal_font}" Focusable="True" KeyboardNavigation.TabIndex="4"
+                           AutomationProperties.Name="{Binding Saldo}" AutomationProperties.HelpText="{x:Static p:Resources.Balance}"
                            Text="{Binding Saldo}" />
+                    <TextBlock Style="{StaticResource normal_font}" Text="{x:Static p:Resources.Hours}" />
+                </StackPanel>
             </Grid>
 
             <TextBlock Grid.Row="2" Style="{StaticResource header_font}" Focusable="True" KeyboardNavigation.TabIndex="9" 
-                       AutomationProperties.Name="Work hours per week - Header" AutomationProperties.HelpText="The following table lists the number of work hours per week"
-                       Text="Total Work Hours Per Week" />
+                       AutomationProperties.Name="{x:Static p:Resources.WorkPerWeek_header}" AutomationProperties.HelpText="{x:Static p:Resources.WorkPerWeek_txt}"
+                       Text="{x:Static p:Resources.WorkPerWeek_title}" />
             <Grid Grid.Row="3">
                 <DataGrid ItemsSource="{Binding WorkHoursWeek}" 
                           HorizontalAlignment="Left"
@@ -72,16 +76,16 @@
                           SelectionMode="Single" 
                           KeyboardNavigation.TabIndex="11">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Year" Binding="{Binding Year}" />
-                        <DataGridTextColumn Header="WeekNr" Binding="{Binding WeekNr}" />
-                        <DataGridTextColumn Header="Total Hours" Binding="{Binding TimeInHours}" />
+                        <DataGridTextColumn Header="{x:Static p:Resources.Year}" Binding="{Binding Year}" />
+                        <DataGridTextColumn Header="{x:Static p:Resources.WeekNr}" Binding="{Binding WeekNr}" />
+                        <DataGridTextColumn Header="{x:Static p:Resources.Total_hours}" Binding="{Binding TimeInHours}" />
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>
 
             <TextBlock Grid.Row="4" Style="{StaticResource header_font}" Focusable="True" KeyboardNavigation.TabIndex="9" 
-                       AutomationProperties.Name="Work hours per week per category - Header" AutomationProperties.HelpText="Te following table lists the number of work hours per week per category"
-                       Text="Total Hours Per Week, per Category" />
+                       AutomationProperties.Name="{x:Static p:Resources.WorkPerWeekCategory_header}" AutomationProperties.HelpText="{x:Static p:Resources.WorkPerWeekCategory_txt}"
+                       Text="{x:Static p:Resources.WorkPerWeekCategory_title}" />
             <Grid Grid.Row="5">
                 <DataGrid ItemsSource="{Binding CategoryHoursWeek}" 
                           HorizontalAlignment="Left"
@@ -92,17 +96,17 @@
                           SelectionMode="Single" 
                           KeyboardNavigation.TabIndex="11">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Year" Binding="{Binding Year}" />
-                        <DataGridTextColumn Header="Category" Binding="{Binding Category}" />
-                        <DataGridTextColumn Header="WeekNr" Binding="{Binding WeekNr}" />
-                        <DataGridTextColumn Header="Total Hours" Binding="{Binding TimeInHours}" />
+                        <DataGridTextColumn Header="{x:Static p:Resources.Year}" Binding="{Binding Year}" />
+                        <DataGridTextColumn Header="{x:Static p:Resources.Category}" Binding="{Binding Category}" />
+                        <DataGridTextColumn Header="{x:Static p:Resources.WeekNr}" Binding="{Binding WeekNr}" />
+                        <DataGridTextColumn Header="{x:Static p:Resources.Total_hours}" Binding="{Binding TimeInHours}" />
                     </DataGrid.Columns>
                 </DataGrid>                
             </Grid>
 
             <TextBlock Grid.Row="6" Style="{StaticResource header_font}" Focusable="True" KeyboardNavigation.TabIndex="9" 
-                       AutomationProperties.Name="Time spent in meetings - Header" AutomationProperties.HelpText="The following table lists the number hours in meetings per category"
-                       Text="Total Hours in Meetings, per Category" />
+                       AutomationProperties.Name="{x:Static p:Resources.Meetings_header}" AutomationProperties.HelpText="{x:Static p:Resources.Meetings_txt}"
+                       Text="{x:Static p:Resources.Meetings_title}" />
             <Grid Grid.Row="7">
                 <DataGrid ItemsSource="{Binding HoursInMeeting}" 
                           HorizontalAlignment="Left"
@@ -113,10 +117,10 @@
                           SelectionMode="Single" 
                           KeyboardNavigation.TabIndex="11">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="Year" Binding="{Binding Year}" />
-                        <DataGridTextColumn Header="Category" Binding="{Binding Category}" />
-                        <DataGridTextColumn Header="WeekNr" Binding="{Binding WeekNr}" />
-                        <DataGridTextColumn Header="Total Hours" Binding="{Binding TimeInHours}" />
+                        <DataGridTextColumn Header="{x:Static p:Resources.Year}" Binding="{Binding Year}" />
+                        <DataGridTextColumn Header="{x:Static p:Resources.Category}" Binding="{Binding Category}" />
+                        <DataGridTextColumn Header="{x:Static p:Resources.WeekNr}" Binding="{Binding WeekNr}" />
+                        <DataGridTextColumn Header="{x:Static p:Resources.Total_hours}" Binding="{Binding TimeInHours}" />
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>

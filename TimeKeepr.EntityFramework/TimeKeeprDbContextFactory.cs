@@ -8,12 +8,6 @@ namespace TimeKeepr.EntityFramework
         public TimeKeeprDbContext CreateDbContext(string[] args = null)
         {
             var options = new DbContextOptionsBuilder<TimeKeeprDbContext>();
-            //string relativePath = @"timekeeprdatabase.db";
-            //string currentPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase);
-            //string absolutePath = System.IO.Path.Combine(currentPath, relativePath);
-            //absolutePath = absolutePath.Remove(0, 6);//this code is written to remove file word from absolute path
-            //string connectionString = string.Format("Data Source={0}", absolutePath);
-
 
             //TRY THIS LATER
             //var databasePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), @"TimeKeepr\timekeeprdatabase.db");

@@ -106,6 +106,42 @@ namespace TimeKeepr.WPF.Localizations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Category.
+        /// </summary>
+        public static string Category {
+            get {
+                return ResourceManager.GetString("Category", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add new category.
+        /// </summary>
+        public static string Category_add {
+            get {
+                return ResourceManager.GetString("Category_add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Click to add the new category.
+        /// </summary>
+        public static string Category_add_help {
+            get {
+                return ResourceManager.GetString("Category_add_help", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The category has been added..
+        /// </summary>
+        public static string Category_added {
+            get {
+                return ResourceManager.GetString("Category_added", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Choose the category.
         /// </summary>
         public static string Category_choose {
@@ -142,6 +178,15 @@ namespace TimeKeepr.WPF.Localizations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The category is deleted..
+        /// </summary>
+        public static string Category_deleted {
+            get {
+                return ResourceManager.GetString("Category_deleted", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Category Dropdown.
         /// </summary>
         public static string Category_dropdown {
@@ -151,11 +196,29 @@ namespace TimeKeepr.WPF.Localizations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to A category by that name already exists. Please try another..
+        /// </summary>
+        public static string Category_exists {
+            get {
+                return ResourceManager.GetString("Category_exists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The name of the category to add or to modify.
         /// </summary>
         public static string Category_name_help {
             get {
                 return ResourceManager.GetString("Category_name_help", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There is no such category. Please add a new one or chose another..
+        /// </summary>
+        public static string Category_notexist {
+            get {
+                return ResourceManager.GetString("Category_notexist", resourceCulture);
             }
         }
         
@@ -174,6 +237,24 @@ namespace TimeKeepr.WPF.Localizations {
         public static string Category_update_help {
             get {
                 return ResourceManager.GetString("Category_update_help", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The category has been updated..
+        /// </summary>
+        public static string Category_updated {
+            get {
+                return ResourceManager.GetString("Category_updated", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You must choose a category before beginning..
+        /// </summary>
+        public static string CategoryChoose_error {
+            get {
+                return ResourceManager.GetString("CategoryChoose_error", resourceCulture);
             }
         }
         
@@ -223,11 +304,39 @@ namespace TimeKeepr.WPF.Localizations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to If you exit, your progress will not be saved.
+        ///Exit anyway?.
+        /// </summary>
+        public static string Exit {
+            get {
+                return ResourceManager.GetString("Exit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Click to expand the registration menu.
         /// </summary>
         public static string Expander {
             get {
                 return ResourceManager.GetString("Expander", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Page Expander.
+        /// </summary>
+        public static string Expander_title {
+            get {
+                return ResourceManager.GetString("Expander_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to New to TimeKeepr? Create a login here:.
+        /// </summary>
+        public static string Expander_txt {
+            get {
+                return ResourceManager.GetString("Expander_txt", resourceCulture);
             }
         }
         
@@ -246,6 +355,15 @@ namespace TimeKeepr.WPF.Localizations {
         public static string FirstName_txt {
             get {
                 return ResourceManager.GetString("FirstName_txt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Full Name:.
+        /// </summary>
+        public static string FullName_txt {
+            get {
+                return ResourceManager.GetString("FullName_txt", resourceCulture);
             }
         }
         
@@ -273,6 +391,15 @@ namespace TimeKeepr.WPF.Localizations {
         public static string Help_menu {
             get {
                 return ResourceManager.GetString("Help_menu", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  hours.
+        /// </summary>
+        public static string Hours {
+            get {
+                return ResourceManager.GetString("Hours", resourceCulture);
             }
         }
         
@@ -430,6 +557,15 @@ namespace TimeKeepr.WPF.Localizations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to TimeKeepr - Login.
+        /// </summary>
+        public static string Login_window_title {
+            get {
+                return ResourceManager.GetString("Login_window_title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Time spent in meetings - header.
         /// </summary>
         public static string Meetings_header {
@@ -489,6 +625,15 @@ namespace TimeKeepr.WPF.Localizations {
         public static string Password_help {
             get {
                 return ResourceManager.GetString("Password_help", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wrong password..
+        /// </summary>
+        public static string Password_notcorrect {
+            get {
+                return ResourceManager.GetString("Password_notcorrect", resourceCulture);
             }
         }
         
@@ -772,6 +917,42 @@ namespace TimeKeepr.WPF.Localizations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You must register valid times - please try again..
+        /// </summary>
+        public static string Time_error {
+            get {
+                return ResourceManager.GetString("Time_error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to TimeKeepr.
+        /// </summary>
+        public static string TimeKeepr_txt {
+            get {
+                return ResourceManager.GetString("TimeKeepr_txt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total hours.
+        /// </summary>
+        public static string Total_hours {
+            get {
+                return ResourceManager.GetString("Total_hours", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to User.
+        /// </summary>
+        public static string User {
+            get {
+                return ResourceManager.GetString("User", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to User information - header.
         /// </summary>
         public static string User_info_header {
@@ -786,6 +967,15 @@ namespace TimeKeepr.WPF.Localizations {
         public static string User_info_help {
             get {
                 return ResourceManager.GetString("User_info_help", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to There is no such user..
+        /// </summary>
+        public static string User_notexist {
+            get {
+                return ResourceManager.GetString("User_notexist", resourceCulture);
             }
         }
         
@@ -813,6 +1003,24 @@ namespace TimeKeepr.WPF.Localizations {
         public static string Username_txt {
             get {
                 return ResourceManager.GetString("Username_txt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Week nr..
+        /// </summary>
+        public static string WeekNr {
+            get {
+                return ResourceManager.GetString("WeekNr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You have to begin your Work Day before you can start a project..
+        /// </summary>
+        public static string WorkBegin_error {
+            get {
+                return ResourceManager.GetString("WorkBegin_error", resourceCulture);
             }
         }
         
@@ -903,6 +1111,24 @@ namespace TimeKeepr.WPF.Localizations {
         public static string Workplace_txt {
             get {
                 return ResourceManager.GetString("Workplace_txt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Work Task.
+        /// </summary>
+        public static string Worktask {
+            get {
+                return ResourceManager.GetString("Worktask", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Year.
+        /// </summary>
+        public static string Year {
+            get {
+                return ResourceManager.GetString("Year", resourceCulture);
             }
         }
     }

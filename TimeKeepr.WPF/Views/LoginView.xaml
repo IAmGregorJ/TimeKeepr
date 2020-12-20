@@ -6,8 +6,9 @@
         xmlns:local="clr-namespace:TimeKeepr.WPF"
         xmlns:me="clr-namespace:TimeKeepr.WPF.ViewModels" d:DataContext="{d:DesignInstance Type=me:LoginViewModel}"
         xmlns:com="clr-namespace:TimeKeepr.WPF.Components"
+        xmlns:p="clr-namespace:TimeKeepr.WPF.Localizations"
         mc:Ignorable="d"
-        Title="TimeKeepr - Login" Height="600" Width="450" ResizeMode="NoResize" WindowStyle="None"  MouseLeftButtonDown="WindowMouseLeftButtonDown">
+        Title="{x:Static p:Resources.Login_window_title}" Height="600" Width="450" ResizeMode="NoResize" WindowStyle="None"  MouseLeftButtonDown="WindowMouseLeftButtonDown">
     <Window.DataContext>
         <me:LoginViewModel />
     </Window.DataContext>
@@ -27,34 +28,34 @@
             <ColumnDefinition />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <TextBlock Grid.ColumnSpan="4" Text="TimeKeepr" Style="{StaticResource title_font}" Margin="20,10,0,0" />
+        <TextBlock Grid.ColumnSpan="4" Text="{x:Static p:Resources.TimeKeepr_txt}" Style="{StaticResource title_font}" Margin="20,10,0,0" />
 
         <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource header_font}" FontWeight="bold" 
-                   VerticalAlignment="Bottom" Text="Login:" />
-        <Label Grid.Row="2" Grid.Column="1" Style="{StaticResource label_font}" Content="Username:" />
+                   VerticalAlignment="Bottom" Text="{x:Static p:Resources.Login_txt}" />
+        <Label Grid.Row="2" Grid.Column="1" Style="{StaticResource label_font}" Content="{x:Static p:Resources.Username_txt}" />
         <TextBox Grid.Row="2" Grid.Column="2" Height="18" VerticalAlignment="Center" 
-                 AutomationProperties.Name="Username" AutomationProperties.HelpText="Enter your username here"
+                 AutomationProperties.Name="{x:Static p:Resources.Username}" AutomationProperties.HelpText="{x:Static p:Resources.Username_help}"
                  Name="Username_txtbox" Text="{Binding UserName, UpdateSourceTrigger=PropertyChanged, 
             ValidatesOnDataErrors=True, ValidatesOnExceptions=True, NotifyOnValidationError=true}"/>
 
-        <Label Grid.Row="3" Grid.Column="1" Style="{StaticResource label_font}" Content="Password:" />
+        <Label Grid.Row="3" Grid.Column="1" Style="{StaticResource label_font}" Content="{x:Static p:Resources.Password_txt}" />
         <com:BindablePasswordBox Grid.Row="3" Grid.Column="2" Height="18" VerticalAlignment="Center"
-                                 AutomationProperties.Name="Password" AutomationProperties.HelpText="Enter your password here"
+                                 AutomationProperties.Name="{x:Static p:Resources.Password}" AutomationProperties.HelpText="{x:Static p:Resources.Password_help}"
                                  x:Name="Password_passbox" Password="{Binding Password, UpdateSourceTrigger=PropertyChanged, 
             ValidatesOnDataErrors=True, ValidatesOnExceptions=True, NotifyOnSourceUpdated=True}" />
 
-        <Button Name="Loginbutton" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Width="130" VerticalAlignment="Bottom" Content="Login"
-                AutomationProperties.Name="Login button" AutomationProperties.HelpText="Click here to submit your login information"
+        <Button Name="Loginbutton" Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" Width="130" VerticalAlignment="Bottom" Content="{x:Static p:Resources.Login}"
+                AutomationProperties.Name="{x:Static p:Resources.Login_button}" AutomationProperties.HelpText="{x:Static p:Resources.Login_help}"
                 IsEnabled="{Binding ButtonIsEnabled}" Command="{Binding LoginCommand}" />
         
         <Separator Grid.Row="5" Grid.ColumnSpan="4" Width="300" />
         
         <Expander Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="4"
-                  AutomationProperties.Name="Page expander" AutomationProperties.HelpText="Click to expand the registration menu"
+                  AutomationProperties.Name="{x:Static p:Resources.Expander_title}" AutomationProperties.HelpText="{x:Static p:Resources.Expander}"
                   Name="Page_expander">
             <Expander.Header>
                 <DockPanel Height="25" Width="400" Background="{StaticResource BrushPrimary1}">
-                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontStyle="Italic" Style="{StaticResource normal_font}">New to TimeKeepr? Create a login here:</TextBlock>
+                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" Text="{x:Static p:Resources.Expander_txt}" FontStyle="Italic" Style="{StaticResource normal_font}"></TextBlock>
                 </DockPanel>
             </Expander.Header>
             <Grid>
@@ -76,53 +77,52 @@
                     <ColumnDefinition Width="150" />
                     <ColumnDefinition Width="75" />
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource header_font}" FontWeight="bold" VerticalAlignment="Center" Text="Register:"  />
-                <Label Grid.Row="1" Grid.Column="1" Style="{StaticResource label_font}" Content="Email:" />
+                <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource header_font}" FontWeight="bold" VerticalAlignment="Center" Text="{x:Static p:Resources.Register_txt}"  />
+                <Label Grid.Row="1" Grid.Column="1" Style="{StaticResource label_font}" Content="{x:Static p:Resources.Email_txt}" />
                 <TextBox Grid.Row="1" Grid.Column="2" Height="18" VerticalAlignment="Center" Name="email_txt"
-                         AutomationProperties.Name="Email" AutomationProperties.HelpText="Enter your email"
+                         AutomationProperties.Name="{x:Static p:Resources.Email}" AutomationProperties.HelpText="{x:Static p:Resources.Email_hlelp}"
                  Text="{Binding EMail, UpdateSourceTrigger=PropertyChanged, 
             ValidatesOnDataErrors=True, ValidatesOnExceptions=True, NotifyOnValidationError=true}"/>
-                <Label Grid.Row="2" Grid.Column="1" Style="{StaticResource label_font}" Content="Username:" />
+                <Label Grid.Row="2" Grid.Column="1" Style="{StaticResource label_font}" Content="{x:Static p:Resources.Username_txt}" />
                 <TextBox Grid.Row="2" Grid.Column="2" Height="18" VerticalAlignment="Center" Name="username_txt"
-                         AutomationProperties.Name="Username" AutomationProperties.HelpText="Enter your username"
+                         AutomationProperties.Name="{x:Static p:Resources.Username}" AutomationProperties.HelpText="{x:Static p:Resources.Username_help}"
                  Text="{Binding UserName, UpdateSourceTrigger=PropertyChanged, 
             ValidatesOnDataErrors=True, ValidatesOnExceptions=True, NotifyOnValidationError=true}"/>
-                <Label Grid.Row="3" Grid.Column="1" Style="{StaticResource label_font}" Content="Password:" />
+                <Label Grid.Row="3" Grid.Column="1" Style="{StaticResource label_font}" Content="{x:Static p:Resources.Password_txt}" />
                 <TextBox Grid.Row="3" Grid.Column="2" Height="18" VerticalAlignment="Center" Name="password_txt"
-                         AutomationProperties.Name="Password" AutomationProperties.HelpText="Enter your password"
+                         AutomationProperties.Name="{x:Static p:Resources.Password}" AutomationProperties.HelpText="{x:Static p:Resources.Password_help}"
                  Text="{Binding Password, UpdateSourceTrigger=PropertyChanged, 
             ValidatesOnDataErrors=True, ValidatesOnExceptions=True, NotifyOnValidationError=true}"/>
-                <Label Grid.Row="4" Grid.Column="1" Style="{StaticResource label_font}" Content="First Name:" />
+                <Label Grid.Row="4" Grid.Column="1" Style="{StaticResource label_font}" Content="{x:Static p:Resources.FirstName_txt}" />
                 <TextBox Grid.Row="4" Grid.Column="2" Height="18" VerticalAlignment="Center" Name="firstname_txt"
-                         AutomationProperties.Name="First Name" AutomationProperties.HelpText="Enter your first name"
+                         AutomationProperties.Name="{x:Static p:Resources.FirstName_txt}" AutomationProperties.HelpText="{x:Static p:Resources.FirstName_txt}"
                  Text="{Binding FirstName, UpdateSourceTrigger=PropertyChanged, 
             ValidatesOnDataErrors=True, ValidatesOnExceptions=True, NotifyOnValidationError=true}"/>
-                <Label Grid.Row="5" Grid.Column="1" Style="{StaticResource label_font}" Content="Last Name:" />
+                <Label Grid.Row="5" Grid.Column="1" Style="{StaticResource label_font}" Content="{x:Static p:Resources.LastName_txt}" />
                 <TextBox Grid.Row="5" Grid.Column="2" Height="18" VerticalAlignment="Center" Name="lastnametxt"
-                         AutomationProperties.Name="Last Name" AutomationProperties.HelpText="Enter your last name"
+                         AutomationProperties.Name="{x:Static p:Resources.LastName}" AutomationProperties.HelpText="{x:Static p:Resources.LastName_txt}"
                  Text="{Binding LastName, UpdateSourceTrigger=PropertyChanged, 
             ValidatesOnDataErrors=True, ValidatesOnExceptions=True, NotifyOnValidationError=true}"/>
-                <Label Grid.Row="6" Grid.Column="1" Style="{StaticResource label_font}" Content="Workplace:" />
+                <Label Grid.Row="6" Grid.Column="1" Style="{StaticResource label_font}" Content="{x:Static p:Resources.Workplace_txt}" />
                 <TextBox Grid.Row="6" Grid.Column="2" Height="18" VerticalAlignment="Center" Name="workplace_txt"
-                         AutomationProperties.Name="Workplace" AutomationProperties.HelpText="Enter your workplace"
+                         AutomationProperties.Name="{x:Static p:Resources.Workplace}" AutomationProperties.HelpText="{x:Static p:Resources.Workplace_help}"
                  Text="{Binding WorkPlace, UpdateSourceTrigger=PropertyChanged, 
             ValidatesOnDataErrors=True, ValidatesOnExceptions=True, NotifyOnValidationError=true}"/>
-                <Label Grid.Row="7" Grid.Column="1" Style="{StaticResource label_font}" Content="Hours per week:" />
-                
+                <Label Grid.Row="7" Grid.Column="1" Style="{StaticResource label_font}" Content="{x:Static p:Resources.HoursPerWeek_txt}" />                
                 <TextBox Grid.Row="7" Grid.Column="2" Height="18" VerticalAlignment="Center" Name="hoursperweek_txt"
-                         AutomationProperties.Name="Hours per Week" AutomationProperties.HelpText="Enter the number of hours you work per week"
+                         AutomationProperties.Name="{x:Static p:Resources.HoursPerWeek}" AutomationProperties.HelpText="{x:Static p:Resources.HoursPerWeek_help}"
                  Text="{Binding HoursPerWeek, Mode=TwoWay, 
             ValidatesOnDataErrors=True, ValidatesOnExceptions=True, NotifyOnValidationError=true, TargetNullValue=''}"/>
-                
-                <Label Grid.Row="8" Grid.Column="1" Style="{StaticResource label_font}" Content="Previous overtime hours:" />
+
+                <Label Grid.Row="8" Grid.Column="1" Style="{StaticResource label_font}" Content="{x:Static p:Resources.PreviousSaldo_txt}" />
                 <TextBox Grid.Row="8" Grid.Column="2" Height="18" VerticalAlignment="Center" Name="previoussaldo_txt"
-                         AutomationProperties.Name="Previous overtime" AutomationProperties.HelpText="Enter the number of previous overtime hours you have, if any"
+                         AutomationProperties.Name="{x:Static p:Resources.PreviousSaldo}" AutomationProperties.HelpText="{x:Static p:Resources.PreviousSaldo_help}"
                          Text="{Binding PreviousSaldo, Mode=TwoWay,
             ValidatesOnDataErrors=True, ValidatesOnExceptions=True, NotifyOnValidationError=true, TargetNullValue=''}"/>
-                <Button IsEnabled="{Binding ButtonIsEnabled}" Grid.Row="9" Grid.Column="1" Grid.ColumnSpan="2" 
-                        Width="130" VerticalAlignment="Bottom"
-                        AutomationProperties.Name="Register button" AutomationProperties.HelpText="Click to register and log in"
-                        Name="Register_Button" Content="Register / Login"  Command="{Binding CreateCommand}" Margin="85,0,85,0" />
+                <Button IsEnabled="{Binding ButtonIsEnabled}" Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="4" 
+                        Width="200" VerticalAlignment="Bottom" HorizontalAlignment="Center"
+                        AutomationProperties.Name="{x:Static p:Resources.Register_but}" AutomationProperties.HelpText="{x:Static p:Resources.Register_help}"
+                        Name="Register_Button" Content="{x:Static p:Resources.Register_button}"  Command="{Binding CreateCommand}" Margin="85,0,85,0" />
             </Grid>
         </Expander>
     </Grid>

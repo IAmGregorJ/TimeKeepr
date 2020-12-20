@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TimeKeepr.WPF.Controls"
              xmlns:nav="clr-namespace:TimeKeepr.WPF.State.Navigators"
+             xmlns:p="clr-namespace:TimeKeepr.WPF.Localizations"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="450">
     <Grid>
@@ -21,10 +22,10 @@
             <TextBlock Grid.Row="0" Grid.Column="0" Text="TimeKeepr" Name="TimeKeepr_title" Style="{StaticResource title_font}"/>
             <Button Grid.Row="0" Grid.Column="1" Style="{StaticResource MinButton}"
                     Content="-" Command="{Binding MinimizeCommand}"
-                    AutomationProperties.Name="Minimize the application" AutomationProperties.HelpText="Click to minimize the application" />
+                    AutomationProperties.Name="{x:Static p:Resources.Minimize}" AutomationProperties.HelpText="{x:Static p:Resources.Minimize_help}" />
             <Button Grid.Row="0" Grid.Column="2" Style="{StaticResource CloseButton}"
                     Content="X" Command="{Binding CloseCommand}"
-                    AutomationProperties.Name="Close the app" AutomationProperties.HelpText="Click to close this app" />
+                    AutomationProperties.Name="{x:Static p:Resources.Close}" AutomationProperties.HelpText="{x:Static p:Resources.Close_help}" />
         </Grid>
         <Grid Grid.Row="1" RenderOptions.EdgeMode="Aliased" Background="{StaticResource BrushPrimary2}">
             <Grid.Resources>
@@ -38,17 +39,17 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <RadioButton Grid.Column="0" Content="Logging" Command="{Binding UpdateCurrentViewModelCommand}"
-                         AutomationProperties.Name="Logging menu" AutomationProperties.HelpText="Click to access the logging menu"
+            <RadioButton Grid.Column="0" Content="{x:Static p:Resources.Logging}" Command="{Binding UpdateCurrentViewModelCommand}"
+                         AutomationProperties.Name="{x:Static p:Resources.Logging_menu}" AutomationProperties.HelpText="{x:Static p:Resources.Logging_help}"
                          CommandParameter="{x:Static nav:ViewType.Home}"/>
-            <RadioButton Grid.Column="1" Content="Categories" Command="{Binding UpdateCurrentViewModelCommand}" 
-                         AutomationProperties.Name="Categories menu" AutomationProperties.HelpText="Click to define the categories"
+            <RadioButton Grid.Column="1" Content="{x:Static p:Resources.Categories}" Command="{Binding UpdateCurrentViewModelCommand}" 
+                         AutomationProperties.Name="{x:Static p:Resources.Categories_menu}" AutomationProperties.HelpText="{x:Static p:Resources.Categories_help}"
                          CommandParameter="{x:Static nav:ViewType.Categories}"/>
-            <RadioButton Grid.Column="2" Content="Statistics" Command="{Binding UpdateCurrentViewModelCommand}" 
-                         AutomationProperties.Name="Statistics menu" AutomationProperties.HelpText="Click to access your statistics"
+            <RadioButton Grid.Column="2" Content="{x:Static p:Resources.Statistics}" Command="{Binding UpdateCurrentViewModelCommand}" 
+                         AutomationProperties.Name="{x:Static p:Resources.Statistics_menu}" AutomationProperties.HelpText="{x:Static p:Resources.Statistics_help}"
                          CommandParameter="{x:Static nav:ViewType.Statistics}"/>
-            <RadioButton Grid.Column="3" Content="Help" Command="{Binding UpdateCurrentViewModelCommand}" 
-                         AutomationProperties.Name="Help menu" AutomationProperties.HelpText="Click to access the help manual"
+            <RadioButton Grid.Column="3" Content="{x:Static p:Resources.Help}" Command="{Binding UpdateCurrentViewModelCommand}" 
+                         AutomationProperties.Name="{x:Static p:Resources.Help_menu}" AutomationProperties.HelpText="{x:Static p:Resources.Help_help}"
                          CommandParameter="{x:Static nav:ViewType.Help}"/>
 
         </Grid>

@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Resources;
 using System.Windows.Input;
 using TimeKeepr.Domain.Models;
 using TimeKeepr.EntityFramework;
 using TimeKeepr.EntityFramework.Services;
 using TimeKeepr.WPF.Globals;
 using TimeKeepr.WPF.Helper;
+using TimeKeepr.WPF.Localizations;
 
 namespace TimeKeepr.WPF.ViewModels
 {
@@ -279,6 +281,8 @@ namespace TimeKeepr.WPF.ViewModels
         }
         #endregion Combobox
 
+        ResourceManager rm = new ResourceManager(typeof(Resources));
+
         //constructor
         public LoggingViewModel()
         {
@@ -303,7 +307,7 @@ namespace TimeKeepr.WPF.ViewModels
         private async void ClickRegisterWork()
         {
             if (StartTimeWork == new DateTime(2000, 01, 01) || StopTimeWork == new DateTime(2222, 02, 02) || StartTimeWork > StopTimeWork)
-                ShowMessageBox("You must register valid times - please try again.");
+                ShowMessageBox(rm.GetString("Time_error"));
             else
             {
                 RegwButtonIsEnabled = "false";
@@ -337,12 +341,12 @@ namespace TimeKeepr.WPF.ViewModels
         private void ClickStart()
         {
             if (StwButtonIsEnabled == "true")
-                ShowMessageBox("You have to begin your Work Day before you can start a project");
+                ShowMessageBox(rm.GetString("WorkBegin_error"));
             else
             {
                 if (SelectedCategory == null)
                 {
-                    ShowMessageBox("You must choose a category before beginning");
+                    ShowMessageBox(rm.GetString("CategoryChoose_error"));
                 }
                 else
                 {
@@ -363,7 +367,7 @@ namespace TimeKeepr.WPF.ViewModels
         private async void ClickRegisterTask()
         {
             if (StartTime == new DateTime(2000, 01, 01) || StopTime == new DateTime(2222, 02, 02) || StartTime > StopTime)
-                ShowMessageBox("You must register valid times - please try again.");
+                ShowMessageBox(rm.GetString("Time_error"));
             else
             {
                 Category = SelectedCategory.Category;

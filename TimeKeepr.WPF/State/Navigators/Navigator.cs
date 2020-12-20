@@ -1,8 +1,10 @@
 ﻿using System.ComponentModel;
+using System.Resources;
 using System.Windows;
 using System.Windows.Input;
 using TimeKeepr.WPF.Commands;
 using TimeKeepr.WPF.Helper;
+using TimeKeepr.WPF.Localizations;
 using TimeKeepr.WPF.ViewModels;
 
 namespace TimeKeepr.WPF.State.Navigators
@@ -36,9 +38,9 @@ namespace TimeKeepr.WPF.State.Navigators
         public ICommand CloseCommand { get { return new BaseCommand(ClickClose); } }
         private void ClickClose()
         {
-            MessageBoxResult messageBoxResult = MessageBox.Show("Make sure you end all tasks before leaving, " +
-                "\nbecause they won't be saved. \n\nDo you still want to leave?", "Exit confirmation", MessageBoxButton.YesNo);
-            // Some stuff here that should happen if the user clicks "yes"
+            ResourceManager rm = new ResourceManager(typeof(Resources));
+            MessageBoxResult messageBoxResult = MessageBox.Show(rm.GetString("Exit"), "Exit confirmation", MessageBoxButton.YesNo);
+
             if (messageBoxResult == MessageBoxResult.Yes)
                 CloseApplication();
         }

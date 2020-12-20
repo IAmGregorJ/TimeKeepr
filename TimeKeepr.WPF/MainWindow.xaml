@@ -6,8 +6,9 @@
         xmlns:local="clr-namespace:TimeKeepr.WPF"
         xmlns:controls="clr-namespace:TimeKeepr.WPF.Controls"
         xmlns:me="clr-namespace:TimeKeepr.WPF.ViewModels"
+        xmlns:p="clr-namespace:TimeKeepr.WPF.Localizations"
         mc:Ignorable="d"
-        Title="TImeKeepr" Height="600" Width="450" WindowStyle="None" ResizeMode="NoResize" MouseLeftButtonDown="WindowMouseLeftButtonDown">
+        Title="{x:Static p:Resources.TimeKeepr_txt}" Height="600" Width="450" WindowStyle="None" ResizeMode="NoResize" MouseLeftButtonDown="WindowMouseLeftButtonDown">
     <Window.Resources>
         <me:MainViewModel x:Key="viewModel"/>
     </Window.Resources>

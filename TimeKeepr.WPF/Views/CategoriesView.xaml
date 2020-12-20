@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:TimeKeepr.WPF.Views"
              xmlns:me="clr-namespace:TimeKeepr.WPF.ViewModels" d:DataContext="{d:DesignInstance Type=me:CategoriesViewModel}"
+             xmlns:p="clr-namespace:TimeKeepr.WPF.Localizations"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="450">
     <UserControl.DataContext>
@@ -30,8 +31,8 @@
                       IsReadOnly="True"
                       SelectionMode="Single">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Category" Binding="{Binding Category}" Width="300" />
-                    <DataGridCheckBoxColumn Header="IsActive" Binding="{Binding IsActive}" />
+                    <DataGridTextColumn Header="{x:Static p:Resources.Category}" Binding="{Binding Category}" Width="300" />
+                    <DataGridCheckBoxColumn Header="{x:Static p:Resources.IsActive}" Binding="{Binding IsActive}" />
                 </DataGrid.Columns>
             </DataGrid>
 
@@ -53,29 +54,29 @@
                 <TextBlock x:Name="id" 
                        Text="{Binding SelectedCategory.Id, Mode=TwoWay}" Visibility="Collapsed" />
                 <TextBox Width="225" Height="20" x:Name="Category_textbox"
-                       AutomationProperties.Name="Selected or New Category"
-                       AutomationProperties.HelpText="The name of the category to add or to modify"
+                       AutomationProperties.Name="{x:Static p:Resources.Selected_category}"
+                       AutomationProperties.HelpText="{x:Static p:Resources.Category_name_help}"
                        Text="{Binding SelectedCategory.Category, Mode=TwoWay}" />
                 <CheckBox x:Name="sactive_checkbox" Margin="10,0,0,0"
-                      AutomationProperties.Name="Is Active"
-                      AutomationProperties.HelpText="Check this if the category you are adding or modifying is an active category"
+                      AutomationProperties.Name="{x:Static p:Resources.IsActive}"
+                      AutomationProperties.HelpText="{x:Static p:Resources.IsActive_help}"
                       IsChecked="{Binding SelectedCategory.IsActive, Mode=TwoWay}" />
 
             </StackPanel>
             <Button Grid.Row="3" Grid.Column="0" x:Name="update_button" Margin="10"
-                    IsEnabled="{Binding ButtonIsEnabled}" Content="Update" Background="{StaticResource BrushPrimary6}"
-                    AutomationProperties.Name="Update the chosen category"
-                    AutomationProperties.HelpText="CLick to modify the category"
+                    IsEnabled="{Binding ButtonIsEnabled}" Content="{x:Static p:Resources.Category}" Background="{StaticResource BrushPrimary6}"
+                    AutomationProperties.Name="{x:Static p:Resources.Category_update}"
+                    AutomationProperties.HelpText="{x:Static p:Resources.Category_update_help}"
                     Command="{Binding UpdateCommand}" />
             <Button Grid.Row="3" Grid.Column="1" x:Name="add_button" Margin="10"
-                    IsEnabled="{Binding ButtonIsEnabled}" Content="Add New Categpry"
-                    AutomationProperties.Name="Add New Category"
-                    AutomationProperties.HelpText="Click to add the category"
+                    IsEnabled="{Binding ButtonIsEnabled}" Content="{x:Static p:Resources.Category_add}"
+                    AutomationProperties.Name="{x:Static p:Resources.Category_add}"
+                    AutomationProperties.HelpText="{x:Static p:Resources.Category_add_help}"
                     Command="{Binding AddCommand}" />
             <Button Grid.Row="3" Grid.Column="2" x:Name="delete_button" Margin="10"
-                    IsEnabled="{Binding ButtonIsEnabled}" Content="Delete" Background="{StaticResource BrushPrimary7}"
-                    AutomationProperties.Name="Delete category"
-                    AutomationProperties.HelpText="Click to delete the chosen property"
+                    IsEnabled="{Binding ButtonIsEnabled}" Content="{x:Static p:Resources.Category_delete}" Background="{StaticResource BrushPrimary7}"
+                    AutomationProperties.Name="{x:Static p:Resources.Category_delete}"
+                    AutomationProperties.HelpText="{x:Static p:Resources.Category_delete_help}"
                     Command="{Binding DeleteCommand}" />
         </Grid>
 

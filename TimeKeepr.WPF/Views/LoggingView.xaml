@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:TimeKeepr.WPF.Views"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:me="clr-namespace:TimeKeepr.WPF.ViewModels" d:DataContext="{d:DesignInstance Type=me:LoggingViewModel}"
+             xmlns:p="clr-namespace:TimeKeepr.WPF.Localizations"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="450">
     <UserControl.DataContext>
@@ -34,75 +35,75 @@
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <TextBlock Grid.Row="1" Grid.ColumnSpan="2" 
-                   Name="Workday_header" Text="Work day"  Margin="0,0,0,20"
+                   Name="Workday_header" Text="{x:Static p:Resources.Workday}"  Margin="0,0,0,20"
                    HorizontalAlignment="Center" Style="{StaticResource header_font}"/>
         <Button Grid.Row="2" Grid.Column="0" Width="150" Height="50" Margin="0,0,10,0" 
                 VerticalAlignment="Bottom" HorizontalAlignment="Right" 
-                Name="StartButtonWork" Content="Start Work" IsEnabled="{Binding StwButtonIsEnabled}" 
-                AutomationProperties.Name="Start the Workday" AutomationProperties.HelpText="Click to begin your workday"
+                Name="StartButtonWork" Content="{x:Static p:Resources.Start_work}" IsEnabled="{Binding StwButtonIsEnabled}" 
+                AutomationProperties.Name="{x:Static p:Resources.Start_work_txt}" AutomationProperties.HelpText="{x:Static p:Resources.Start_work_help}"
                 Command="{Binding StartCommandWork}"/>        
         <Button Grid.Row="2" Grid.Column="1" Width="150" Height="50" Margin="10,0,0,0"
                 VerticalAlignment="Bottom" HorizontalAlignment="Left" 
-                Name="StopButtonWork" Content="Stop Work" IsEnabled="{Binding SpwButtonIsEnabled}" 
-                AutomationProperties.Name="Stop the Workday" AutomationProperties.HelpText="Click to stop your workday"
+                Name="StopButtonWork" Content="{x:Static p:Resources.Stop_work}" IsEnabled="{Binding SpwButtonIsEnabled}" 
+                AutomationProperties.Name="{x:Static p:Resources.Stop_work_txt}" AutomationProperties.HelpText="{x:Static p:Resources.Stop_work_help}"
                 Command="{Binding StopCommandWork}"/>
         
         <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,20,0,20"
                     Orientation="Horizontal" HorizontalAlignment="Center">
-            <TextBox Name="StartTimeWork" Text="{Binding StartTimeWork, UpdateSourceTrigger=PropertyChanged, StringFormat='HH.mm'}"  ToolTip="Register the time in the format xx.xx" />
+            <TextBox Name="StartTimeWork" Text="{Binding StartTimeWork, UpdateSourceTrigger=PropertyChanged, StringFormat='HH.mm'}"  ToolTip="{x:Static p:Resources.Register_time}" />
             <DatePicker SelectedDate="{Binding DateWork}" Width="150" Margin="20,0,20,0" />
-            <TextBox Name="StopTimeWork" Text="{Binding StopTimeWork, StringFormat='HH.mm'}" ToolTip="Register the time in the format xx.xx" />
+            <TextBox Name="StopTimeWork" Text="{Binding StopTimeWork, StringFormat='HH.mm'}" ToolTip="{x:Static p:Resources.Register_time}" />
         </StackPanel>
 
         <Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Width="100" Height="30" Margin="10,0,0,0"
                 VerticalAlignment="Bottom" HorizontalAlignment="Center"
-                Name="RegisterWork" Content="Register" IsEnabled="{Binding RegwButtonIsEnabled}"
-                AutomationProperties.Name="Register your work day" AutomationProperties.HelpText="Click when you're finished to register your workday"
-                Command="{Binding RegisterCommandWork}" ToolTip="Click when you're finished to register your workday" />
+                Name="RegisterWork" Content="{x:Static p:Resources.Register}" IsEnabled="{Binding RegwButtonIsEnabled}"
+                AutomationProperties.Name="{x:Static p:Resources.Register_workday_txt}" AutomationProperties.HelpText="{x:Static p:Resources.Register_workday_help}"
+                Command="{Binding RegisterCommandWork}" ToolTip="{x:Static p:Resources.Register_workday_help}" />
 
         <Separator Grid.Row="5" Grid.ColumnSpan="2" Width="300" Margin="30" HorizontalAlignment="Center" />
 
         <TextBlock Grid.Row="6" Grid.ColumnSpan="2" 
-                   Name="Worktask_header" Text="Work task" Margin="0,0,0,15"
+                   Name="Worktask_header" Text="{x:Static p:Resources.Worktask}" Margin="0,0,0,15"
                    HorizontalAlignment="Center" Style="{StaticResource header_font}"/>
 
         <StackPanel Grid.Row="7" Grid.ColumnSpan="2" Margin="0,0,0,10"
                     Orientation="Horizontal" HorizontalAlignment="Center">
             <ComboBox Height="25" Width="150"
                   ItemsSource="{Binding Categories}" SelectedValue="{Binding SelectedCategory, Mode=TwoWay}" 
-                  Name="Category_Dropdown" Text="Choose the category" IsEditable="True"
-                  AutomationProperties.Name="Category Dropdown" AutomationProperties.HelpText="CLick to choose the category"
+                  Name="Category_Dropdown" Text="{x:Static p:Resources.Category_choose}" IsEditable="True"
+                  AutomationProperties.Name="{x:Static p:Resources.Category_dropdown}" AutomationProperties.HelpText="{x:Static p:Resources.Category_choose_help}"
                   DisplayMemberPath="Category" />
-            <CheckBox AutomationProperties.Name="IsMeeting Checkbox" AutomationProperties.HelpText="Check this box if this is a meeting"
+            <CheckBox AutomationProperties.Name="{x:Static p:Resources.Username_txt}" AutomationProperties.HelpText="{x:Static p:Resources.IsMeeting_help}"
                       VerticalAlignment="Center" Margin="10,0,0,0"
                   Name="IsMeeting_checkbox" IsChecked="{Binding IsMeeting}" />
-            <Label x:Name="IsMeeting_checkbox_label"  Content="Is this a meeting?"
+            <Label x:Name="IsMeeting_checkbox_label"  Content="{x:Static p:Resources.IsMeeting_question}"
                Style="{StaticResource label_font}"  />
         </StackPanel>
 
         <Button Grid.Row="8" Grid.Column="0" Height="50" VerticalAlignment="Bottom" Width="150" 
                 Margin="0,0,10,0" HorizontalAlignment="Right" 
-                Name="StartButton" Content="Start Task" IsEnabled="{Binding StButtonIsEnabled}" 
-                AutomationProperties.Name="Start the task" AutomationProperties.HelpText="Click to start your task"
+                Name="StartButton" Content="{x:Static p:Resources.Start_task}" IsEnabled="{Binding StButtonIsEnabled}" 
+                AutomationProperties.Name="{x:Static p:Resources.Start_task_txt}" AutomationProperties.HelpText="{x:Static p:Resources.Start_task_help}"
                 Command="{Binding StartCommand}"/>
         <Button Grid.Row="8" Grid.Column="1" Height="50" VerticalAlignment="Bottom" 
                 Margin="10,0,0,0" Width="150" HorizontalAlignment="Left" 
-                Name="StopButton" Content="Stop Task" IsEnabled="{Binding SpButtonIsEnabled}" 
-                AutomationProperties.Name="Stop the task" AutomationProperties.HelpText="Click to stop your task"
+                Name="StopButton" Content="{x:Static p:Resources.Stop_task}" IsEnabled="{Binding SpButtonIsEnabled}" 
+                AutomationProperties.Name="{x:Static p:Resources.Stop_task_txt}" AutomationProperties.HelpText="{x:Static p:Resources.Stop_task_help}"
                 Command="{Binding StopCommand}"/>
 
         <StackPanel Grid.Row="9" Grid.ColumnSpan="2" Margin="0,20,0,20"
                     Orientation="Horizontal" HorizontalAlignment="Center">
-            <TextBox Name="StartTime" Text="{Binding StartTime, StringFormat='HH.mm'}" ToolTip="Register the time in the format xx.xx" />
+            <TextBox Name="StartTime" Text="{Binding StartTime, StringFormat='HH.mm'}" ToolTip="{x:Static p:Resources.Register_time}" />
             <DatePicker SelectedDate="{Binding DateTask}" Width="150" Margin="20,0,20,0" />
-            <TextBox Name="StopTime" Text="{Binding StopTime, StringFormat='HH.mm'}" ToolTip="Register the time in the format xx.xx" />            
+            <TextBox Name="StopTime" Text="{Binding StopTime, StringFormat='HH.mm'}" ToolTip="{x:Static p:Resources.Register_time}" />            
         </StackPanel>
 
         <Button Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="2" Width="100" Height="30" Margin="10,0,0,0"
                 VerticalAlignment="Bottom" HorizontalAlignment="Center"
-                Name="RegisterTask" Content="Register" IsEnabled="{Binding RegButtonIsEnabled}"
-                AutomationProperties.Name="Register your task" AutomationProperties.HelpText="Click when you're finished to register your task"
-                Command="{Binding RegisterCommandTask}" ToolTip="Click when you're finished to register your task" />
+                Name="RegisterTask" Content="{x:Static p:Resources.Register}" IsEnabled="{Binding RegButtonIsEnabled}"
+                AutomationProperties.Name="{x:Static p:Resources.Register_task_txt}" AutomationProperties.HelpText="{x:Static p:Resources.Register_task_help}"
+                Command="{Binding RegisterCommandTask}" ToolTip="{x:Static p:Resources.Register_task_help}" />
 
     </Grid>
 </UserControl>
