@@ -80,7 +80,7 @@ namespace TimeKeepr.WPF.ViewModels
             }
         }
 
-        private double? _hoursperweek = 0;
+        private double? _hoursperweek;
         public double? HoursPerWeek
         {
             get => _hoursperweek;
@@ -93,7 +93,7 @@ namespace TimeKeepr.WPF.ViewModels
                 }
             }
         }
-        private double? _previousSaldo = 0;
+        private double? _previousSaldo;
         public double? PreviousSaldo
         {
             get => _previousSaldo;
@@ -162,6 +162,10 @@ namespace TimeKeepr.WPF.ViewModels
         private async void ClickAddUser()
         {
             ButtonIsEnabled = "false";
+            if (HoursPerWeek == null)
+                HoursPerWeek = 0.0;
+            if (PreviousSaldo == null)
+                PreviousSaldo = 0.0;
             var _salt = PBKDF2.CreateSalt();
             User user = new User()
             {

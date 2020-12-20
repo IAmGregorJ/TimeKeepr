@@ -163,6 +163,27 @@ namespace TimeKeepr.WPF.ViewModels
                 OnPropertyChanged(() => SpwButtonIsEnabled);
             }
         }
+
+        private string _regwbuttonIsEnabled = "true";
+        public string RegwButtonIsEnabled
+        {
+            get => _regwbuttonIsEnabled;
+            set
+            {
+                _regwbuttonIsEnabled = value;
+                OnPropertyChanged(() => RegwButtonIsEnabled);
+            }
+        }
+        private string _regbuttonIsEnabled = "true";
+        public string RegButtonIsEnabled
+        {
+            get => _regbuttonIsEnabled;
+            set
+            {
+                _regbuttonIsEnabled = value;
+                OnPropertyChanged(() => RegButtonIsEnabled);
+            }
+        }
         #endregion ButtonIsEnabled
         #region Start/Stop time
 
@@ -209,8 +230,30 @@ namespace TimeKeepr.WPF.ViewModels
                 OnPropertyChanged(() => StopTimeWork);
             }
         }
+
+        private DateTime _dateWork = DateTime.Now;
+        public DateTime DateWork
+        {
+            get => _dateWork;
+            set
+            {
+                _dateWork = value;
+                OnPropertyChanged(() => DateWork);
+            }
+        }
+
+        private DateTime _dateTask = DateTime.Now;
+        public DateTime DateTask
+        {
+            get => _dateTask;
+            set
+            {
+                _dateTask = value;
+                OnPropertyChanged(() => DateTask);
+            }
+        }
         #endregion Start/Stop time
-        #region Combobox
+        #region Combobox properties
         //List<T> to populate the ComboBox
         private List<EventCategory> _categories;
         public List<EventCategory> Categories
@@ -250,33 +293,44 @@ namespace TimeKeepr.WPF.ViewModels
         }
 
         public ICommand StopCommandWork { get { return new BaseCommand(ClickStopWork); } }
-        private async void ClickStopWork()
+        private void ClickStopWork()
         {
             SpwButtonIsEnabled = "false";
             StopTimeWork = DateTime.Now;
+        }
 
-            Happening happening = new Happening()
+        public ICommand RegisterCommandWork { get { return new BaseCommand(ClickRegisterWork); } }
+        private async void ClickRegisterWork()
+        {
+            if (StartTimeWork == new DateTime(2000, 01, 01) || StopTimeWork == new DateTime(2222, 02, 02) || StartTimeWork > StopTimeWork)
+                ShowMessageBox("You must register valid times - please try again.");
+            else
             {
-                Id = _id,
-                Category = "WorkDay",
-                UserName = MyGlobals.userLoggedIn,
-                IsMeeting = _isMeeting,
-                TimeInHours = TimeHelper.TimeHelper.NumberOfHoursElapsed(StartTimeWork, StopTimeWork),
-                EventDate = DateTime.Now,
-                Year = EventDate.Year,
-                WeekNr = TimeHelper.TimeHelper.GetIso8601WeekOfYear(DateTime.Now)
-            };
+                RegwButtonIsEnabled = "false";
+                Happening happening = new Happening()
+                {
+                    Id = _id,
+                    Category = "WorkDay",
+                    UserName = MyGlobals.userLoggedIn,
+                    IsMeeting = _isMeeting,
+                    TimeInHours = TimeHelper.TimeHelper.NumberOfHoursElapsed(StartTimeWork, StopTimeWork),
+                    EventDate = DateWork, //make this the datepicker instead of DateTime.Now
+                    Year = DateWork.Year,
+                    WeekNr = TimeHelper.TimeHelper.GetIso8601WeekOfYear(DateWork)
+                };
 
-            var service = new DataService<Happening>(new TimeKeeprDbContextFactory());
-            await service.Create(happening);
+                var service = new DataService<Happening>(new TimeKeeprDbContextFactory());
+                await service.Create(happening);
 
-            //terminate any running projects
-            ClickStop();
+                //terminate any running projects
+                ClickStop();
 
-            StwButtonIsEnabled = "true";
-            SpwButtonIsEnabled = "true";
-            StartTimeWork = new DateTime(2000, 01, 01);
-            StopTimeWork = new DateTime(2000, 01, 01);
+                StwButtonIsEnabled = "true";
+                SpwButtonIsEnabled = "true";
+                RegwButtonIsEnabled = "true";
+                StartTimeWork = new DateTime(2000, 01, 01);
+                StopTimeWork = new DateTime(2222, 02, 02);
+            }
         }
 
         public ICommand StartCommand { get { return new BaseCommand(ClickStart); } }
@@ -299,30 +353,41 @@ namespace TimeKeepr.WPF.ViewModels
         }
 
         public ICommand StopCommand { get { return new BaseCommand(ClickStop); } }
-        private async void ClickStop()
+        private void ClickStop()
         {
             SpButtonIsEnabled = "false";
             StopTime = DateTime.Now;
-            Category = SelectedCategory.Category;
+        }
 
-            Happening happening = new Happening()
+        public ICommand RegisterCommandTask { get { return new BaseCommand(ClickRegisterTask); } }
+        private async void ClickRegisterTask()
+        {
+            if (StartTime == new DateTime(2000, 01, 01) || StopTime == new DateTime(2222, 02, 02) || StartTime > StopTime)
+                ShowMessageBox("You must register valid times - please try again.");
+            else
             {
-                Id = _id,
-                Category = _category,
-                UserName = MyGlobals.userLoggedIn,
-                IsMeeting = _isMeeting,
-                TimeInHours = TimeHelper.TimeHelper.NumberOfHoursElapsed(StartTime, StopTime),
-                EventDate = DateTime.Now,
-                Year = EventDate.Year,
-                WeekNr = TimeHelper.TimeHelper.GetIso8601WeekOfYear(DateTime.Now)
-            };
+                Category = SelectedCategory.Category;
 
-            var service = new DataService<Happening>(new TimeKeeprDbContextFactory());
-            await service.Create(happening);
-            StButtonIsEnabled = "true";
-            SpButtonIsEnabled = "true";
-            StartTime = new DateTime(2000, 01, 01);
-            StopTime = new DateTime(2000, 01, 01);
+                Happening happening = new Happening()
+                {
+                    Id = _id,
+                    Category = _category,
+                    UserName = MyGlobals.userLoggedIn,
+                    IsMeeting = _isMeeting,
+                    TimeInHours = TimeHelper.TimeHelper.NumberOfHoursElapsed(StartTime, StopTime),
+                    EventDate = DateTask,
+                    Year = DateTask.Year,
+                    WeekNr = TimeHelper.TimeHelper.GetIso8601WeekOfYear(DateTask)
+                };
+
+                var service = new DataService<Happening>(new TimeKeeprDbContextFactory());
+                await service.Create(happening);
+                StButtonIsEnabled = "true";
+                SpButtonIsEnabled = "true";
+                RegButtonIsEnabled = "true";
+                StartTime = new DateTime(2000, 01, 01);
+                StopTime = new DateTime(2222, 02, 02);
+            }
         }
 
         private async void GetCategories()

@@ -184,7 +184,7 @@ namespace TimeKeepr.WPF.ViewModels
             }
         }
 
-        private double? _previousSaldo = 0.0;
+        private double? _previousSaldo = 0;
         public double? PreviousSaldo
         {
             get => _previousSaldo;
@@ -245,7 +245,7 @@ namespace TimeKeepr.WPF.ViewModels
                 }).ToList();
 
             WorkHoursWeek = UngroupedList
-                .Where(x => x.UserName.Contains(MyGlobals.userLoggedIn) && x.Category.Contains("WorkDay"))
+                .Where(x => x.UserName.Contains(MyGlobals.userLoggedIn) && x.Category.Contains("WorkDay") && x.Year <= DateTime.Now.Year && x.WeekNr <= TimeHelper.TimeHelper.GetIso8601WeekOfYear(DateTime.Now))
                 .GroupBy(a => (a.Category, a.Year, a.WeekNr))
                 .Select(c => new Happening
                 {
@@ -288,8 +288,14 @@ namespace TimeKeepr.WPF.ViewModels
 
 
 
-            Saldo = (PreviousSaldo + (WorkHoursWeek.Sum(item => item.TimeInHours) - 
-                (HoursPerWeek * WorkHoursWeek.Count)).ToString("F2")) + " hours";
+            var overTime = (WorkHoursWeek.Sum(item => item.TimeInHours) - (HoursPerWeek * WorkHoursWeek.Count));
+            var overTimeT = overTime + PreviousSaldo;
+            var overTimeTotal = Math.Round(Convert.ToDecimal(overTimeT), 2);
+
+            Saldo = Convert.ToString(overTimeTotal) + " hours";
+
+            //Saldo = (PreviousSaldo + (WorkHoursWeek.Sum(item => item.TimeInHours) - 
+            //    (HoursPerWeek * WorkHoursWeek.Count))) + " hours";
         }
     }
 }

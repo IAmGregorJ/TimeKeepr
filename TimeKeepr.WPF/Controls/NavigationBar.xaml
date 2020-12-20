@@ -48,7 +48,7 @@
                          AutomationProperties.Name="Statistics menu" AutomationProperties.HelpText="Click to access your statistics"
                          CommandParameter="{x:Static nav:ViewType.Statistics}"/>
             <RadioButton Grid.Column="3" Content="Help" Command="{Binding UpdateCurrentViewModelCommand}" 
-                         AutomationProperties.Name="Help nemu" AutomationProperties.HelpText="Click to access the user manual"
+                         AutomationProperties.Name="Help menu" AutomationProperties.HelpText="Click to access the help manual"
                          CommandParameter="{x:Static nav:ViewType.Help}"/>
 
         </Grid>

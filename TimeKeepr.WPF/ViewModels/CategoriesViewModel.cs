@@ -169,8 +169,18 @@ namespace TimeKeepr.WPF.ViewModels
             Categories = UnfilteredList
                 .Where(x => !x.Category.Contains("WorkDay") && x.UserName == MyGlobals.userLoggedIn)
                 .ToList();
-
-            SelectedCategory = Categories.First();
+            if(Categories.Count != 0)
+                SelectedCategory = Categories.FirstOrDefault();
+            else
+            {
+                SelectedCategory = new EventCategory()
+                {
+                    Id = 0,
+                    Category = "",
+                    IsActive = false,
+                    UserName = MyGlobals.userLoggedIn
+                };
+            }
         }
     }
 }

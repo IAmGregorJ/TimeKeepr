@@ -7,7 +7,7 @@
         xmlns:me="clr-namespace:TimeKeepr.WPF.ViewModels" d:DataContext="{d:DesignInstance Type=me:LoginViewModel}"
         xmlns:com="clr-namespace:TimeKeepr.WPF.Components"
         mc:Ignorable="d"
-        Title="TimeKeepr - Login" Height="600" Width="450" ResizeMode="NoResize" WindowStyle="None"  Loaded="Window_Loaded" MouseLeftButtonDown="WindowMouseLeftButtonDown">
+        Title="TimeKeepr - Login" Height="600" Width="450" ResizeMode="NoResize" WindowStyle="None"  MouseLeftButtonDown="WindowMouseLeftButtonDown">
     <Window.DataContext>
         <me:LoginViewModel />
     </Window.DataContext>
@@ -49,9 +49,14 @@
         
         <Separator Grid.Row="5" Grid.ColumnSpan="4" Width="300" />
         
-        <Expander Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="4" HorizontalAlignment="Left" 
+        <Expander Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="4"
                   AutomationProperties.Name="Page expander" AutomationProperties.HelpText="Click to expand the registration menu"
-                  Name="Page_expander" Header="New to TimeKeepr? Create a login here:">
+                  Name="Page_expander">
+            <Expander.Header>
+                <DockPanel Height="25" Width="400" Background="{StaticResource BrushPrimary1}">
+                    <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold" FontStyle="Italic" Style="{StaticResource normal_font}">New to TimeKeepr? Create a login here:</TextBlock>
+                </DockPanel>
+            </Expander.Header>
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="30" />
@@ -71,7 +76,7 @@
                     <ColumnDefinition Width="150" />
                     <ColumnDefinition Width="75" />
                 </Grid.ColumnDefinitions>
-                <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource header_font}" FontWeight="bold" VerticalAlignment="Top" Text="Register:" Margin="0,15,0,0" />
+                <TextBlock Grid.Row="0" Grid.Column="1" Style="{StaticResource header_font}" FontWeight="bold" VerticalAlignment="Center" Text="Register:"  />
                 <Label Grid.Row="1" Grid.Column="1" Style="{StaticResource label_font}" Content="Email:" />
                 <TextBox Grid.Row="1" Grid.Column="2" Height="18" VerticalAlignment="Center" Name="email_txt"
                          AutomationProperties.Name="Email" AutomationProperties.HelpText="Enter your email"

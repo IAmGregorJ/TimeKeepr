@@ -60,7 +60,7 @@
             </Grid>
 
             <TextBlock Grid.Row="2" Style="{StaticResource header_font}" Focusable="True" KeyboardNavigation.TabIndex="9" 
-                       AutomationProperties.Name="Work hours per week - Header" AutomationProperties.HelpText="THe following table lists the number of work hours per week"
+                       AutomationProperties.Name="Work hours per week - Header" AutomationProperties.HelpText="The following table lists the number of work hours per week"
                        Text="Total Work Hours Per Week" />
             <Grid Grid.Row="3">
                 <DataGrid ItemsSource="{Binding WorkHoursWeek}" 
@@ -80,7 +80,7 @@
             </Grid>
 
             <TextBlock Grid.Row="4" Style="{StaticResource header_font}" Focusable="True" KeyboardNavigation.TabIndex="9" 
-                       AutomationProperties.Name="Work hours per week per category - Header" AutomationProperties.HelpText="THe following table lists the number of work hours per week per category"
+                       AutomationProperties.Name="Work hours per week per category - Header" AutomationProperties.HelpText="Te following table lists the number of work hours per week per category"
                        Text="Total Hours Per Week, per Category" />
             <Grid Grid.Row="5">
                 <DataGrid ItemsSource="{Binding CategoryHoursWeek}" 
@@ -101,7 +101,7 @@
             </Grid>
 
             <TextBlock Grid.Row="6" Style="{StaticResource header_font}" Focusable="True" KeyboardNavigation.TabIndex="9" 
-                       AutomationProperties.Name="Time spent in meetings - Header" AutomationProperties.HelpText="THe following table lists the number hours in meetings per category"
+                       AutomationProperties.Name="Time spent in meetings - Header" AutomationProperties.HelpText="The following table lists the number hours in meetings per category"
                        Text="Total Hours in Meetings, per Category" />
             <Grid Grid.Row="7">
                 <DataGrid ItemsSource="{Binding HoursInMeeting}" 

@@ -1,0 +1,402 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Balance" xml:space="preserve">
+    <value>Current Balance</value>
+  </data>
+  <data name="Balance_txt" xml:space="preserve">
+    <value>Current Balance:</value>
+  </data>
+  <data name="Categories" xml:space="preserve">
+    <value>Categories</value>
+  </data>
+  <data name="Categories_help" xml:space="preserve">
+    <value>Click to define the categories</value>
+  </data>
+  <data name="Categories_menu" xml:space="preserve">
+    <value>Categories menu</value>
+  </data>
+  <data name="Category_choose" xml:space="preserve">
+    <value>Choose the category</value>
+  </data>
+  <data name="Category_choose_help" xml:space="preserve">
+    <value>Clcik to choose the category</value>
+  </data>
+  <data name="Category_delete" xml:space="preserve">
+    <value>Delete Category</value>
+  </data>
+  <data name="Category_delete_help" xml:space="preserve">
+    <value>Click to delete the chosen category</value>
+  </data>
+  <data name="Category_dropdown" xml:space="preserve">
+    <value>Category Dropdown</value>
+  </data>
+  <data name="Category_name_help" xml:space="preserve">
+    <value>The name of the category to add or to modify</value>
+  </data>
+  <data name="Category_update" xml:space="preserve">
+    <value>Update the chosen category</value>
+  </data>
+  <data name="Category_update_help" xml:space="preserve">
+    <value>Click to modify the category</value>
+  </data>
+  <data name="Close" xml:space="preserve">
+    <value>Close the app</value>
+  </data>
+  <data name="Close_help" xml:space="preserve">
+    <value>Click to close this app</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="Email_hlelp" xml:space="preserve">
+    <value>Enter your email</value>
+  </data>
+  <data name="Email_txt" xml:space="preserve">
+    <value>Email:</value>
+  </data>
+  <data name="Expander" xml:space="preserve">
+    <value>Click to expand the registration menu</value>
+  </data>
+  <data name="FirstName" xml:space="preserve">
+    <value>First Name</value>
+  </data>
+  <data name="FirstName_txt" xml:space="preserve">
+    <value>First Name:</value>
+  </data>
+  <data name="Help" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="Help_help" xml:space="preserve">
+    <value>Click to access the help menu</value>
+  </data>
+  <data name="Help_menu" xml:space="preserve">
+    <value>Help menu</value>
+  </data>
+  <data name="HoursPerWeek" xml:space="preserve">
+    <value>Hours per Week</value>
+  </data>
+  <data name="HoursPerWeek_help" xml:space="preserve">
+    <value>Enter the number of hours you work per week</value>
+  </data>
+  <data name="HoursPerWeek_txt" xml:space="preserve">
+    <value>Hours Per Week:</value>
+  </data>
+  <data name="IsActive" xml:space="preserve">
+    <value>Is Active</value>
+  </data>
+  <data name="IsActive_help" xml:space="preserve">
+    <value>Click this if the category you are adding or modifying is an active category</value>
+  </data>
+  <data name="IsMeeting_help" xml:space="preserve">
+    <value>Check this box if this is a meeting</value>
+  </data>
+  <data name="IsMeeting_question" xml:space="preserve">
+    <value>Is this a meeting?</value>
+  </data>
+  <data name="LastName" xml:space="preserve">
+    <value>Last Name</value>
+  </data>
+  <data name="LastName_help" xml:space="preserve">
+    <value>Enter your last name</value>
+  </data>
+  <data name="LastName_txt" xml:space="preserve">
+    <value>Last Name:</value>
+  </data>
+  <data name="Logging" xml:space="preserve">
+    <value>Logging</value>
+  </data>
+  <data name="Logging_help" xml:space="preserve">
+    <value>Click to access the logging menu</value>
+  </data>
+  <data name="Logging_menu" xml:space="preserve">
+    <value>Logging menu</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Login</value>
+  </data>
+  <data name="Login_button" xml:space="preserve">
+    <value>Login button</value>
+  </data>
+  <data name="Login_help" xml:space="preserve">
+    <value>CLick here to submit your login information</value>
+  </data>
+  <data name="Login_txt" xml:space="preserve">
+    <value>Login:</value>
+  </data>
+  <data name="Meetings_header" xml:space="preserve">
+    <value>Time spent in meetings - header</value>
+  </data>
+  <data name="Meetings_title" xml:space="preserve">
+    <value>Total Hours in Meetings, per Category</value>
+  </data>
+  <data name="Meetings_txt" xml:space="preserve">
+    <value>The following table lists the number of hours in meetings per category</value>
+  </data>
+  <data name="Minimize" xml:space="preserve">
+    <value>Minimize the application</value>
+  </data>
+  <data name="Minimize_help" xml:space="preserve">
+    <value>Click to minimize the application</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="Password_help" xml:space="preserve">
+    <value>Enter your password here</value>
+  </data>
+  <data name="Password_txt" xml:space="preserve">
+    <value>Password:</value>
+  </data>
+  <data name="PreviousSaldo" xml:space="preserve">
+    <value>Previous overtime</value>
+  </data>
+  <data name="PreviousSaldo_help" xml:space="preserve">
+    <value>Enter the number of previous overtime hours you have, if any</value>
+  </data>
+  <data name="PreviousSaldo_txt" xml:space="preserve">
+    <value>Previous overtime hours:</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>Register</value>
+  </data>
+  <data name="Register_but" xml:space="preserve">
+    <value>Register button</value>
+  </data>
+  <data name="Register_button" xml:space="preserve">
+    <value>Register / Login</value>
+  </data>
+  <data name="Register_help" xml:space="preserve">
+    <value>Click to register and log in</value>
+  </data>
+  <data name="Register_task" xml:space="preserve">
+    <value>Register Task</value>
+  </data>
+  <data name="Register_task_help" xml:space="preserve">
+    <value>Click when you're finished to register your task</value>
+  </data>
+  <data name="Register_task_txt" xml:space="preserve">
+    <value>Register your task</value>
+  </data>
+  <data name="Register_time" xml:space="preserve">
+    <value>Register the time in the format xx.xx</value>
+  </data>
+  <data name="Register_txt" xml:space="preserve">
+    <value>Register:</value>
+  </data>
+  <data name="Register_workday_help" xml:space="preserve">
+    <value>Click when you're finished to register your workday</value>
+  </data>
+  <data name="Register_workday_txt" xml:space="preserve">
+    <value>Register your workday</value>
+  </data>
+  <data name="Selected_category" xml:space="preserve">
+    <value>Selected or New Category</value>
+  </data>
+  <data name="Start_task" xml:space="preserve">
+    <value>Start Task</value>
+  </data>
+  <data name="Start_task_help" xml:space="preserve">
+    <value>click to start your task</value>
+  </data>
+  <data name="Start_task_txt" xml:space="preserve">
+    <value>Start the task</value>
+  </data>
+  <data name="Start_work" xml:space="preserve">
+    <value>Start Work</value>
+  </data>
+  <data name="Start_work_help" xml:space="preserve">
+    <value>Click to begin your workday</value>
+  </data>
+  <data name="Start_work_txt" xml:space="preserve">
+    <value>Start the workday</value>
+  </data>
+  <data name="Statistics" xml:space="preserve">
+    <value>Statistics</value>
+  </data>
+  <data name="Statistics_help" xml:space="preserve">
+    <value>Click to access your statistics</value>
+  </data>
+  <data name="Statistics_menu" xml:space="preserve">
+    <value>Statistics menu</value>
+  </data>
+  <data name="Stop_task" xml:space="preserve">
+    <value>Stop Task</value>
+  </data>
+  <data name="Stop_task_help" xml:space="preserve">
+    <value>Click to stop your task</value>
+  </data>
+  <data name="Stop_task_txt" xml:space="preserve">
+    <value>Stop the task</value>
+  </data>
+  <data name="Stop_work" xml:space="preserve">
+    <value>Stop Work</value>
+  </data>
+  <data name="Stop_work_help" xml:space="preserve">
+    <value>Click to stop your workday</value>
+  </data>
+  <data name="Stop_work_txt" xml:space="preserve">
+    <value>Stop the workday</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>Username</value>
+  </data>
+  <data name="Username_help" xml:space="preserve">
+    <value>Enter your username here</value>
+  </data>
+  <data name="Username_txt" xml:space="preserve">
+    <value>Username:</value>
+  </data>
+  <data name="User_info_header" xml:space="preserve">
+    <value>User information - header</value>
+  </data>
+  <data name="User_info_help" xml:space="preserve">
+    <value>The following information pertains to the current user's information</value>
+  </data>
+  <data name="Workday" xml:space="preserve">
+    <value>Workday</value>
+  </data>
+  <data name="WorkPerWeekCategory_header" xml:space="preserve">
+    <value>Work hours per week per category - header</value>
+  </data>
+  <data name="WorkPerWeekCategory_title" xml:space="preserve">
+    <value>Total Hours Per Week, per Category</value>
+  </data>
+  <data name="WorkPerWeekCategory_txt" xml:space="preserve">
+    <value>The following table lists the number of work hours per week per category</value>
+  </data>
+  <data name="WorkPerWeek_header" xml:space="preserve">
+    <value>Work hours per week - header</value>
+  </data>
+  <data name="WorkPerWeek_title" xml:space="preserve">
+    <value>Total Work Hours Per Week</value>
+  </data>
+  <data name="WorkPerWeek_txt" xml:space="preserve">
+    <value>The following table lists the number of work hours per week</value>
+  </data>
+  <data name="Workplace" xml:space="preserve">
+    <value>Workplace</value>
+  </data>
+  <data name="Workplace_help" xml:space="preserve">
+    <value>Enter the name of your workplace</value>
+  </data>
+  <data name="Workplace_txt" xml:space="preserve">
+    <value>Workplace:</value>
+  </data>
+</root>

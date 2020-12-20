@@ -7,7 +7,7 @@
         xmlns:controls="clr-namespace:TimeKeepr.WPF.Controls"
         xmlns:me="clr-namespace:TimeKeepr.WPF.ViewModels"
         mc:Ignorable="d"
-        Title="TImeKeepr" Height="600" Width="450" WindowStyle="None" ResizeMode="NoResize" Loaded="Window_Loaded" MouseLeftButtonDown="WindowMouseLeftButtonDown">
+        Title="TImeKeepr" Height="600" Width="450" WindowStyle="None" ResizeMode="NoResize" MouseLeftButtonDown="WindowMouseLeftButtonDown">
     <Window.Resources>
         <me:MainViewModel x:Key="viewModel"/>
     </Window.Resources>
