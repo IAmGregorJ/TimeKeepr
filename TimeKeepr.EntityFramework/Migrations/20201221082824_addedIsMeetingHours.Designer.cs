@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using TimeKeepr.EntityFramework;
 
 namespace TimeKeepr.EntityFramework.Migrations
 {
     [DbContext(typeof(TimeKeeprDbContext))]
-    partial class TimeKeeprDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201221082824_addedIsMeetingHours")]
+    partial class addedIsMeetingHours
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

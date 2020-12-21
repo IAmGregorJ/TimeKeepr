@@ -71,6 +71,17 @@ namespace TimeKeepr.WPF.ViewModels
             }
         }
 
+        private double _isMeetingHours = 0; //default is needed in order to avoid null values - null values for me are just messy
+        public double IsMeetingHours
+        {
+            get => _isMeetingHours;
+            set
+            {
+                _isMeetingHours = value;
+                OnPropertyChanged(() => IsMeetingHours);
+            }
+        }
+
         //Time in hours uses TimeHeelper assembly:
         //public static double NumberOfHoursElapsed(DateTime start, DateTime stop)
         private double _timeInHours;
@@ -287,6 +298,11 @@ namespace TimeKeepr.WPF.ViewModels
         public LoggingViewModel()
         {
             GetCategories();
+            SpButtonIsEnabled = "false";
+            SpwButtonIsEnabled = "false";
+            StButtonIsEnabled = "false";
+            RegwButtonIsEnabled = "false";
+            RegButtonIsEnabled = "false";
         }
 
         public ICommand StartCommandWork { get { return new BaseCommand(ClickStartWork); } }
@@ -294,6 +310,8 @@ namespace TimeKeepr.WPF.ViewModels
         {
             StwButtonIsEnabled = "false";
             StartTimeWork = DateTime.Now;
+            SpwButtonIsEnabled = "true";
+            StButtonIsEnabled = "true";
         }
 
         public ICommand StopCommandWork { get { return new BaseCommand(ClickStopWork); } }
@@ -301,11 +319,16 @@ namespace TimeKeepr.WPF.ViewModels
         {
             SpwButtonIsEnabled = "false";
             StopTimeWork = DateTime.Now;
+            StButtonIsEnabled = "false";
+            RegwButtonIsEnabled = "true";
+            RegButtonIsEnabled = "false";
         }
 
         public ICommand RegisterCommandWork { get { return new BaseCommand(ClickRegisterWork); } }
         private async void ClickRegisterWork()
         {
+            //add logic if task is running then....
+
             if (StartTimeWork == new DateTime(2000, 01, 01) || 
                     StopTimeWork == new DateTime(2222, 02, 02) || 
                     StartTimeWork.TimeOfDay > StopTimeWork.TimeOfDay)
@@ -318,7 +341,7 @@ namespace TimeKeepr.WPF.ViewModels
                     Id = _id,
                     Category = "WorkDay",
                     UserName = MyGlobals.userLoggedIn,
-                    IsMeeting = _isMeeting,
+                    //IsMeeting = _isMeeting,
                     TimeInHours = TimeHelper.TimeHelper.NumberOfHoursElapsed(StartTimeWork, StopTimeWork),
                     EventDate = DateWork, //make this the datepicker instead of DateTime.Now
                     Year = DateWork.Year,
@@ -328,12 +351,11 @@ namespace TimeKeepr.WPF.ViewModels
                 var service = new DataService<Happening>(new TimeKeeprDbContextFactory());
                 await service.Create(happening);
 
-                //terminate any running projects
-                ClickStop();
-
                 StwButtonIsEnabled = "true";
-                SpwButtonIsEnabled = "true";
-                RegwButtonIsEnabled = "true";
+                SpwButtonIsEnabled = "false";
+                RegwButtonIsEnabled = "false";
+                RegButtonIsEnabled = "false";
+                StButtonIsEnabled = "false";
                 StartTimeWork = new DateTime(2000, 01, 01);
                 StopTimeWork = new DateTime(2222, 02, 02);
             }
@@ -354,6 +376,8 @@ namespace TimeKeepr.WPF.ViewModels
                 {
                     StButtonIsEnabled = "false";
                     StartTime = DateTime.Now;
+                    SpButtonIsEnabled = "true";
+                    SpwButtonIsEnabled = "false";
                 }
             }
         }
@@ -363,6 +387,7 @@ namespace TimeKeepr.WPF.ViewModels
         {
             SpButtonIsEnabled = "false";
             StopTime = DateTime.Now;
+            RegButtonIsEnabled = "true";
         }
 
         public ICommand RegisterCommandTask { get { return new BaseCommand(ClickRegisterTask); } }
@@ -372,14 +397,17 @@ namespace TimeKeepr.WPF.ViewModels
                 ShowMessageBox(rm.GetString("Time_error"));
             else
             {
+                RegButtonIsEnabled = "false";
                 Category = SelectedCategory.Category;
-
+                if (IsMeeting)
+                    IsMeetingHours = TimeHelper.TimeHelper.NumberOfHoursElapsed(StartTime, StopTime);
                 Happening happening = new Happening()
                 {
                     Id = _id,
                     Category = _category,
                     UserName = MyGlobals.userLoggedIn,
                     IsMeeting = _isMeeting,
+                    IsMeetingHours = _isMeetingHours,
                     TimeInHours = TimeHelper.TimeHelper.NumberOfHoursElapsed(StartTime, StopTime),
                     EventDate = DateTask,
                     Year = DateTask.Year,
@@ -388,9 +416,9 @@ namespace TimeKeepr.WPF.ViewModels
 
                 var service = new DataService<Happening>(new TimeKeeprDbContextFactory());
                 await service.Create(happening);
-                StButtonIsEnabled = "true";
-                SpButtonIsEnabled = "true";
-                RegButtonIsEnabled = "true";
+                SpwButtonIsEnabled = "true";
+                if (StwButtonIsEnabled == "false" && SpwButtonIsEnabled == "true")
+                    StButtonIsEnabled = "true";
                 StartTime = new DateTime(2000, 01, 01);
                 StopTime = new DateTime(2222, 02, 02);
             }

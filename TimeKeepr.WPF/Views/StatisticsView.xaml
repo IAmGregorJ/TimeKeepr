@@ -65,7 +65,7 @@
 
             <TextBlock Grid.Row="2" Style="{StaticResource header_font}" Focusable="True" KeyboardNavigation.TabIndex="9" 
                        AutomationProperties.Name="{x:Static p:Resources.WorkPerWeek_header}" AutomationProperties.HelpText="{x:Static p:Resources.WorkPerWeek_txt}"
-                       Text="{x:Static p:Resources.WorkPerWeek_title}" />
+                       Text="{x:Static p:Resources.WorkPerWeek_title}" Margin="0,10,0,0" />
             <Grid Grid.Row="3">
                 <DataGrid ItemsSource="{Binding WorkHoursWeek}" 
                           HorizontalAlignment="Left"
@@ -85,7 +85,7 @@
 
             <TextBlock Grid.Row="4" Style="{StaticResource header_font}" Focusable="True" KeyboardNavigation.TabIndex="9" 
                        AutomationProperties.Name="{x:Static p:Resources.WorkPerWeekCategory_header}" AutomationProperties.HelpText="{x:Static p:Resources.WorkPerWeekCategory_txt}"
-                       Text="{x:Static p:Resources.WorkPerWeekCategory_title}" />
+                       Text="{x:Static p:Resources.WorkPerWeekCategory_title}" Margin="0,10,0,0" />
             <Grid Grid.Row="5">
                 <DataGrid ItemsSource="{Binding CategoryHoursWeek}" 
                           HorizontalAlignment="Left"
@@ -106,7 +106,7 @@
 
             <TextBlock Grid.Row="6" Style="{StaticResource header_font}" Focusable="True" KeyboardNavigation.TabIndex="9" 
                        AutomationProperties.Name="{x:Static p:Resources.Meetings_header}" AutomationProperties.HelpText="{x:Static p:Resources.Meetings_txt}"
-                       Text="{x:Static p:Resources.Meetings_title}" />
+                       Text="{x:Static p:Resources.Meetings_title}" Margin="0,10,0,0" />
             <Grid Grid.Row="7">
                 <DataGrid ItemsSource="{Binding HoursInMeeting}" 
                           HorizontalAlignment="Left"
@@ -117,10 +117,9 @@
                           SelectionMode="Single" 
                           KeyboardNavigation.TabIndex="11">
                     <DataGrid.Columns>
-                        <DataGridTextColumn Header="{x:Static p:Resources.Year}" Binding="{Binding Year}" />
                         <DataGridTextColumn Header="{x:Static p:Resources.Category}" Binding="{Binding Category}" />
-                        <DataGridTextColumn Header="{x:Static p:Resources.WeekNr}" Binding="{Binding WeekNr}" />
                         <DataGridTextColumn Header="{x:Static p:Resources.Total_hours}" Binding="{Binding TimeInHours}" />
+                        <DataGridTextColumn Header="{x:Static p:Resources.IsMeeting_hours}" Binding="{Binding IsMeetingHours}" />
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>

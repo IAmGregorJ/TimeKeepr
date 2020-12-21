@@ -115,7 +115,7 @@ namespace TimeKeepr.WPF.Localizations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add new category.
+        ///   Looks up a localized string similar to Add.
         /// </summary>
         public static string Category_add {
             get {
@@ -160,7 +160,7 @@ namespace TimeKeepr.WPF.Localizations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Delete Category.
+        ///   Looks up a localized string similar to Delete.
         /// </summary>
         public static string Category_delete {
             get {
@@ -223,7 +223,7 @@ namespace TimeKeepr.WPF.Localizations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Update the chosen category.
+        ///   Looks up a localized string similar to Update.
         /// </summary>
         public static string Category_update {
             get {
@@ -454,6 +454,15 @@ namespace TimeKeepr.WPF.Localizations {
         public static string IsMeeting_help {
             get {
                 return ResourceManager.GetString("IsMeeting_help", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hours in meeting.
+        /// </summary>
+        public static string IsMeeting_hours {
+            get {
+                return ResourceManager.GetString("IsMeeting_hours", resourceCulture);
             }
         }
         

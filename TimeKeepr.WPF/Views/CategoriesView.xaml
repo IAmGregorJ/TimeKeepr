@@ -64,7 +64,7 @@
 
             </StackPanel>
             <Button Grid.Row="3" Grid.Column="0" x:Name="update_button" Margin="10"
-                    IsEnabled="{Binding ButtonIsEnabled}" Content="{x:Static p:Resources.Category}" Background="{StaticResource BrushPrimary6}"
+                    IsEnabled="{Binding ButtonIsEnabled}" Content="{x:Static p:Resources.Category_update}" Background="{StaticResource BrushPrimary6}"
                     AutomationProperties.Name="{x:Static p:Resources.Category_update}"
                     AutomationProperties.HelpText="{x:Static p:Resources.Category_update_help}"
                     Command="{Binding UpdateCommand}" />

@@ -93,6 +93,17 @@ namespace TimeKeepr.WPF.ViewModels
             }
         }
 
+        private double _isMeetingHours;
+        public double IsMeetingHours
+        {
+            get => _isMeetingHours;
+            set
+            {
+                _isMeetingHours = value;
+                OnPropertyChanged(() => IsMeetingHours);
+            }
+        }
+
         private DateTime _eventDate;
         public DateTime EventDate
         {
@@ -242,7 +253,7 @@ namespace TimeKeepr.WPF.ViewModels
                     Year = c.Key.Year,
                     WeekNr = c.Key.WeekNr,
                     IsMeeting = c.Any(c => c.IsMeeting),
-                    TimeInHours = c.Sum(c => c.TimeInHours)
+                    TimeInHours = c.Sum(c => c.TimeInHours),
                 }).ToList();
 
             WorkHoursWeek = UngroupedList
@@ -257,19 +268,25 @@ namespace TimeKeepr.WPF.ViewModels
                 }).ToList();
 
             HoursInMeeting = UngroupedList
-                .Where(x => x.UserName.Contains(MyGlobals.userLoggedIn) && !x.Category.Contains("WorkDay") && x.IsMeeting == true)
-                .GroupBy(a => (a.Category, a.Year, a.WeekNr))
+                .Where(x => x.UserName.Contains(MyGlobals.userLoggedIn) && !x.Category.Contains("WorkDay"))
+                .GroupBy(a => a.Category)
                 .Select(c => new Happening
                 {
-                    Category = c.Key.Category,
-                    Year = c.Key.Year,
-                    WeekNr = c.Key.WeekNr,
-                    TimeInHours = c.Sum(c => c.TimeInHours)
+                    Category = c.Key,
+                    TimeInHours = c.Sum(c => c.TimeInHours),
+                    IsMeetingHours = c.Sum(c => c.IsMeetingHours)
                 }).ToList();
 
-            var SomethingDouble = (WorkHoursWeek
-                .Where(item => item.IsMeeting)
-                .Sum(item => item.TimeInHours));
+            //HoursInMeeting = UngroupedList
+            //    .Where(x => x.UserName.Contains(MyGlobals.userLoggedIn) && !x.Category.Contains("WorkDay") && x.IsMeeting == true)
+            //    .GroupBy(a => (a.Category, a.Year, a.WeekNr))
+            //    .Select(c => new Happening
+            //    {
+            //        Category = c.Key.Category,
+            //        Year = c.Key.Year,
+            //        WeekNr = c.Key.WeekNr,
+            //        TimeInHours = c.Sum(c => c.TimeInHours)
+            //    }).ToList();
 
             //If I ever need to filter something like Saldo a bit more... percentage spent in meetings
             //##############################################################

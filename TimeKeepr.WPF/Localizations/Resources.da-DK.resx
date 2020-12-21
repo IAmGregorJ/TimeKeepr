@@ -139,7 +139,7 @@
     <value>Du skal vælge en kategori inden du begynder</value>
   </data>
   <data name="Category_add" xml:space="preserve">
-    <value>Tilføj ny kategori</value>
+    <value>Tilføj ny</value>
   </data>
   <data name="Category_added" xml:space="preserve">
     <value>Kategori er blevet tilføjet</value>
@@ -154,7 +154,7 @@
     <value>Klik for at vælge kategori</value>
   </data>
   <data name="Category_delete" xml:space="preserve">
-    <value>Slet kategori</value>
+    <value>Slet</value>
   </data>
   <data name="Category_deleted" xml:space="preserve">
     <value>Kategori er blevet slettet.</value>
@@ -175,7 +175,7 @@
     <value>Kategori eksisterer ikke. Vælg en anden eller tilføj en ny.</value>
   </data>
   <data name="Category_update" xml:space="preserve">
-    <value>Opdatere kategori</value>
+    <value>Opdatere</value>
   </data>
   <data name="Category_updated" xml:space="preserve">
     <value>Kategori er blevet opdateret</value>
@@ -249,6 +249,9 @@ Afslut alligevel?</value>
   </data>
   <data name="IsMeeting_help" xml:space="preserve">
     <value>Klik dette box hvis dette er et møde.</value>
+  </data>
+  <data name="IsMeeting_hours" xml:space="preserve">
+    <value>Mødetid i timer</value>
   </data>
   <data name="IsMeeting_question" xml:space="preserve">
     <value>Er dette et møde?</value>

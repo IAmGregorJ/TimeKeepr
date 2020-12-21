@@ -139,7 +139,7 @@
     <value>You must choose a category before beginning.</value>
   </data>
   <data name="Category_add" xml:space="preserve">
-    <value>Add new category</value>
+    <value>Add</value>
   </data>
   <data name="Category_added" xml:space="preserve">
     <value>The category has been added.</value>
@@ -154,7 +154,7 @@
     <value>Clcik to choose the category</value>
   </data>
   <data name="Category_delete" xml:space="preserve">
-    <value>Delete Category</value>
+    <value>Delete</value>
   </data>
   <data name="Category_deleted" xml:space="preserve">
     <value>The category is deleted.</value>
@@ -175,7 +175,7 @@
     <value>There is no such category. Please add a new one or chose another.</value>
   </data>
   <data name="Category_update" xml:space="preserve">
-    <value>Update the chosen category</value>
+    <value>Update</value>
   </data>
   <data name="Category_updated" xml:space="preserve">
     <value>The category has been updated.</value>
@@ -249,6 +249,9 @@ Exit anyway?</value>
   </data>
   <data name="IsMeeting_help" xml:space="preserve">
     <value>Check this box if this is a meeting</value>
+  </data>
+  <data name="IsMeeting_hours" xml:space="preserve">
+    <value>Hours in meeting</value>
   </data>
   <data name="IsMeeting_question" xml:space="preserve">
     <value>Is this a meeting?</value>
