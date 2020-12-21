@@ -306,7 +306,9 @@ namespace TimeKeepr.WPF.ViewModels
         public ICommand RegisterCommandWork { get { return new BaseCommand(ClickRegisterWork); } }
         private async void ClickRegisterWork()
         {
-            if (StartTimeWork == new DateTime(2000, 01, 01) || StopTimeWork == new DateTime(2222, 02, 02) || StartTimeWork > StopTimeWork)
+            if (StartTimeWork == new DateTime(2000, 01, 01) || 
+                    StopTimeWork == new DateTime(2222, 02, 02) || 
+                    StartTimeWork.TimeOfDay > StopTimeWork.TimeOfDay)
                 ShowMessageBox(rm.GetString("Time_error"));
             else
             {
@@ -366,7 +368,7 @@ namespace TimeKeepr.WPF.ViewModels
         public ICommand RegisterCommandTask { get { return new BaseCommand(ClickRegisterTask); } }
         private async void ClickRegisterTask()
         {
-            if (StartTime == new DateTime(2000, 01, 01) || StopTime == new DateTime(2222, 02, 02) || StartTime > StopTime)
+            if (StartTime == new DateTime(2000, 01, 01) || StopTime == new DateTime(2222, 02, 02) || StartTime.TimeOfDay > StopTime.TimeOfDay)
                 ShowMessageBox(rm.GetString("Time_error"));
             else
             {
