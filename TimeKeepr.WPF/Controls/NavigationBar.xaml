@@ -50,7 +50,7 @@
                          CommandParameter="{x:Static nav:ViewType.Statistics}"/>
             <RadioButton Grid.Column="3" Content="{x:Static p:Resources.Help}" Command="{Binding UpdateCurrentViewModelCommand}" 
                          AutomationProperties.Name="{x:Static p:Resources.Help_menu}" AutomationProperties.HelpText="{x:Static p:Resources.Help_help}"
-                         CommandParameter="{x:Static nav:ViewType.Help}"/>
+                         CommandParameter="{x:Static nav:ViewType.About}"/>
 
         </Grid>
     </Grid>

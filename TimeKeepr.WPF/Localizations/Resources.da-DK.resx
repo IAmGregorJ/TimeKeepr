@@ -221,13 +221,13 @@ Afslut alligevel?</value>
     <value>Navn:</value>
   </data>
   <data name="Help" xml:space="preserve">
-    <value>Hjælp</value>
+    <value>Om</value>
   </data>
   <data name="Help_help" xml:space="preserve">
-    <value>Klik for hjælpæ menu</value>
+    <value>Klik for "om" menu</value>
   </data>
   <data name="Help_menu" xml:space="preserve">
-    <value>Hjælpemenu</value>
+    <value>Ommenu</value>
   </data>
   <data name="Hours" xml:space="preserve">
     <value> timer</value>

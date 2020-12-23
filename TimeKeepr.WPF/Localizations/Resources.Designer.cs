@@ -368,7 +368,7 @@ namespace TimeKeepr.WPF.Localizations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Help.
+        ///   Looks up a localized string similar to About.
         /// </summary>
         public static string Help {
             get {
@@ -377,7 +377,7 @@ namespace TimeKeepr.WPF.Localizations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Click to access the help menu.
+        ///   Looks up a localized string similar to Click to access the about menu.
         /// </summary>
         public static string Help_help {
             get {
@@ -386,7 +386,7 @@ namespace TimeKeepr.WPF.Localizations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Help menu.
+        ///   Looks up a localized string similar to About menu.
         /// </summary>
         public static string Help_menu {
             get {

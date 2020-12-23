@@ -19,8 +19,8 @@
             <DataTemplate DataType="{x:Type viewmodels:StatisticsViewModel}">
                 <views:StatisticsView/>
             </DataTemplate>
-            <DataTemplate DataType="{x:Type viewmodels:HelpPageViewModel}">
-                <views:HelpView/>
+            <DataTemplate DataType="{x:Type viewmodels:AboutViewModel}">
+                <views:AboutView/>
             </DataTemplate>
 
         </ResourceDictionary>

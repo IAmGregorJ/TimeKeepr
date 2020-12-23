@@ -221,13 +221,13 @@ Exit anyway?</value>
     <value>Full Name:</value>
   </data>
   <data name="Help" xml:space="preserve">
-    <value>Help</value>
+    <value>About</value>
   </data>
   <data name="Help_help" xml:space="preserve">
-    <value>Click to access the help menu</value>
+    <value>Click to access the about menu</value>
   </data>
   <data name="Help_menu" xml:space="preserve">
-    <value>Help menu</value>
+    <value>About menu</value>
   </data>
   <data name="Hours" xml:space="preserve">
     <value> hours</value>

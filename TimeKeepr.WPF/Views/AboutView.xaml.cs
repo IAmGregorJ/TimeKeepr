@@ -14,12 +14,18 @@
 // You should have received a copy of the GNU General Public License
 // along with TimeKeepr.  If not, see <https://www.gnu.org/licenses/>.
 
-using TimeKeepr.WPF.State.Navigators;
+using System.Windows.Controls;
 
-namespace TimeKeepr.WPF.ViewModels
+namespace TimeKeepr.WPF.Views
 {
-    public class MainViewModel : BaseViewModel
+    /// <summary>
+    /// Interaction logic for AboutView.xaml
+    /// </summary>
+    public partial class AboutView : UserControl
     {
-        public INavigator Navigator { get; set; } = new Navigator();
+        public AboutView()
+        {
+            InitializeComponent();
+        }
     }
 }
