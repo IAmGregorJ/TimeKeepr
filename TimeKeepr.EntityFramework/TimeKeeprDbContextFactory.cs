@@ -14,6 +14,9 @@
 // You should have received a copy of the GNU General Public License
 // along with TimeKeepr.  If not, see <https://www.gnu.org/licenses/>.
 
+using System;
+using System.IO;
+using System.Text.RegularExpressions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 
@@ -25,11 +28,24 @@ namespace TimeKeepr.EntityFramework
         {
             var options = new DbContextOptionsBuilder<TimeKeeprDbContext>();
 
-            //TRY THIS LATER
-            //var databasePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), @"TimeKeepr\timekeeprdatabase.db");
-            //options.UseSqlite(@"Data Source={databasepath};");
+            //start getting ready for deployment - saving the db in AppData
+            string localAppData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+            string userFilePath = Path.Combine(localAppData, "TimeKeepr");
 
-            options.UseSqlite(@"Data Source=.\timeKeeperDB.db;");
+            //create the folder if it doesn't exist yet
+            if (!Directory.Exists(userFilePath))
+                Directory.CreateDirectory(userFilePath);
+
+            //if the db isn't there yet
+            //copy the db file from deployment location to the folder
+            string sourceFilePath = "timeKeeperDB.db";
+            string destFilePath = Path.Combine(userFilePath, "timeKeeperDB.db");
+            if (!File.Exists(destFilePath))
+                File.Copy(sourceFilePath, destFilePath);
+
+            options.UseSqlite($"Data Source={destFilePath};");
+
+            //options.UseSqlite(@"Data Source=.\timeKeeperDB.db;");
 
             return new TimeKeeprDbContext(options.Options);
         }

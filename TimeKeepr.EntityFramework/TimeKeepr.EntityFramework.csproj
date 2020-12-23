@@ -5,7 +5,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="timeKeeperDB.db" />
     <None Remove="timekeeprdatabase.db" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="timeKeeperDB.db">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>

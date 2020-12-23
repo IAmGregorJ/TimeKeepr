@@ -9,8 +9,8 @@ using TimeKeepr.EntityFramework;
 namespace TimeKeepr.EntityFramework.Migrations
 {
     [DbContext(typeof(TimeKeeprDbContext))]
-    [Migration("20201221082824_addedIsMeetingHours")]
-    partial class addedIsMeetingHours
+    [Migration("20201223111940_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
