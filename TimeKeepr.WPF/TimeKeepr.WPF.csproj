@@ -4,7 +4,127 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>Docs\icons\favicon.ico</ApplicationIcon>
+    <SignAssembly>false</SignAssembly>
+    <AssemblyOriginatorKeyFile></AssemblyOriginatorKeyFile>
+    <DelaySign></DelaySign>
+    <NoWin32Manifest>true</NoWin32Manifest>
+    <AssemblyName>TimeKeepr</AssemblyName>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Docs\icons\android-icon-144x144.png" />
+    <None Remove="Docs\icons\android-icon-192x192.png" />
+    <None Remove="Docs\icons\android-icon-36x36.png" />
+    <None Remove="Docs\icons\android-icon-48x48.png" />
+    <None Remove="Docs\icons\android-icon-72x72.png" />
+    <None Remove="Docs\icons\android-icon-96x96.png" />
+    <None Remove="Docs\icons\apple-icon-114x114.png" />
+    <None Remove="Docs\icons\apple-icon-120x120.png" />
+    <None Remove="Docs\icons\apple-icon-144x144.png" />
+    <None Remove="Docs\icons\apple-icon-152x152.png" />
+    <None Remove="Docs\icons\apple-icon-180x180.png" />
+    <None Remove="Docs\icons\apple-icon-57x57.png" />
+    <None Remove="Docs\icons\apple-icon-60x60.png" />
+    <None Remove="Docs\icons\apple-icon-72x72.png" />
+    <None Remove="Docs\icons\apple-icon-76x76.png" />
+    <None Remove="Docs\icons\apple-icon-precomposed.png" />
+    <None Remove="Docs\icons\apple-icon.png" />
+    <None Remove="Docs\icons\browserconfig.xml" />
+    <None Remove="Docs\icons\favicon-16x16.png" />
+    <None Remove="Docs\icons\favicon-32x32.png" />
+    <None Remove="Docs\icons\favicon-96x96.png" />
+    <None Remove="Docs\icons\favicon.ico" />
+    <None Remove="Docs\icons\manifest.json" />
+    <None Remove="Docs\icons\ms-icon-144x144.png" />
+    <None Remove="Docs\icons\ms-icon-150x150.png" />
+    <None Remove="Docs\icons\ms-icon-310x310.png" />
+    <None Remove="Docs\icons\ms-icon-70x70.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Docs\icons\android-icon-144x144.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Docs\icons\android-icon-192x192.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Docs\icons\android-icon-36x36.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Docs\icons\android-icon-48x48.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Docs\icons\android-icon-72x72.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Docs\icons\android-icon-96x96.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Docs\icons\apple-icon-114x114.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Docs\icons\apple-icon-120x120.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Docs\icons\apple-icon-144x144.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Docs\icons\apple-icon-152x152.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Docs\icons\apple-icon-180x180.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Docs\icons\apple-icon-57x57.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Docs\icons\apple-icon-60x60.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Docs\icons\apple-icon-72x72.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Docs\icons\apple-icon-76x76.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Docs\icons\apple-icon-precomposed.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Docs\icons\apple-icon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Docs\icons\browserconfig.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Docs\icons\favicon-16x16.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Docs\icons\favicon-32x32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Docs\icons\favicon-96x96.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Docs\icons\favicon.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Docs\icons\manifest.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Docs\icons\ms-icon-144x144.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Docs\icons\ms-icon-150x150.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Docs\icons\ms-icon-310x310.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Docs\icons\ms-icon-70x70.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Konscious.Security.Cryptography.Argon2" Version="1.2.1" />

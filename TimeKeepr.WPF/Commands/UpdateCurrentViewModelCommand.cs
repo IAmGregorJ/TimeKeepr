@@ -21,6 +21,7 @@ using TimeKeepr.WPF.ViewModels;
 
 namespace TimeKeepr.WPF.Commands
 {
+    // NOTE: Wouldn't this be a LOT fucking easier just using TabControl instead? It would avoid the problem of constant reloading
     public class UpdateCurrentViewModelCommand : ICommand
     {
         public event EventHandler CanExecuteChanged;

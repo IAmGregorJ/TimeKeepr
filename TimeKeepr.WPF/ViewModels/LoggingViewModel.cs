@@ -216,7 +216,7 @@ namespace TimeKeepr.WPF.ViewModels
         #endregion ButtonIsEnabled
         #region Start/Stop time
 
-        private DateTime _startTime = new DateTime(2000, 01, 01);
+        private DateTime _startTime = DateTime.MinValue;
         public DateTime StartTime
         {
             get => _startTime;
@@ -227,7 +227,7 @@ namespace TimeKeepr.WPF.ViewModels
             }
         }
 
-        private DateTime _startTimeWork = new DateTime(2000, 01, 01);
+        private DateTime _startTimeWork = DateTime.MinValue;
         public DateTime StartTimeWork
         {
             get => _startTimeWork;
@@ -238,7 +238,7 @@ namespace TimeKeepr.WPF.ViewModels
             }
         }
 
-        private DateTime _stopTime = new DateTime(2222, 02, 02);
+        private DateTime _stopTime = DateTime.MaxValue;
         public DateTime StopTime
         {
             get => _stopTime;
@@ -249,7 +249,7 @@ namespace TimeKeepr.WPF.ViewModels
             }
         }
 
-        private DateTime _stopTimeWork = new DateTime(2222, 02, 02);
+        private DateTime _stopTimeWork = DateTime.MaxValue;
         public DateTime StopTimeWork
         {
             get => _stopTimeWork;
@@ -345,8 +345,8 @@ namespace TimeKeepr.WPF.ViewModels
         {
             //add logic if task is running then....
 
-            if (StartTimeWork == new DateTime(2000, 01, 01) || 
-                    StopTimeWork == new DateTime(2222, 02, 02) || 
+            if (StartTimeWork == DateTime.MinValue || 
+                    StopTimeWork == DateTime.MaxValue || 
                     StartTimeWork.TimeOfDay > StopTimeWork.TimeOfDay)
                 ShowMessageBox(rm.GetString("Time_error"));
             else
@@ -358,7 +358,8 @@ namespace TimeKeepr.WPF.ViewModels
                     Category = "WorkDay",
                     UserName = MyGlobals.userLoggedIn,
                     //IsMeeting = _isMeeting,
-                    TimeInHours = TimeHelper.TimeHelper.NumberOfHoursElapsed(StartTimeWork, StopTimeWork),
+                    //NOTE TimeInHours = TimeHelper.TimeHelper.NumberOfHoursElapsed(StartTimeWork, StopTimeWork),
+                    TimeInHours = Math.Round(TimeHelper.TimeHelper.NumberOfHoursElapsed(StartTimeWork, StopTimeWork) * 4, MidpointRounding.ToEven) / 4,
                     EventDate = DateWork, //make this the datepicker instead of DateTime.Now
                     Year = DateWork.Year,
                     WeekNr = TimeHelper.TimeHelper.GetIso8601WeekOfYear(DateWork)
@@ -372,8 +373,8 @@ namespace TimeKeepr.WPF.ViewModels
                 RegwButtonIsEnabled = "false";
                 RegButtonIsEnabled = "false";
                 StButtonIsEnabled = "false";
-                StartTimeWork = new DateTime(2000, 01, 01);
-                StopTimeWork = new DateTime(2222, 02, 02);
+                StartTimeWork = DateTime.MinValue;
+                StopTimeWork = DateTime.MaxValue;
             }
         }
 
@@ -409,7 +410,7 @@ namespace TimeKeepr.WPF.ViewModels
         public ICommand RegisterCommandTask { get { return new BaseCommand(ClickRegisterTask); } }
         private async void ClickRegisterTask()
         {
-            if (StartTime == new DateTime(2000, 01, 01) || StopTime == new DateTime(2222, 02, 02) || StartTime.TimeOfDay > StopTime.TimeOfDay)
+            if (StartTime == DateTime.MinValue || StopTime == DateTime.MaxValue || StartTime.TimeOfDay > StopTime.TimeOfDay)
                 ShowMessageBox(rm.GetString("Time_error"));
             else
             {
@@ -435,8 +436,8 @@ namespace TimeKeepr.WPF.ViewModels
                 SpwButtonIsEnabled = "true";
                 if (StwButtonIsEnabled == "false" && SpwButtonIsEnabled == "true")
                     StButtonIsEnabled = "true";
-                StartTime = new DateTime(2000, 01, 01);
-                StopTime = new DateTime(2222, 02, 02);
+                StartTime = DateTime.MinValue;
+                StopTime = DateTime.MaxValue;
             }
         }
 

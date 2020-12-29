@@ -50,7 +50,7 @@
         
         <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Margin="0,20,0,20"
                     Orientation="Horizontal" HorizontalAlignment="Center">
-            <TextBox Name="StartTimeWork" Text="{Binding StartTimeWork, UpdateSourceTrigger=PropertyChanged, StringFormat='HH.mm'}"  ToolTip="{x:Static p:Resources.Register_time}" />
+            <TextBox Name="StartTimeWork" Text="{Binding StartTimeWork, StringFormat='HH.mm'}"  ToolTip="{x:Static p:Resources.Register_time}" />
             <DatePicker SelectedDate="{Binding DateWork}" Width="150" Margin="20,0,20,0" />
             <TextBox Name="StopTimeWork" Text="{Binding StopTimeWork, StringFormat='HH.mm'}" ToolTip="{x:Static p:Resources.Register_time}" />
         </StackPanel>

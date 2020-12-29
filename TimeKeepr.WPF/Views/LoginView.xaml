@@ -28,7 +28,10 @@
             <ColumnDefinition />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-        <TextBlock Grid.ColumnSpan="4" Text="{x:Static p:Resources.TimeKeepr_txt}" Style="{StaticResource title_font}" Margin="20,10,0,0" />
+        <StackPanel Orientation="Horizontal" Grid.ColumnSpan="4" Margin="20,10,0,0">
+            <Image Source="/Docs/icons/ms-icon-150x150.png" Width="19" Height="19" Margin="5,0,0,5" />
+            <TextBlock Text="{x:Static p:Resources.TimeKeepr_txt}" Style="{StaticResource title_font}" />
+        </StackPanel>
 
         <TextBlock Grid.Row="1" Grid.Column="1" Style="{StaticResource header_font}" FontWeight="bold" 
                    VerticalAlignment="Bottom" Text="{x:Static p:Resources.Login_txt}" />

@@ -19,7 +19,10 @@
                 <ColumnDefinition Width="*" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <TextBlock Grid.Row="0" Grid.Column="0" Text="TimeKeepr" Name="TimeKeepr_title" Style="{StaticResource title_font}"/>
+            <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
+                <Image Source="/Docs/icons/ms-icon-150x150.png" Width="19" Height="19" Margin="5,0,0,3" />
+                <TextBlock Text="TimeKeepr" Name="TimeKeepr_title" Style="{StaticResource title_font}"/>
+            </StackPanel>
             <Button Grid.Row="0" Grid.Column="1" Style="{StaticResource MinButton}"
                     Content="-" Command="{Binding MinimizeCommand}"
                     AutomationProperties.Name="{x:Static p:Resources.Minimize}" AutomationProperties.HelpText="{x:Static p:Resources.Minimize_help}" />
