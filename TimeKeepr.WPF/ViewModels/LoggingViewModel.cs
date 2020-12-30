@@ -308,7 +308,6 @@ namespace TimeKeepr.WPF.ViewModels
         }
         #endregion Combobox
         #region Hours/Minutes
-        // TODO Keep working on this time dropdown it's not finished
         public IReadOnlyList<int> Hours { get; } = Enumerable.Range(0, 24).ToList();
 
         public IReadOnlyList<int> Minutes { get; } = Enumerable.Range(0, 4).Select(x => x * 15).ToList();

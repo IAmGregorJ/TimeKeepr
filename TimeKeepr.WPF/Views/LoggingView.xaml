@@ -52,19 +52,19 @@
                     Orientation="Horizontal" HorizontalAlignment="Center">
             <ComboBox Height="25" 
                   ItemsSource="{Binding Hours}" SelectedValue="{Binding SelectedHourStW, Mode=TwoWay}" 
-                  Name="HourStw_Dropdown" IsEditable="True" />
+                  Name="HourStw_Dropdown" IsEditable="False" ItemStringFormat="00" />
             <TextBlock Text=":" />
             <ComboBox Height="25" 
                   ItemsSource="{Binding Minutes}" SelectedValue="{Binding SelectedMinuteStW, Mode=TwoWay}" 
-                  Name="MinuteStw_Dropdown" IsEditable="True" />
+                  Name="MinuteStw_Dropdown" IsEditable="False" ItemStringFormat="00" />
             <DatePicker SelectedDate="{Binding DateWork}" Width="150" Margin="20,0,20,0" />
             <ComboBox Height="25" 
                   ItemsSource="{Binding Hours}" SelectedValue="{Binding SelectedHourSpW, Mode=TwoWay}" 
-                  Name="HourSpw_Dropdown" IsEditable="True" />
+                  Name="HourSpw_Dropdown" IsEditable="False" ItemStringFormat="00" />
             <TextBlock Text=":" />
             <ComboBox Height="25" 
                   ItemsSource="{Binding Minutes}" SelectedValue="{Binding SelectedMinuteSpW, Mode=TwoWay}" 
-                  Name="MinuteSpw_Dropdown" IsEditable="True" />
+                  Name="MinuteSpw_Dropdown" IsEditable="False" ItemStringFormat="00" />
         </StackPanel>
 
         <Button Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2" Width="100" Height="30" Margin="10,0,0,0"
@@ -108,19 +108,19 @@
                     Orientation="Horizontal" HorizontalAlignment="Center">
             <ComboBox Height="25" 
                   ItemsSource="{Binding Hours}" SelectedValue="{Binding SelectedHourStT, Mode=TwoWay}" 
-                  Name="HourStt_Dropdown" IsEditable="True" />
+                  Name="HourStt_Dropdown" IsEditable="False" ItemStringFormat="00" />
             <TextBlock Text=":" />
             <ComboBox Height="25" 
                   ItemsSource="{Binding Minutes}" SelectedValue="{Binding SelectedMinuteStT, Mode=TwoWay}" 
-                  Name="MinuteStt_Dropdown" IsEditable="True" />
+                  Name="MinuteStt_Dropdown" IsEditable="False" ItemStringFormat="00" />
             <DatePicker SelectedDate="{Binding DateTask}" Width="150" Margin="20,0,20,0" />
             <ComboBox Height="25" 
                   ItemsSource="{Binding Hours}" SelectedValue="{Binding SelectedHourSpT, Mode=TwoWay}" 
-                  Name="HourSpt_Dropdown" IsEditable="True" />
+                  Name="HourSpt_Dropdown" IsEditable="False" ItemStringFormat="00" />
             <TextBlock Text=":" />
             <ComboBox Height="25" 
                   ItemsSource="{Binding Minutes}" SelectedValue="{Binding SelectedMinuteSpT, Mode=TwoWay}" 
-                  Name="MinuteSpt_Dropdown" IsEditable="True" />
+                  Name="MinuteSpt_Dropdown" IsEditable="False" ItemStringFormat="00" />
         </StackPanel>
 
         <Button Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="2" Width="100" Height="30" Margin="10,0,0,0"
