@@ -29,8 +29,8 @@ namespace TimeKeepr.EntityFramework
             var options = new DbContextOptionsBuilder<TimeKeeprDbContext>();
 
             //start getting ready for deployment - saving the db in AppData
-            string localAppData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-            string userFilePath = Path.Combine(localAppData, "TimeKeepr");
+            var localAppData = Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+            var userFilePath = Path.Combine(localAppData, "TimeKeepr");
 
             //create the folder if it doesn't exist yet
             if (!Directory.Exists(userFilePath))
@@ -38,8 +38,8 @@ namespace TimeKeepr.EntityFramework
 
             //if the db isn't there yet
             //copy the db file from deployment location to the folder
-            string sourceFilePath = "timeKeeperDB.db";
-            string destFilePath = Path.Combine(userFilePath, "timeKeeperDB.db");
+            var sourceFilePath = "timeKeeperDB.db";
+            var destFilePath = Path.Combine(userFilePath, "timeKeeperDB.db");
             if (!File.Exists(destFilePath))
                 File.Copy(sourceFilePath, destFilePath);
 

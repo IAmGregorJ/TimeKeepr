@@ -16,6 +16,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Resources;
 using System.Windows.Input;
@@ -215,7 +216,6 @@ namespace TimeKeepr.WPF.ViewModels
         }
         #endregion ButtonIsEnabled
         #region Start/Stop time
-
         private DateTime _startTime = DateTime.MinValue;
         public DateTime StartTime
         {
@@ -307,6 +307,98 @@ namespace TimeKeepr.WPF.ViewModels
             }
         }
         #endregion Combobox
+        #region Hours/Minutes
+        // TODO Keep working on this time dropdown it's not finished
+        public IReadOnlyList<int> Hours { get; } = Enumerable.Range(0, 24).ToList();
+
+        public IReadOnlyList<int> Minutes { get; } = Enumerable.Range(0, 4).Select(x => x * 15).ToList();
+
+        private int _selectedHourStW;
+        public int SelectedHourStW
+        {
+            get => _selectedHourStW;
+            set
+            {
+                _selectedHourStW = value;
+                OnPropertyChanged(() => SelectedHourStW);
+            }
+        }
+
+        private int _selectedMinuteStW;
+        public int SelectedMinuteStW
+        {
+            get => _selectedMinuteStW;
+            set
+            {
+                _selectedMinuteStW = value;
+                OnPropertyChanged(() => SelectedMinuteStW);
+            }
+        }
+        private int _selectedHourSpW;
+        public int SelectedHourSpW
+        {
+            get => _selectedHourSpW;
+            set
+            {
+                _selectedHourSpW = value;
+                OnPropertyChanged(() => SelectedHourSpW);
+            }
+        }
+
+        private int _selectedMinuteSpW;
+        public int SelectedMinuteSpW
+        {
+            get => _selectedMinuteSpW;
+            set
+            {
+                _selectedMinuteSpW = value;
+                OnPropertyChanged(() => SelectedMinuteSpW);
+            }
+        }
+
+        private int _selectedHourStT;
+        public int SelectedHourStT
+        {
+            get => _selectedHourStT;
+            set
+            {
+                _selectedHourStT = value;
+                OnPropertyChanged(() => SelectedHourStT);
+            }
+        }
+
+        private int _selectedMinuteStT;
+        public int SelectedMinuteStT
+        {
+            get => _selectedMinuteStT;
+            set
+            {
+                _selectedMinuteStT = value;
+                OnPropertyChanged(() => SelectedMinuteStT);
+            }
+        }
+        private int _selectedHourSpT;
+        public int SelectedHourSpT
+        {
+            get => _selectedHourSpT;
+            set
+            {
+                _selectedHourSpT = value;
+                OnPropertyChanged(() => SelectedHourSpT);
+            }
+        }
+
+        private int _selectedMinuteSpT;
+        public int SelectedMinuteSpT
+        {
+            get => _selectedMinuteSpT;
+            set
+            {
+                _selectedMinuteSpT = value;
+                OnPropertyChanged(() => SelectedMinuteSpT);
+            }
+        }
+        #endregion
 
         ResourceManager rm = new ResourceManager(typeof(Resources));
 
@@ -319,13 +411,25 @@ namespace TimeKeepr.WPF.ViewModels
             StButtonIsEnabled = "false";
             RegwButtonIsEnabled = "false";
             RegButtonIsEnabled = "false";
+            SelectedHourStW = Hours.FirstOrDefault();
+            SelectedMinuteStW = Minutes.FirstOrDefault();
+            SelectedHourSpW = Hours.FirstOrDefault();
+            SelectedMinuteSpW = Minutes.FirstOrDefault();
+            SelectedHourStT = Hours.FirstOrDefault();
+            SelectedMinuteStT = Minutes.FirstOrDefault();
+            SelectedHourSpT = Hours.FirstOrDefault();
+            SelectedMinuteSpT = Minutes.FirstOrDefault();
         }
 
         public ICommand StartCommandWork { get { return new BaseCommand(ClickStartWork); } }
         private void ClickStartWork()
         {
+            SelectedMinuteStW = (int)(Math.Round(DateTime.Now.Minute / 15.0) * 15 % 60);
+            if (DateTime.Now.Minute > 45 && SelectedMinuteStW == 0)
+                SelectedHourStW = DateTime.Now.Hour + 1;
+            else
+                SelectedHourStW = DateTime.Now.Hour;
             StwButtonIsEnabled = "false";
-            StartTimeWork = DateTime.Now;
             SpwButtonIsEnabled = "true";
             StButtonIsEnabled = "true";
         }
@@ -333,8 +437,12 @@ namespace TimeKeepr.WPF.ViewModels
         public ICommand StopCommandWork { get { return new BaseCommand(ClickStopWork); } }
         private void ClickStopWork()
         {
+            SelectedMinuteSpW = (int)(Math.Round(DateTime.Now.Minute / 15.0) * 15 % 60);
+            if (DateTime.Now.Minute > 45 && SelectedMinuteSpW == 0)
+                SelectedHourSpW = DateTime.Now.Hour + 1;
+            else
+                SelectedHourSpW = DateTime.Now.Hour;
             SpwButtonIsEnabled = "false";
-            StopTimeWork = DateTime.Now;
             StButtonIsEnabled = "false";
             RegwButtonIsEnabled = "true";
             RegButtonIsEnabled = "false";
@@ -343,7 +451,8 @@ namespace TimeKeepr.WPF.ViewModels
         public ICommand RegisterCommandWork { get { return new BaseCommand(ClickRegisterWork); } }
         private async void ClickRegisterWork()
         {
-            //add logic if task is running then....
+            StartTimeWork = DateWork + new TimeSpan(SelectedHourStW, SelectedMinuteStW, 0);
+            StopTimeWork = DateWork + new TimeSpan(SelectedHourSpW, SelectedMinuteSpW, 0);
 
             if (StartTimeWork == DateTime.MinValue || 
                     StopTimeWork == DateTime.MaxValue || 
@@ -358,13 +467,12 @@ namespace TimeKeepr.WPF.ViewModels
                     Category = "WorkDay",
                     UserName = MyGlobals.userLoggedIn,
                     //IsMeeting = _isMeeting,
-                    //NOTE TimeInHours = TimeHelper.TimeHelper.NumberOfHoursElapsed(StartTimeWork, StopTimeWork),
-                    TimeInHours = Math.Round(TimeHelper.TimeHelper.NumberOfHoursElapsed(StartTimeWork, StopTimeWork) * 4, MidpointRounding.ToEven) / 4,
-                    EventDate = DateWork, //make this the datepicker instead of DateTime.Now
+                    //TimeInHours = Math.Round(TimeHelper.TimeHelper.NumberOfHoursElapsed(StartTimeWork, StopTimeWork) * 4, MidpointRounding.ToEven) / 4,
+                    TimeInHours = (StopTimeWork - StartTimeWork).TotalHours,
+                    EventDate = DateWork,
                     Year = DateWork.Year,
                     WeekNr = TimeHelper.TimeHelper.GetIso8601WeekOfYear(DateWork)
                 };
-
                 var service = new DataService<Happening>(new TimeKeeprDbContextFactory());
                 await service.Create(happening);
 
@@ -391,8 +499,13 @@ namespace TimeKeepr.WPF.ViewModels
                 }
                 else
                 {
+                    SelectedMinuteStT = (int)(Math.Round(DateTime.Now.Minute / 15.0) * 15 % 60);
+                    if (DateTime.Now.Minute > 45 && SelectedMinuteStT == 0)
+                        SelectedHourStT = DateTime.Now.Hour + 1;
+                    else
+                        SelectedHourStT = DateTime.Now.Hour;
+
                     StButtonIsEnabled = "false";
-                    StartTime = DateTime.Now;
                     SpButtonIsEnabled = "true";
                     SpwButtonIsEnabled = "false";
                 }
@@ -402,22 +515,31 @@ namespace TimeKeepr.WPF.ViewModels
         public ICommand StopCommand { get { return new BaseCommand(ClickStop); } }
         private void ClickStop()
         {
+            SelectedMinuteSpT = (int)(Math.Round(DateTime.Now.Minute / 15.0) * 15 % 60);
+            if (DateTime.Now.Minute > 45 && SelectedMinuteSpT == 0)
+                SelectedHourSpT = DateTime.Now.Hour + 1;
+            else
+                SelectedHourSpT = DateTime.Now.Hour;
+
             SpButtonIsEnabled = "false";
-            StopTime = DateTime.Now;
             RegButtonIsEnabled = "true";
         }
 
         public ICommand RegisterCommandTask { get { return new BaseCommand(ClickRegisterTask); } }
         private async void ClickRegisterTask()
         {
+            StartTime = DateTask + new TimeSpan(SelectedHourStT, SelectedMinuteStT, 0);
+            StopTime = DateTask + new TimeSpan(SelectedHourSpT, SelectedMinuteSpT, 0);
+
             if (StartTime == DateTime.MinValue || StopTime == DateTime.MaxValue || StartTime.TimeOfDay > StopTime.TimeOfDay)
                 ShowMessageBox(rm.GetString("Time_error"));
             else
             {
                 RegButtonIsEnabled = "false";
+
                 Category = SelectedCategory.Category;
                 if (IsMeeting)
-                    IsMeetingHours = TimeHelper.TimeHelper.NumberOfHoursElapsed(StartTime, StopTime);
+                    IsMeetingHours = (StopTime - StartTime).TotalHours;
                 Happening happening = new Happening()
                 {
                     Id = _id,
@@ -425,7 +547,7 @@ namespace TimeKeepr.WPF.ViewModels
                     UserName = MyGlobals.userLoggedIn,
                     IsMeeting = _isMeeting,
                     IsMeetingHours = _isMeetingHours,
-                    TimeInHours = TimeHelper.TimeHelper.NumberOfHoursElapsed(StartTime, StopTime),
+                    TimeInHours = (StopTime - StartTime).TotalHours,
                     EventDate = DateTask,
                     Year = DateTask.Year,
                     WeekNr = TimeHelper.TimeHelper.GetIso8601WeekOfYear(DateTask)

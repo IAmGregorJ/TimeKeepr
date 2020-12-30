@@ -57,7 +57,7 @@
                 <Label Grid.Row="3" Grid.Column="0" Name="Current_balance" Content="{x:Static p:Resources.Balance_txt}" />
                 <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal">
                     <TextBlock Style="{StaticResource normal_font}" Focusable="True" KeyboardNavigation.TabIndex="4"
-                           AutomationProperties.Name="{Binding Saldo}" AutomationProperties.HelpText="{x:Static p:Resources.Balance}"
+                           AutomationProperties.Name="{Binding Saldo, StringFormat=N2}" AutomationProperties.HelpText="{x:Static p:Resources.Balance}"
                            Text="{Binding Saldo}" />
                     <TextBlock Style="{StaticResource normal_font}" Text="{x:Static p:Resources.Hours}" />
                 </StackPanel>
@@ -78,7 +78,7 @@
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="{x:Static p:Resources.Year}" Binding="{Binding Year}" />
                         <DataGridTextColumn Header="{x:Static p:Resources.WeekNr}" Binding="{Binding WeekNr}" />
-                        <DataGridTextColumn Header="{x:Static p:Resources.Total_hours}" Binding="{Binding TimeInHours}" />
+                        <DataGridTextColumn Header="{x:Static p:Resources.Total_hours}" Binding="{Binding TimeInHours, StringFormat=N2}" />
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>
@@ -99,7 +99,7 @@
                         <DataGridTextColumn Header="{x:Static p:Resources.Year}" Binding="{Binding Year}" />
                         <DataGridTextColumn Header="{x:Static p:Resources.Category}" Binding="{Binding Category}" />
                         <DataGridTextColumn Header="{x:Static p:Resources.WeekNr}" Binding="{Binding WeekNr}" />
-                        <DataGridTextColumn Header="{x:Static p:Resources.Total_hours}" Binding="{Binding TimeInHours}" />
+                        <DataGridTextColumn Header="{x:Static p:Resources.Total_hours}" Binding="{Binding TimeInHours, StringFormat=N2}" />
                     </DataGrid.Columns>
                 </DataGrid>                
             </Grid>
@@ -119,7 +119,7 @@
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="{x:Static p:Resources.Category}" Binding="{Binding Category}" />
                         <DataGridTextColumn Header="{x:Static p:Resources.Total_hours}" Binding="{Binding TimeInHours}" />
-                        <DataGridTextColumn Header="{x:Static p:Resources.IsMeeting_hours}" Binding="{Binding IsMeetingHours}" />
+                        <DataGridTextColumn Header="{x:Static p:Resources.IsMeeting_hours}" Binding="{Binding IsMeetingHours, StringFormat=N2}" />
                     </DataGrid.Columns>
                 </DataGrid>
             </Grid>
