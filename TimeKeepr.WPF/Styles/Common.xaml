@@ -218,4 +218,73 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <Style x:Key="MinButton" TargetType="Button">
+        <Setter Property="HorizontalAlignment" Value="Right" />
+        <Setter Property="Width" Value="25" />
+        <Setter Property="Margin" Value="0,0,5,0" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid x:Name="gridMainMin">
+                        <Path x:Name="ButtonMin" Stretch="Uniform" UseLayoutRounding="False" Fill="{StaticResource BrushPrimary5}">
+                            <Path.Data>
+                                <EllipseGeometry RadiusX="1" RadiusY="1" />
+                            </Path.Data>
+                        </Path>
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsDefaulted" Value="True">
+                            <Setter Property="Width" Value="20" />
+                            <Setter TargetName="ButtonMin" Property="Fill" Value="{StaticResource BrushPrimary5}" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Width" Value="25" />
+                            <Setter TargetName="ButtonMin" Property="Fill" Value="{StaticResource BrushPrimary4}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Width" Value="20" />
+                            <Setter TargetName="ButtonMin" Property="Fill" Value="{StaticResource BrushPrimary5}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="CloseButton" TargetType="Button">
+        <Setter Property="HorizontalAlignment" Value="Right" />
+        <Setter Property="Width" Value="25" />
+        <Setter Property="Margin" Value="0,0,5,0" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid x:Name="gridMainClose">
+                        <Path x:Name="ButtonClose" Stretch="Uniform" UseLayoutRounding="False" Fill="{StaticResource BrushPrimary3}">
+                            <Path.Data>
+                                <EllipseGeometry RadiusX="1" RadiusY="1" />
+                            </Path.Data>
+                        </Path>
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsDefaulted" Value="True">
+                            <Setter Property="Width" Value="20" />
+                            <Setter TargetName="ButtonClose" Property="Fill" Value="{StaticResource BrushPrimary3}" />
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Width" Value="25" />
+                            <Setter TargetName="ButtonClose" Property="Fill" Value="{StaticResource BrushPrimary6}" />
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Width" Value="20" />
+                            <Setter TargetName="ButtonClose" Property="Fill" Value="{StaticResource BrushPrimary3}" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 </ResourceDictionary>

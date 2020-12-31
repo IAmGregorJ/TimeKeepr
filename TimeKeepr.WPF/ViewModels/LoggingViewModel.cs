@@ -524,6 +524,17 @@ namespace TimeKeepr.WPF.ViewModels
             RegButtonIsEnabled = "true";
         }
 
+        public ICommand RefreshCategories { get { return new BaseCommand(GetCategories); } }
+        private async void GetCategories()
+        {
+            var service = new DataService<EventCategory>(new TimeKeeprDbContextFactory());
+            var UnfilteredList = (List<EventCategory>)await service.GetAll();
+            Categories = UnfilteredList
+                .Where(x => x.IsActive)
+                .Where(x => !x.Category.Contains("WorkDay") && x.UserName == MyGlobals.userLoggedIn)
+                .ToList();
+        }
+
         public ICommand RegisterCommandTask { get { return new BaseCommand(ClickRegisterTask); } }
         private async void ClickRegisterTask()
         {
@@ -560,16 +571,6 @@ namespace TimeKeepr.WPF.ViewModels
                 StartTime = DateTime.MinValue;
                 StopTime = DateTime.MaxValue;
             }
-        }
-
-        private async void GetCategories()
-        {
-            var service = new DataService<EventCategory>(new TimeKeeprDbContextFactory());
-            var UnfilteredList = (List<EventCategory>)await service.GetAll();
-            Categories = UnfilteredList
-                .Where(x => x.IsActive)
-                .Where(x => !x.Category.Contains("WorkDay") && x.UserName == MyGlobals.userLoggedIn)
-                .ToList();
         }
     }
 }

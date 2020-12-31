@@ -148,7 +148,7 @@
     <value>Click to add the new category</value>
   </data>
   <data name="Category_choose" xml:space="preserve">
-    <value>Choose the category</value>
+    <value>Choose category</value>
   </data>
   <data name="Category_choose_help" xml:space="preserve">
     <value>Clcik to choose the category</value>
