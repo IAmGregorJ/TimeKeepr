@@ -141,7 +141,6 @@
         </Setter>
     </Style>
 
-
     <Style TargetType="{x:Type Button}">
         <Setter Property="FocusVisualStyle" Value="{StaticResource ButtonFocusVisual}"/>
         <Setter Property="Background" Value="{StaticResource BrushPrimary1}"/>
@@ -186,5 +185,37 @@
             </Setter.Value>
         </Setter>
     </Style>
-    
+
+    <!--tabControl Styling-->
+    <Style TargetType="{x:Type TabItem}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type TabItem}">
+                    <Border Margin="-1.5,0,0,0">
+                        <Grid Name="TabPanel">
+                            <ContentPresenter x:Name="ContentSite"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center"
+                                        ContentSource="Header"
+                                        Margin="15,3"/>
+                        </Grid>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter TargetName="TabPanel" Property="Background" Value="white" />
+                            <Setter Property="FontWeight" Value="Bold" />
+                        </Trigger>
+                        <Trigger Property="IsSelected" Value="False">
+                            <Setter TargetName="TabPanel" Property="Background" Value="{StaticResource BrushPrimary1}" />
+                            <Setter Property="Foreground" Value="Gray" />
+                        </Trigger>
+                        <Trigger SourceName="ContentSite" Property="IsMouseOver" Value="True">
+                            <Setter TargetName="TabPanel" Property="Background" Value="{StaticResource BrushPrimary4}" />
+                            <Setter Property="Foreground" Value="Black" />
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>

@@ -14,7 +14,7 @@
 
     <Grid Margin="10">
         <Grid.RowDefinitions>
-            <RowDefinition Height="350" />
+            <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
             <RowDefinition Height="auto" />
@@ -37,7 +37,7 @@
             </DataGrid>
 
         </Grid>
-        <Grid Grid.Row="1" HorizontalAlignment="Center">
+        <Grid Grid.Row="1" HorizontalAlignment="Center" Margin="0,30,0,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>

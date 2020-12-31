@@ -26,7 +26,7 @@
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Style="{StaticResource header_font}" Focusable="True"
+            <TextBlock Grid.Row="0" Style="{StaticResource header_font}" Focusable="True" Margin="0,10,0,0"
                        AutomationProperties.Name="{x:Static p:Resources.User_info_header}" AutomationProperties.HelpText="{x:Static p:Resources.User_info_help}"
                        Text="User information" />
             <Grid Grid.Row="1" >

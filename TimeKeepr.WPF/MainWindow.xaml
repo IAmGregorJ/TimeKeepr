@@ -3,8 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:TimeKeepr.WPF"
-        xmlns:controls="clr-namespace:TimeKeepr.WPF.Controls"
+        xmlns:vw="clr-namespace:TimeKeepr.WPF.Views"
         xmlns:me="clr-namespace:TimeKeepr.WPF.ViewModels"
         xmlns:p="clr-namespace:TimeKeepr.WPF.Localizations"
         mc:Ignorable="d"
@@ -15,10 +14,41 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-        <controls:NavigationBar Grid.Row="0" DataContext="{Binding Source={StaticResource viewModel}, Path=Navigator}"/>
-        <ContentControl Grid.Row="1" Content="{Binding Source={StaticResource viewModel}, Path=Navigator.CurrentViewModel}"/>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="390" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Row="0" Grid.Column="0" Orientation="Horizontal">
+                <Image Source="/Docs/icons/ms-icon-150x150.png" Width="19" Height="19" Margin="5,0,0,3" />
+                <TextBlock Text="TimeKeepr" Name="TimeKeepr_title" Style="{StaticResource title_font}" />
+            </StackPanel>
+            <Button Grid.Row="0" Grid.Column="1" Style="{StaticResource MinButton}"
+                    Content="-" Command="{Binding MinimizeCommand}"
+                    AutomationProperties.Name="{x:Static p:Resources.Minimize}" AutomationProperties.HelpText="{x:Static p:Resources.Minimize_help}" />
+            <Button Grid.Row="0" Grid.Column="2" Style="{StaticResource CloseButton}"
+                    Content="X" Command="{Binding CloseCommand}"
+                    AutomationProperties.Name="{x:Static p:Resources.Close}" AutomationProperties.HelpText="{x:Static p:Resources.Close_help}" />
+        </Grid>
+        <Grid Grid.Row="1" RenderOptions.EdgeMode="Aliased" Background="{StaticResource BrushPrimary2}">
+            <TabControl Margin="10" FontFamily="Century Gothic" FontSize="13" BorderThickness="0">                
+                <TabItem Header="{x:Static p:Resources.Logging}">
+                    <vw:LoggingView VerticalAlignment="Center" HorizontalAlignment="Center" />
+                </TabItem>
+                <TabItem Header="{x:Static p:Resources.Categories}">
+                    <vw:CategoriesView VerticalAlignment="Center" />
+                </TabItem>
+                <TabItem Header="{x:Static p:Resources.Statistics}">
+                    <vw:StatisticsView />
+                </TabItem>
+                <TabItem Header="{x:Static p:Resources.Help}">
+                    <vw:AboutView />
+                </TabItem>
+            </TabControl>
+        </Grid>
     </Grid>
 </Window>

@@ -14,12 +14,42 @@
 // You should have received a copy of the GNU General Public License
 // along with TimeKeepr.  If not, see <https://www.gnu.org/licenses/>.
 
-using TimeKeepr.WPF.State.Navigators;
+using System.Resources;
+using System.Windows;
+using System.Windows.Input;
+using TimeKeepr.WPF.Helper;
+using TimeKeepr.WPF.Localizations;
 
 namespace TimeKeepr.WPF.ViewModels
 {
     public class MainViewModel : BaseViewModel
     {
-        public INavigator Navigator { get; set; } = new Navigator();
+        public ICommand CloseCommand
+        {
+            get
+            {
+                return new BaseCommand(ClickClose);
+            }
+        }
+        private void ClickClose()
+        {
+            ResourceManager rm = new ResourceManager(typeof(Resources));
+            MessageBoxResult messageBoxResult = MessageBox.Show(rm.GetString("Exit"), "Exit confirmation", MessageBoxButton.YesNo);
+
+            if (messageBoxResult == MessageBoxResult.Yes)
+                CloseApplication();
+        }
+
+        public ICommand MinimizeCommand
+        {
+            get
+            {
+                return new BaseCommand(ClickMin);
+            }
+        }
+        private void ClickMin()
+        {
+            MinimizeApplication();
+        }
     }
 }
