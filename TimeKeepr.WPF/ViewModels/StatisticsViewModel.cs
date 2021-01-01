@@ -238,6 +238,7 @@ namespace TimeKeepr.WPF.ViewModels
 
         #endregion userinfo properties
 
+        //TOTO Find a way to export the data (Lists, grids, whatever) to pdf and mail them... or MAYBE a central database and admin account?
 
         //constructor
         public StatisticsViewModel()
