@@ -14,14 +14,10 @@
 // You should have received a copy of the GNU General Public License
 // along with TimeKeepr.  If not, see <https://www.gnu.org/licenses/>.
 
-using System.Windows;
-using TimeKeepr.WPF.ViewModels;
-using TimeKeepr.WPF.Views;
-using TimeKeepr.EntityFramework;
-using TimeKeepr.EntityFramework.Services;
-using TimeKeepr.Domain.Models;
-using System.Windows.Markup;
 using System.Globalization;
+using System.Windows;
+using System.Windows.Markup;
+using TimeKeepr.WPF.Views;
 
 namespace TimeKeepr.WPF
 {

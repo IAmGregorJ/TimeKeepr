@@ -14,11 +14,11 @@
 // You should have received a copy of the GNU General Public License
 // along with TimeKeepr.  If not, see <https://www.gnu.org/licenses/>.
 
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using TimeKeepr.Domain.Models;
 using TimeKeepr.Domain.Services;
 

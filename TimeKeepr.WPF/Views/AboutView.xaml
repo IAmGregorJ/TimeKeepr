@@ -24,25 +24,25 @@
             <Border BorderBrush="{StaticResource BrushPrimary1}" BorderThickness="2" Padding="10">
                 <StackPanel>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Home Page:&#x09;" />
+                        <TextBlock Style="{StaticResource normal_font}" Text="Home Page:&#x09;" />
                         <TextBlock>
                 <Hyperlink Command="{Binding LinkCommand}">GregorJ.org</Hyperlink>
                         </TextBlock>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="Contact:&#x09;&#x09;" />
+                        <TextBlock Style="{StaticResource normal_font}" Text="Contact:&#x09;" />
                         <TextBlock>
                 <Hyperlink Command="{Binding MailCommand}">iAm@Gregorj.org</Hyperlink>
                         </TextBlock>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock Text="User Manual:&#x09;" />
+                        <TextBlock Style="{StaticResource normal_font}" Text="User Manual:&#x09;" />
                         <TextBlock>
                 <Hyperlink Command="{Binding ManualCommand}">TimeKeepr.Help.pdf</Hyperlink>
                         </TextBlock>
                     </StackPanel>
                     <StackPanel Orientation="Horizontal" Margin="0,0,0,20">
-                        <TextBlock Text="Source Code:&#x09;" />
+                        <TextBlock Style="{StaticResource normal_font}" Text="Source Code:&#x09;" />
                         <TextBlock>
                 <Hyperlink Command="{Binding SourceCommand}">github.com/IAmGregorJ/TimeKeepr</Hyperlink>
                         </TextBlock>

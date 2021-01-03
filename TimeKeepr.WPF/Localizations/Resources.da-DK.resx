@@ -168,6 +168,9 @@
   <data name="Category_exists" xml:space="preserve">
     <value>A category by that name already exists. Please try another.</value>
   </data>
+  <data name="Category_hours" xml:space="preserve">
+    <value>Timer pr opgave</value>
+  </data>
   <data name="Category_name_help" xml:space="preserve">
     <value>Navn på kategori at ændre eller tilføje</value>
   </data>
@@ -210,6 +213,9 @@ Afslut alligevel?</value>
   </data>
   <data name="Expander_txt" xml:space="preserve">
     <value>Ny TimeKeepr bruger? Opret login her:</value>
+  </data>
+  <data name="File_exists" xml:space="preserve">
+    <value>Luk filen før du opretter en ny.</value>
   </data>
   <data name="FirstName" xml:space="preserve">
     <value>Fornavn</value>
@@ -474,6 +480,9 @@ Afslut alligevel?</value>
   </data>
   <data name="Worktask" xml:space="preserve">
     <value>Arbejdsopgave</value>
+  </data>
+  <data name="Work_hours" xml:space="preserve">
+    <value>Arbejdstimer</value>
   </data>
   <data name="Year" xml:space="preserve">
     <value>År</value>

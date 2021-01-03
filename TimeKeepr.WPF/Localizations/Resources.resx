@@ -168,6 +168,9 @@
   <data name="Category_exists" xml:space="preserve">
     <value>A category by that name already exists. Please try another.</value>
   </data>
+  <data name="Category_hours" xml:space="preserve">
+    <value>Hours Per Task</value>
+  </data>
   <data name="Category_name_help" xml:space="preserve">
     <value>The name of the category to add or to modify</value>
   </data>
@@ -210,6 +213,9 @@ Exit anyway?</value>
   </data>
   <data name="Expander_txt" xml:space="preserve">
     <value>New to TimeKeepr? Create a login here:</value>
+  </data>
+  <data name="File_exists" xml:space="preserve">
+    <value>Please close the file before saving a new version.</value>
   </data>
   <data name="FirstName" xml:space="preserve">
     <value>First Name</value>
@@ -474,6 +480,9 @@ Exit anyway?</value>
   </data>
   <data name="Worktask" xml:space="preserve">
     <value>Work Task</value>
+  </data>
+  <data name="Work_hours" xml:space="preserve">
+    <value>Work Hours</value>
   </data>
   <data name="Year" xml:space="preserve">
     <value>Year</value>

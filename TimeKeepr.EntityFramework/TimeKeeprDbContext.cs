@@ -25,8 +25,17 @@ namespace TimeKeepr.EntityFramework
         {
         }
 
-        public DbSet<User> Users { get; set; }
-        public DbSet<Happening> Happenings { get; set; }
-        public DbSet<EventCategory> EventCategories { get; set; }
+        public DbSet<User> Users
+        {
+            get; set;
+        }
+        public DbSet<Happening> Happenings
+        {
+            get; set;
+        }
+        public DbSet<EventCategory> EventCategories
+        {
+            get; set;
+        }
     }
 }

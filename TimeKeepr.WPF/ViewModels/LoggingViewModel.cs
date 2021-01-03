@@ -16,7 +16,6 @@
 
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Resources;
 using System.Windows.Input;
@@ -66,7 +65,7 @@ namespace TimeKeepr.WPF.ViewModels
             }
         }
 
-        private string _userName = MyGlobals.userLoggedIn; 
+        private string _userName = MyGlobals.userLoggedIn;
         public string UserName
         {
             get => _userName;
@@ -420,7 +419,13 @@ namespace TimeKeepr.WPF.ViewModels
             SelectedMinuteSpT = Minutes.FirstOrDefault();
         }
 
-        public ICommand StartCommandWork { get { return new BaseCommand(ClickStartWork); } }
+        public ICommand StartCommandWork
+        {
+            get
+            {
+                return new BaseCommand(ClickStartWork);
+            }
+        }
         private void ClickStartWork()
         {
             SelectedMinuteStW = (int)(Math.Round(DateTime.Now.Minute / 15.0) * 15 % 60);
@@ -433,7 +438,13 @@ namespace TimeKeepr.WPF.ViewModels
             StButtonIsEnabled = "true";
         }
 
-        public ICommand StopCommandWork { get { return new BaseCommand(ClickStopWork); } }
+        public ICommand StopCommandWork
+        {
+            get
+            {
+                return new BaseCommand(ClickStopWork);
+            }
+        }
         private void ClickStopWork()
         {
             SelectedMinuteSpW = (int)(Math.Round(DateTime.Now.Minute / 15.0) * 15 % 60);
@@ -447,14 +458,20 @@ namespace TimeKeepr.WPF.ViewModels
             RegButtonIsEnabled = "false";
         }
 
-        public ICommand RegisterCommandWork { get { return new BaseCommand(ClickRegisterWork); } }
+        public ICommand RegisterCommandWork
+        {
+            get
+            {
+                return new BaseCommand(ClickRegisterWork);
+            }
+        }
         private async void ClickRegisterWork()
         {
             StartTimeWork = DateWork + new TimeSpan(SelectedHourStW, SelectedMinuteStW, 0);
             StopTimeWork = DateWork + new TimeSpan(SelectedHourSpW, SelectedMinuteSpW, 0);
 
-            if (StartTimeWork == DateTime.MinValue || 
-                    StopTimeWork == DateTime.MaxValue || 
+            if (StartTimeWork == DateTime.MinValue ||
+                    StopTimeWork == DateTime.MaxValue ||
                     StartTimeWork.TimeOfDay > StopTimeWork.TimeOfDay)
                 ShowMessageBox(rm.GetString("Time_error"));
             else
@@ -485,7 +502,13 @@ namespace TimeKeepr.WPF.ViewModels
             }
         }
 
-        public ICommand StartCommand { get { return new BaseCommand(ClickStart); } }
+        public ICommand StartCommand
+        {
+            get
+            {
+                return new BaseCommand(ClickStart);
+            }
+        }
         private void ClickStart()
         {
             if (StwButtonIsEnabled == "true")
@@ -511,7 +534,13 @@ namespace TimeKeepr.WPF.ViewModels
             }
         }
 
-        public ICommand StopCommand { get { return new BaseCommand(ClickStop); } }
+        public ICommand StopCommand
+        {
+            get
+            {
+                return new BaseCommand(ClickStop);
+            }
+        }
         private void ClickStop()
         {
             SelectedMinuteSpT = (int)(Math.Round(DateTime.Now.Minute / 15.0) * 15 % 60);
@@ -524,7 +553,13 @@ namespace TimeKeepr.WPF.ViewModels
             RegButtonIsEnabled = "true";
         }
 
-        public ICommand RefreshCategories { get { return new BaseCommand(GetCategories); } }
+        public ICommand RefreshCategories
+        {
+            get
+            {
+                return new BaseCommand(GetCategories);
+            }
+        }
         private async void GetCategories()
         {
             var service = new DataService<EventCategory>(new TimeKeeprDbContextFactory());
@@ -535,7 +570,13 @@ namespace TimeKeepr.WPF.ViewModels
                 .ToList();
         }
 
-        public ICommand RegisterCommandTask { get { return new BaseCommand(ClickRegisterTask); } }
+        public ICommand RegisterCommandTask
+        {
+            get
+            {
+                return new BaseCommand(ClickRegisterTask);
+            }
+        }
         private async void ClickRegisterTask()
         {
             StartTime = DateTask + new TimeSpan(SelectedHourStT, SelectedMinuteStT, 0);

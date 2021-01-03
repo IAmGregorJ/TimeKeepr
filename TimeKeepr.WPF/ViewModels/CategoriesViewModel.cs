@@ -16,14 +16,14 @@
 
 using System.Collections.Generic;
 using System.Linq;
+using System.Resources;
 using System.Windows.Input;
 using TimeKeepr.Domain.Models;
 using TimeKeepr.EntityFramework;
 using TimeKeepr.EntityFramework.Services;
-using TimeKeepr.WPF.Helper;
 using TimeKeepr.WPF.Globals;
+using TimeKeepr.WPF.Helper;
 using TimeKeepr.WPF.Localizations;
-using System.Resources;
 
 namespace TimeKeepr.WPF.ViewModels
 {
@@ -104,10 +104,16 @@ namespace TimeKeepr.WPF.ViewModels
         //constructor
         public CategoriesViewModel()
         {
-            GetCategories(); 
+            GetCategories();
         }
 
-        public ICommand UpdateCommand { get { return new BaseCommand(ClickUpdate); } }
+        public ICommand UpdateCommand
+        {
+            get
+            {
+                return new BaseCommand(ClickUpdate);
+            }
+        }
         private async void ClickUpdate()
         {
             ButtonIsEnabled = "false";
@@ -135,7 +141,13 @@ namespace TimeKeepr.WPF.ViewModels
             ButtonIsEnabled = "true";
         }
 
-        public ICommand AddCommand { get { return new BaseCommand(ClickAdd); } }
+        public ICommand AddCommand
+        {
+            get
+            {
+                return new BaseCommand(ClickAdd);
+            }
+        }
         private async void ClickAdd()
         {
             ButtonIsEnabled = "false";
@@ -168,7 +180,13 @@ namespace TimeKeepr.WPF.ViewModels
             ButtonIsEnabled = "true";
         }
 
-        public ICommand DeleteCommand { get { return new BaseCommand(ClickDelete); } }
+        public ICommand DeleteCommand
+        {
+            get
+            {
+                return new BaseCommand(ClickDelete);
+            }
+        }
 
         private async void ClickDelete()
         {
@@ -190,7 +208,7 @@ namespace TimeKeepr.WPF.ViewModels
             Categories = UnfilteredList
                 .Where(x => !x.Category.Contains("WorkDay") && x.UserName == MyGlobals.userLoggedIn)
                 .ToList();
-            if(Categories.Count != 0)
+            if (Categories.Count != 0)
                 SelectedCategory = Categories.FirstOrDefault();
             else
             {

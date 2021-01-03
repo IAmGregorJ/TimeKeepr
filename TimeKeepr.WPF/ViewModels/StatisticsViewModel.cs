@@ -16,12 +16,19 @@
 
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Diagnostics;
+using System.IO;
 using System.Linq;
-using System.Windows.Data;
+using System.Resources;
+using System.Windows.Input;
+using ClosedXML.Excel;
 using TimeKeepr.Domain.Models;
 using TimeKeepr.EntityFramework;
 using TimeKeepr.EntityFramework.Services;
 using TimeKeepr.WPF.Globals;
+using TimeKeepr.WPF.Helper;
+using TimeKeepr.WPF.Localizations;
 
 namespace TimeKeepr.WPF.ViewModels
 {
@@ -238,7 +245,7 @@ namespace TimeKeepr.WPF.ViewModels
 
         #endregion userinfo properties
 
-        //TOTO Find a way to export the data (Lists, grids, whatever) to pdf and mail them... or MAYBE a central database and admin account?
+        ResourceManager rm = new ResourceManager(typeof(Resources));
 
         //constructor
         public StatisticsViewModel()
@@ -329,6 +336,110 @@ namespace TimeKeepr.WPF.ViewModels
 
             //Saldo = (PreviousSaldo + (WorkHoursWeek.Sum(item => item.TimeInHours) - 
             //    (HoursPerWeek * WorkHoursWeek.Count))) + " hours";
+        }
+        public ICommand CreateXL
+        {
+            get
+            {
+                return new BaseCommand(ClickToXL);
+            }
+        }
+        private async void ClickToXL()
+        {
+            string path = "Collections.xlsx";
+            //string path = "Collections - " + DateTime.Now.Year + DateTime.Now.Month + DateTime.Now.Day + ".xlsx";
+            var wb = new XLWorkbook();
+            var ws = wb.Worksheets.Add("Summary");
+            var ws2 = wb.Worksheets.Add("All Data");
+            var service = new DataService<Happening>(new TimeKeeprDbContextFactory());
+            var UngroupedList = (List<Happening>)await service.GetAll();
+            var FullList = UngroupedList
+                .Where(x => x.UserName.Contains(MyGlobals.userLoggedIn));
+            var WorkHoursList = UngroupedList
+                .Where(x => x.UserName.Contains(MyGlobals.userLoggedIn) && x.Category.Contains("WorkDay"))
+                .GroupBy(a => (a.Year, a.WeekNr))
+                .Select(c => new {
+                    Year = c.Key.Year,
+                    WeekNr = c.Key.WeekNr,
+                    TimeInHours = c.Sum(c => c.TimeInHours)
+                })
+                .OrderBy(a => (a.Year, a.WeekNr));
+
+            var CategoryList = UngroupedList
+                .Where(x => x.UserName.Contains(MyGlobals.userLoggedIn) && !x.Category.Contains("WorkDay"))
+                .GroupBy(a => (a.Category))
+                .Select(c => new {
+                    Category = c.Key,
+                    IsMeetingHours = c.Sum(c => c.IsMeetingHours),
+                    TimeInHours = c.Sum(c => c.TimeInHours)
+                })
+                .OrderBy(a => a.Category);
+
+            ws.Cell(3, 1).Value = rm.GetString("FullName_txt");
+            ws.Cell(3, 2).Value = FullName;
+            ws.Cell(4, 1).Value = rm.GetString("Workplace_txt");
+            ws.Cell(4, 2).Value = WorkPlace;
+            ws.Cell(5, 1).Value = rm.GetString("HoursPerWeek_txt");
+            ws.Cell(5, 2).Value = HoursPerWeek;
+            ws.Cell(6, 1).Value = rm.GetString("Balance_txt");
+            ws.Cell(6, 2).Value = Convert.ToDouble(Saldo);
+
+            var range1 = ws.Range("A3:B6").AddToNamed("StamData");
+            range1.Style.Border.OutsideBorder = XLBorderStyleValues.Thick;
+            range1.Style.Border.OutsideBorderColor = XLColor.Orange;
+            range1.Style.Fill.BackgroundColor = XLColor.LightGreen;
+
+            DataTable hw = ConvertToDataTable.ToDataTable(WorkHoursList);
+            DataTable hc = ConvertToDataTable.ToDataTable(CategoryList);
+            DataTable ht = ConvertToDataTable.ToDataTable(FullList);
+            ws.Cell(1, 1).Value = DateTime.Now;
+            ws2.Cell(1, 1).Value = DateTime.Now;
+            ws.Cell(8, 1).Value = rm.GetString("Work_hours");
+            ws.Cell(8, 1).Style.Fill.BackgroundColor = XLColor.LightGreen;
+            ws.Cell(8, 5).Value = rm.GetString("Category_hours");
+            ws.Cell(8, 5).Style.Fill.BackgroundColor = XLColor.LightGreen;
+
+            var tableWithData = ws.Cell(9, 1).InsertTable(hw.AsEnumerable());
+            tableWithData.ShowTotalsRow = true;
+            tableWithData.Field("TimeInHours").TotalsRowFunction = XLTotalsRowFunction.Sum;
+            tableWithData.Field(0).TotalsRowLabel = "Total Hours";
+            var tableWithDataCategories = ws.Cell(9, 5).InsertTable(hc.AsEnumerable());
+            tableWithDataCategories.ShowTotalsRow = true;
+            tableWithDataCategories.Field("TimeInHours").TotalsRowFunction = XLTotalsRowFunction.Sum;
+            tableWithDataCategories.Field("IsMeetingHours").TotalsRowFunction = XLTotalsRowFunction.Sum;
+            tableWithDataCategories.Field(0).TotalsRowLabel = "Total Hours";
+            var tableWithAllData = ws2.Cell(3, 1).InsertTable(ht.AsEnumerable());
+            tableWithAllData.ShowTotalsRow = true;
+            tableWithAllData.Field("TimeInHours").TotalsRowFunction = XLTotalsRowFunction.Sum;
+            tableWithAllData.Field("IsMeetingHours").TotalsRowFunction = XLTotalsRowFunction.Sum;
+            tableWithAllData.Field(0).TotalsRowLabel = "Total Hours";
+
+
+            //wb.NamedRanges.NamedRange("StamData").Ranges.Style = rangeStyle;
+
+            ws.Columns().AdjustToContents();
+            ws2.Columns().AdjustToContents();
+
+            if (!IsFileinUse(path))
+            {
+                wb.SaveAs(path);
+                Process.Start(new ProcessStartInfo(path) { UseShellExecute = true });
+            }
+            else
+                ShowMessageBox(rm.GetString("File_exists"));
+        }
+
+        public bool IsFileinUse(string path)
+        {
+            try
+            {
+                using (var stream = new FileStream(path, FileMode.Open, FileAccess.Read)) { }
+            }
+            catch (IOException)
+            {
+                return true;
+            }
+            return false;
         }
     }
 }

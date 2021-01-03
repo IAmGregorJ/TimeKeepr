@@ -15,15 +15,14 @@
 // along with TimeKeepr.  If not, see <https://www.gnu.org/licenses/>.
 
 using System;
+using System.Resources;
 using System.Windows.Input;
+using GJEncryption;
 using TimeKeepr.Domain.Models;
 using TimeKeepr.EntityFramework;
 using TimeKeepr.EntityFramework.Services;
 using TimeKeepr.WPF.Globals;
 using TimeKeepr.WPF.Helper;
-using GJEncryption;
-using System.IO;
-using System.Resources;
 using TimeKeepr.WPF.Localizations;
 
 namespace TimeKeepr.WPF.ViewModels
@@ -104,7 +103,7 @@ namespace TimeKeepr.WPF.ViewModels
             get => _hoursperweek;
             set
             {
-                if(_hoursperweek != value)
+                if (_hoursperweek != value)
                 {
                     _hoursperweek = value;
                     OnPropertyChanged(() => HoursPerWeek);
@@ -142,7 +141,13 @@ namespace TimeKeepr.WPF.ViewModels
         ResourceManager rm = new ResourceManager(typeof(Resources));
 
         #region login logic
-        public ICommand LoginCommand { get { return new BaseCommand(ClickLogin); } }
+        public ICommand LoginCommand
+        {
+            get
+            {
+                return new BaseCommand(ClickLogin);
+            }
+        }
         private async void ClickLogin()
         {
             ButtonIsEnabled = "false";
@@ -178,7 +183,13 @@ namespace TimeKeepr.WPF.ViewModels
         }
         #endregion
         #region registration logic
-        public ICommand CreateCommand { get { return new BaseCommand(ClickAddUser); } }
+        public ICommand CreateCommand
+        {
+            get
+            {
+                return new BaseCommand(ClickAddUser);
+            }
+        }
         private async void ClickAddUser()
         {
             ButtonIsEnabled = "false";

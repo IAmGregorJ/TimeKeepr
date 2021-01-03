@@ -34,27 +34,42 @@ namespace TimeKeepr.WPF.ViewModels
 
         public ICommand Close
         {
-            get { return new BaseCommand(CloseApplication); }
+            get
+            {
+                return new BaseCommand(CloseApplication);
+            }
         }
 
         public ICommand Maximize
         {
-            get { return new BaseCommand(MaximizeApplication); }
+            get
+            {
+                return new BaseCommand(MaximizeApplication);
+            }
         }
 
         public ICommand Minimize
         {
-            get { return new BaseCommand(MinimizeApplication); }
+            get
+            {
+                return new BaseCommand(MinimizeApplication);
+            }
         }
 
         public ICommand DragMove
         {
-            get { return new BaseCommand(DragMoveCommand); }
+            get
+            {
+                return new BaseCommand(DragMoveCommand);
+            }
         }
 
         public ICommand Restart
         {
-            get { return new BaseCommand(RestartCommand); }
+            get
+            {
+                return new BaseCommand(RestartCommand);
+            }
         }
 
         private static void RestartCommand()

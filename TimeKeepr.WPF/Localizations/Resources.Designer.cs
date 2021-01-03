@@ -205,6 +205,15 @@ namespace TimeKeepr.WPF.Localizations {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hours Per Task.
+        /// </summary>
+        public static string Category_hours {
+            get {
+                return ResourceManager.GetString("Category_hours", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The name of the category to add or to modify.
         /// </summary>
         public static string Category_name_help {
@@ -337,6 +346,15 @@ namespace TimeKeepr.WPF.Localizations {
         public static string Expander_txt {
             get {
                 return ResourceManager.GetString("Expander_txt", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please close the file before saving a new version..
+        /// </summary>
+        public static string File_exists {
+            get {
+                return ResourceManager.GetString("File_exists", resourceCulture);
             }
         }
         
@@ -1021,6 +1039,15 @@ namespace TimeKeepr.WPF.Localizations {
         public static string WeekNr {
             get {
                 return ResourceManager.GetString("WeekNr", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Work Hours.
+        /// </summary>
+        public static string Work_hours {
+            get {
+                return ResourceManager.GetString("Work_hours", resourceCulture);
             }
         }
         
