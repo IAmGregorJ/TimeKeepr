@@ -497,6 +497,10 @@ namespace TimeKeepr.WPF.ViewModels
                 RegwButtonIsEnabled = "false";
                 RegButtonIsEnabled = "false";
                 StButtonIsEnabled = "false";
+                SelectedHourStW = Hours.FirstOrDefault();
+                SelectedMinuteStW = Minutes.FirstOrDefault();
+                SelectedHourSpW = Hours.FirstOrDefault();
+                SelectedMinuteStW = Minutes.FirstOrDefault();
                 StartTimeWork = DateTime.MinValue;
                 StopTimeWork = DateTime.MaxValue;
             }
@@ -609,6 +613,10 @@ namespace TimeKeepr.WPF.ViewModels
                 SpwButtonIsEnabled = "true";
                 if (StwButtonIsEnabled == "false" && SpwButtonIsEnabled == "true")
                     StButtonIsEnabled = "true";
+                SelectedHourStT = Hours.FirstOrDefault();
+                SelectedMinuteStT = Minutes.FirstOrDefault();
+                SelectedHourSpT = Hours.FirstOrDefault();
+                SelectedMinuteSpT = Minutes.FirstOrDefault();
                 StartTime = DateTime.MinValue;
                 StopTime = DateTime.MaxValue;
             }

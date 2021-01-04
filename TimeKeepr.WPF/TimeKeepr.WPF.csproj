@@ -4,7 +4,7 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWPF>true</UseWPF>
-    <ApplicationIcon>Docs\icons\favicon.ico</ApplicationIcon>
+    <ApplicationIcon>timekeepr.ico</ApplicationIcon>
     <SignAssembly>false</SignAssembly>
     <AssemblyOriginatorKeyFile></AssemblyOriginatorKeyFile>
     <DelaySign></DelaySign>
@@ -13,6 +13,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Docs\gpl-3.0.txt" />
     <None Remove="Docs\icons\android-icon-144x144.png" />
     <None Remove="Docs\icons\android-icon-192x192.png" />
     <None Remove="Docs\icons\android-icon-36x36.png" />
@@ -43,6 +44,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="Docs\gpl-3.0.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Docs\icons\android-icon-144x144.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

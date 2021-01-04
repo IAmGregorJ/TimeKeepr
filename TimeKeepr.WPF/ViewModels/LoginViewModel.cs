@@ -152,7 +152,7 @@ namespace TimeKeepr.WPF.ViewModels
         {
             ButtonIsEnabled = "false";
             UserName = _username;
-            /*For the password, I should REALLY be using a SecureString and also a passwordbox, but using SecureString presents unique problems
+            /*NOTE For the password, I should REALLY be using a SecureString and also a passwordbox, but using SecureString presents unique problems
              * that are exponentially complicated when using MVVM, and passwordbox does the same. Not to mention that the use of async
              * complicates BOTH of these processes. Maybe one day I'll figure it out, but in the interest of actually FINISHING this project, I'm
              * leaving these things for another day.*/

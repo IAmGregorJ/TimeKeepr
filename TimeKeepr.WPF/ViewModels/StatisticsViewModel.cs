@@ -253,6 +253,14 @@ namespace TimeKeepr.WPF.ViewModels
             GetCategories();
         }
 
+        public ICommand ClickRefresh
+        {
+            get
+            {
+                return new BaseCommand(GetCategories);
+            }
+        }
+
         private async void GetCategories()
         {
             var serviceUser = new DataService<User>(new TimeKeeprDbContextFactory());
@@ -278,10 +286,13 @@ namespace TimeKeepr.WPF.ViewModels
                     WeekNr = c.Key.WeekNr,
                     IsMeeting = c.Any(c => c.IsMeeting),
                     TimeInHours = c.Sum(c => c.TimeInHours),
-                }).ToList();
+                })
+                .OrderByDescending(a => (a.Year))
+                .ThenByDescending(a => (a.Category))
+                .ThenByDescending(a => (a.WeekNr)).ToList();
 
             WorkHoursWeek = UngroupedList
-                .Where(x => x.UserName.Contains(MyGlobals.userLoggedIn) && x.Category.Contains("WorkDay") && x.Year <= DateTime.Now.Year && x.WeekNr <= TimeHelper.TimeHelper.GetIso8601WeekOfYear(DateTime.Now))
+                .Where(x => x.UserName.Contains(MyGlobals.userLoggedIn) && x.Category.Contains("WorkDay") && x.EventDate <= DateTime.Now)
                 .GroupBy(a => (a.Category, a.Year, a.WeekNr))
                 .Select(c => new Happening
                 {
@@ -289,7 +300,9 @@ namespace TimeKeepr.WPF.ViewModels
                     Year = c.Key.Year,
                     WeekNr = c.Key.WeekNr,
                     TimeInHours = c.Sum(c => c.TimeInHours)
-                }).ToList();
+                })
+                .OrderByDescending(a => (a.Year))
+                .ThenByDescending(a => (a.WeekNr)).ToList();
 
             HoursInMeeting = UngroupedList
                 .Where(x => x.UserName.Contains(MyGlobals.userLoggedIn) && !x.Category.Contains("WorkDay"))
@@ -299,33 +312,23 @@ namespace TimeKeepr.WPF.ViewModels
                     Category = c.Key,
                     TimeInHours = c.Sum(c => c.TimeInHours),
                     IsMeetingHours = c.Sum(c => c.IsMeetingHours)
-                }).ToList();
-
-            //HoursInMeeting = UngroupedList
-            //    .Where(x => x.UserName.Contains(MyGlobals.userLoggedIn) && !x.Category.Contains("WorkDay") && x.IsMeeting == true)
-            //    .GroupBy(a => (a.Category, a.Year, a.WeekNr))
-            //    .Select(c => new Happening
-            //    {
-            //        Category = c.Key.Category,
-            //        Year = c.Key.Year,
-            //        WeekNr = c.Key.WeekNr,
-            //        TimeInHours = c.Sum(c => c.TimeInHours)
-            //    }).ToList();
+                })
+                .OrderByDescending(a => (a.Category)).ToList();
 
             //If I ever need to filter something like Saldo a bit more... percentage spent in meetings
             //##############################################################
-            var TimeSpentInMeetingsThisMonth = UngroupedList
-                .Where(x => x.UserName.Contains(MyGlobals.userLoggedIn) && !x.Category.Contains("WorkDay"))
-                .Where(a => a.IsMeeting)
-                .Where(a => a.EventDate.Month == DateTime.Now.Month)
-                .Sum(a => a.TimeInHours);
+            //var TimeSpentInMeetingsThisMonth = UngroupedList
+            //    .Where(x => x.UserName.Contains(MyGlobals.userLoggedIn) && !x.Category.Contains("WorkDay"))
+            //    .Where(a => a.IsMeeting)
+            //    .Where(a => a.EventDate.Month == DateTime.Now.Month)
+            //    .Sum(a => a.TimeInHours);
 
-            var TimeSpentOnProjectsThisMonth = UngroupedList
-                .Where(x => x.UserName.Contains(MyGlobals.userLoggedIn) && !x.Category.Contains("WorkDay"))
-                .Where(a => a.EventDate.Month == DateTime.Now.Month)
-                .Sum(a => a.TimeInHours);
+            //var TimeSpentOnProjectsThisMonth = UngroupedList
+            //    .Where(x => x.UserName.Contains(MyGlobals.userLoggedIn) && !x.Category.Contains("WorkDay"))
+            //    .Where(a => a.EventDate.Month == DateTime.Now.Month)
+            //    .Sum(a => a.TimeInHours);
 
-            var PercentSpentInMeetingsThisMonth = ((TimeSpentInMeetingsThisMonth / TimeSpentOnProjectsThisMonth) * 100).ToString("P");
+            //var PercentSpentInMeetingsThisMonth = ((TimeSpentInMeetingsThisMonth / TimeSpentOnProjectsThisMonth) * 100).ToString("P");
             //##############################################################
 
             var overTime = (WorkHoursWeek.Sum(item => item.TimeInHours) - (HoursPerWeek * WorkHoursWeek.Count));
@@ -333,10 +336,9 @@ namespace TimeKeepr.WPF.ViewModels
             var overTimeTotal = Math.Round(Convert.ToDecimal(overTimeT), 2);
 
             Saldo = Convert.ToString(overTimeTotal);
-
-            //Saldo = (PreviousSaldo + (WorkHoursWeek.Sum(item => item.TimeInHours) - 
-            //    (HoursPerWeek * WorkHoursWeek.Count))) + " hours";
         }
+
+        #region Excel
         public ICommand CreateXL
         {
             get
@@ -344,9 +346,11 @@ namespace TimeKeepr.WPF.ViewModels
                 return new BaseCommand(ClickToXL);
             }
         }
+
+        //Export data to Excel file
         private async void ClickToXL()
         {
-            string path = "Collections.xlsx";
+            string path = "TimeKeeprExport.xlsx";
             //string path = "Collections - " + DateTime.Now.Year + DateTime.Now.Month + DateTime.Now.Day + ".xlsx";
             var wb = new XLWorkbook();
             var ws = wb.Worksheets.Add("Summary");
@@ -363,7 +367,8 @@ namespace TimeKeepr.WPF.ViewModels
                     WeekNr = c.Key.WeekNr,
                     TimeInHours = c.Sum(c => c.TimeInHours)
                 })
-                .OrderBy(a => (a.Year, a.WeekNr));
+                .OrderByDescending(a => (a.Year))
+                .ThenByDescending(a => (a.WeekNr));
 
             var CategoryList = UngroupedList
                 .Where(x => x.UserName.Contains(MyGlobals.userLoggedIn) && !x.Category.Contains("WorkDay"))
@@ -441,5 +446,6 @@ namespace TimeKeepr.WPF.ViewModels
             }
             return false;
         }
+        #endregion
     }
 }

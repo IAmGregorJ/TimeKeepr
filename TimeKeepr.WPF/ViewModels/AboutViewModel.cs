@@ -14,6 +14,7 @@
 // You should have received a copy of the GNU General Public License
 // along with TimeKeepr.  If not, see <https://www.gnu.org/licenses/>.
 
+using System.IO;
 using System.Windows.Input;
 using TimeKeepr.WPF.Helper;
 
@@ -21,6 +22,11 @@ namespace TimeKeepr.WPF.ViewModels
 {
     internal class AboutViewModel : BaseViewModel
     {
+        public AboutViewModel()
+        {
+            string path = "Docs\\gpl-3.0.txt";
+            ReadFile(path);
+        }
         public ICommand LinkCommand
         {
             get
@@ -89,5 +95,13 @@ namespace TimeKeepr.WPF.ViewModels
             System.Diagnostics.Process.Start(sInfo);
         }
 
+        public string FileText
+        {
+            get; set;
+        }
+        public void ReadFile(string path)
+        {
+            FileText = File.ReadAllText(path);
+        }
     }
 }
