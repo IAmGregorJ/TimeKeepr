@@ -350,8 +350,8 @@ namespace TimeKeepr.WPF.ViewModels
         //Export data to Excel file
         private async void ClickToXL()
         {
-            string path = "TimeKeeprExport.xlsx";
-            //string path = "Collections - " + DateTime.Now.Year + DateTime.Now.Month + DateTime.Now.Day + ".xlsx";
+            //string path = "TimeKeepr.xlsx";
+            string path = "TimeKeepr - " + DateTime.Now.Year + DateTime.Now.Month.ToString("d2") + DateTime.Now.Day.ToString("d2") + ".xlsx";
             var wb = new XLWorkbook();
             var ws = wb.Worksheets.Add("Summary");
             var ws2 = wb.Worksheets.Add("All Data");
@@ -425,26 +425,11 @@ namespace TimeKeepr.WPF.ViewModels
             ws.Columns().AdjustToContents();
             ws2.Columns().AdjustToContents();
 
-            if (!IsFileinUse(path))
+            using (var stream = File.OpenWrite(path))
             {
-                wb.SaveAs(path);
-                Process.Start(new ProcessStartInfo(path) { UseShellExecute = true });
+                wb.SaveAs(stream);
             }
-            else
-                ShowMessageBox(rm.GetString("File_exists"));
-        }
-
-        public bool IsFileinUse(string path)
-        {
-            try
-            {
-                using (var stream = new FileStream(path, FileMode.Open, FileAccess.Read)) { }
-            }
-            catch (IOException)
-            {
-                return true;
-            }
-            return false;
+            Process.Start(new ProcessStartInfo(path) { UseShellExecute = true });
         }
         #endregion
     }

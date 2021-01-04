@@ -41,6 +41,7 @@
     <None Remove="Docs\icons\ms-icon-150x150.png" />
     <None Remove="Docs\icons\ms-icon-310x310.png" />
     <None Remove="Docs\icons\ms-icon-70x70.png" />
+    <None Remove="Docs\icons\timekeepr.ico" />
   </ItemGroup>
 
   <ItemGroup>
@@ -147,6 +148,12 @@
     <Reference Include="TimeHelper">
       <HintPath>Assemblies\TimeHelper.dll</HintPath>
     </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Docs\icons\timekeepr.ico">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
   <ItemGroup>
