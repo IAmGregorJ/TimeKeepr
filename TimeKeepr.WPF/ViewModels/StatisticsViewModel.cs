@@ -351,7 +351,13 @@ namespace TimeKeepr.WPF.ViewModels
         private async void ClickToXL()
         {
             //string path = "TimeKeepr.xlsx";
-            string path = "TimeKeepr - " + DateTime.Now.Year + DateTime.Now.Month.ToString("d2") + DateTime.Now.Day.ToString("d2") + ".xlsx";
+            string path = "TimeKeepr - " + 
+                DateTime.Now.Year + 
+                DateTime.Now.Month.ToString("d2") + 
+                DateTime.Now.Day.ToString("d2") + 
+                DateTime.Now.Hour.ToString("d2") +
+                DateTime.Now.Minute.ToString("d2") +
+                ".xlsx";
             var wb = new XLWorkbook();
             var ws = wb.Worksheets.Add("Summary");
             var ws2 = wb.Worksheets.Add("All Data");
@@ -430,6 +436,7 @@ namespace TimeKeepr.WPF.ViewModels
                 wb.SaveAs(stream);
             }
             Process.Start(new ProcessStartInfo(path) { UseShellExecute = true });
+            wb.Dispose();
         }
         #endregion
     }
