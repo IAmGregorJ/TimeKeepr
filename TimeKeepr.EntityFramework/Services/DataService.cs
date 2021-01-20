@@ -66,6 +66,16 @@ namespace TimeKeepr.EntityFramework.Services
             return entity;
         }
 
+        public async Task<FlexTime> GetFlexByYearWeekNr(int year, int weeknr)
+        {
+            using TimeKeeprDbContext context = _contextFactory.CreateDbContext();
+            FlexTime entity = await context.FLexTimes
+                .Where(a => a.Year == year && a.WeekNr == weeknr)
+                .FirstOrDefaultAsync();
+            return entity;
+        }
+
+
         public async Task<EventCategory> GetByCategoryName(string category)
         {
             using TimeKeeprDbContext context = _contextFactory.CreateDbContext();

@@ -27,6 +27,7 @@ namespace TimeKeepr.WPF.ViewModels
             string path = "Docs\\gpl-3.0.txt";
             ReadFile(path);
         }
+
         public ICommand LinkCommand
         {
             get

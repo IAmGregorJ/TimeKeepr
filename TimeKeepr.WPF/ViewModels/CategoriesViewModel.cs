@@ -107,13 +107,7 @@ namespace TimeKeepr.WPF.ViewModels
             GetCategories();
         }
 
-        public ICommand UpdateCommand
-        {
-            get
-            {
-                return new BaseCommand(ClickUpdate);
-            }
-        }
+        public ICommand UpdateCommand => new BaseCommand(ClickUpdate);
         private async void ClickUpdate()
         {
             ButtonIsEnabled = "false";
@@ -141,13 +135,7 @@ namespace TimeKeepr.WPF.ViewModels
             ButtonIsEnabled = "true";
         }
 
-        public ICommand AddCommand
-        {
-            get
-            {
-                return new BaseCommand(ClickAdd);
-            }
-        }
+        public ICommand AddCommand => new BaseCommand(ClickAdd);
         private async void ClickAdd()
         {
             ButtonIsEnabled = "false";
@@ -180,13 +168,7 @@ namespace TimeKeepr.WPF.ViewModels
             ButtonIsEnabled = "true";
         }
 
-        public ICommand DeleteCommand
-        {
-            get
-            {
-                return new BaseCommand(ClickDelete);
-            }
-        }
+        public ICommand DeleteCommand => new BaseCommand(ClickDelete);
 
         private async void ClickDelete()
         {

@@ -141,13 +141,7 @@ namespace TimeKeepr.WPF.ViewModels
         ResourceManager rm = new ResourceManager(typeof(Resources));
 
         #region login logic
-        public ICommand LoginCommand
-        {
-            get
-            {
-                return new BaseCommand(ClickLogin);
-            }
-        }
+        public ICommand LoginCommand => new BaseCommand(ClickLogin);
         private async void ClickLogin()
         {
             ButtonIsEnabled = "false";
@@ -183,13 +177,7 @@ namespace TimeKeepr.WPF.ViewModels
         }
         #endregion
         #region registration logic
-        public ICommand CreateCommand
-        {
-            get
-            {
-                return new BaseCommand(ClickAddUser);
-            }
-        }
+        public ICommand CreateCommand => new BaseCommand(ClickAddUser);
         private async void ClickAddUser()
         {
             ButtonIsEnabled = "false";

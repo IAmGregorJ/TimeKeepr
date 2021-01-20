@@ -144,8 +144,8 @@
     <Reference Include="GJEncryption">
       <HintPath>Assemblies\GJEncryption.dll</HintPath>
     </Reference>
-    <Reference Include="TimeHelper">
-      <HintPath>Assemblies\TimeHelper.dll</HintPath>
+    <Reference Include="WeekNumber">
+      <HintPath>Assemblies\WeekNumber.dll</HintPath>
     </Reference>
   </ItemGroup>
 

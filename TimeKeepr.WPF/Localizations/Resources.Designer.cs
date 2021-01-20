@@ -674,7 +674,7 @@ namespace TimeKeepr.WPF.Localizations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Previous overtime.
+        ///   Looks up a localized string similar to Previous flex.
         /// </summary>
         public static string PreviousSaldo {
             get {
@@ -683,7 +683,7 @@ namespace TimeKeepr.WPF.Localizations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Enter the number of previous overtime hours you have, if any.
+        ///   Looks up a localized string similar to Enter the number of previous flexhours you have, if any.
         /// </summary>
         public static string PreviousSaldo_help {
             get {
@@ -692,7 +692,7 @@ namespace TimeKeepr.WPF.Localizations {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Previous overtime hours:.
+        ///   Looks up a localized string similar to Previous flex hours:.
         /// </summary>
         public static string PreviousSaldo_txt {
             get {

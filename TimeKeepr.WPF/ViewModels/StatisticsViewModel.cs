@@ -23,6 +23,7 @@ using System.Linq;
 using System.Resources;
 using System.Windows.Input;
 using ClosedXML.Excel;
+using GJDateTime;
 using TimeKeepr.Domain.Models;
 using TimeKeepr.EntityFramework;
 using TimeKeepr.EntityFramework.Services;
@@ -163,6 +164,28 @@ namespace TimeKeepr.WPF.ViewModels
         #endregion Happening properties
 
         #region userinfo properties
+        private int _userId;
+        public int UserId
+        {
+            get => _userId;
+            set
+            {
+                _userId = value;
+                OnPropertyChanged(() => UserId);
+            }
+        }
+
+        private string _userName = MyGlobals.userLoggedIn;
+        public string UserName
+        {
+            get => _userName;
+            set
+            {
+                _userName = value;
+                OnPropertyChanged(() => Id);
+            }
+        }
+
         private string _firstName;
         public string FirstName
         {
@@ -245,6 +268,9 @@ namespace TimeKeepr.WPF.ViewModels
 
         #endregion userinfo properties
 
+        #region FlexTime properties
+
+        #endregion
         ResourceManager rm = new ResourceManager(typeof(Resources));
 
         //constructor
@@ -253,14 +279,7 @@ namespace TimeKeepr.WPF.ViewModels
             GetCategories();
         }
 
-        public ICommand ClickRefresh
-        {
-            get
-            {
-                return new BaseCommand(GetCategories);
-            }
-        }
-
+        public ICommand ClickRefresh => new BaseCommand(GetCategories);
         private async void GetCategories()
         {
             var serviceUser = new DataService<User>(new TimeKeeprDbContextFactory());
@@ -271,8 +290,8 @@ namespace TimeKeepr.WPF.ViewModels
             WorkPlace = user.WorkPlace;
             HoursPerWeek = user.HoursPerWeek;
             PreviousSaldo = user.PreviousSaldo;
+            UserId = user.Id;
 
-            //I still struggle with this syntax - hoping future projects will be more streamlined
             var service = new DataService<Happening>(new TimeKeeprDbContextFactory());
             var UngroupedList = (List<Happening>)await service.GetAll();
 
@@ -304,6 +323,7 @@ namespace TimeKeepr.WPF.ViewModels
                 .OrderByDescending(a => (a.Year))
                 .ThenByDescending(a => (a.WeekNr)).ToList();
 
+
             HoursInMeeting = UngroupedList
                 .Where(x => x.UserName.Contains(MyGlobals.userLoggedIn) && !x.Category.Contains("WorkDay"))
                 .GroupBy(a => a.Category)
@@ -331,30 +351,73 @@ namespace TimeKeepr.WPF.ViewModels
             //var PercentSpentInMeetingsThisMonth = ((TimeSpentInMeetingsThisMonth / TimeSpentOnProjectsThisMonth) * 100).ToString("P");
             //##############################################################
 
-            var overTime = (WorkHoursWeek.Sum(item => item.TimeInHours) - (HoursPerWeek * WorkHoursWeek.Count));
-            var overTimeT = overTime + PreviousSaldo;
-            var overTimeTotal = Math.Round(Convert.ToDecimal(overTimeT), 2);
+            var serviceFlex = new DataService<FlexTime>(new TimeKeeprDbContextFactory());
 
-            Saldo = Convert.ToString(overTimeTotal);
+            var FlexWeek = WorkHoursWeek
+                .Where(x => !(x.Year == DateTime.Now.Year && x.WeekNr == WeekNumber.GetIso8601WeekOfYear(DateTime.Now))).ToList();
+            foreach (Happening happening in FlexWeek)
+            {
+                UserName = _userName;
+                FlexTime flexTime = new FlexTime()
+                {
+                    Year = happening.Year,
+                    WeekNr = happening.WeekNr,
+                    TotalHoursWeek = happening.TimeInHours,
+                    HoursPerWeek = MyGlobals.usersHours,
+                    FlexHours = happening.TimeInHours - HoursPerWeek,
+                    UserName = MyGlobals.userLoggedIn
+                };
+                if (await serviceFlex.GetFlexByYearWeekNr(flexTime.Year, flexTime.WeekNr) == null)
+                    await serviceFlex.Create(flexTime);
+            }
+
+            var flexList = (List<FlexTime>)await serviceFlex.GetAll();
+            var flextime = flexList
+                .Where(u => u.UserName == MyGlobals.userLoggedIn)
+                .Sum(c => c.FlexHours);
+
+            var flexTimeT = flextime + PreviousSaldo;
+            var flexTimeTotal = Math.Round(Convert.ToDecimal(flexTimeT), 2);
+
+            Saldo = Convert.ToString(flexTimeTotal);
+        }
+
+        public ICommand UpdateUser => new BaseCommand(UpdateHoursPerWeek);
+        private async void UpdateHoursPerWeek()
+        {
+
+            var serviceUpdate = new DataService<User>(new TimeKeeprDbContextFactory());
+            User user = await serviceUpdate.Get(UserId);
+            User userToUpdate = new User()
+            {
+                Id = user.Id,
+                UserName = user.UserName,
+                EMail = user.EMail,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                WorkPlace = user.WorkPlace,
+                HoursPerWeek = HoursPerWeek,
+                PreviousSaldo = user.PreviousSaldo,
+                Salt = user.Salt,
+                PasswordHash = user.PasswordHash
+            };
+
+            user = await serviceUpdate.Update(UserId, userToUpdate);
         }
 
         #region Excel
-        public ICommand CreateXL
-        {
-            get
-            {
-                return new BaseCommand(ClickToXL);
-            }
-        }
+        public ICommand CreateXL => new BaseCommand(ClickToXL);
+
+        //TODO Add edit user logic
 
         //Export data to Excel file
         private async void ClickToXL()
         {
             //string path = "TimeKeepr.xlsx";
-            string path = "TimeKeepr - " + 
-                DateTime.Now.Year + 
-                DateTime.Now.Month.ToString("d2") + 
-                DateTime.Now.Day.ToString("d2") + 
+            string path = "TimeKeepr - " +
+                DateTime.Now.Year +
+                DateTime.Now.Month.ToString("d2") +
+                DateTime.Now.Day.ToString("d2") +
                 DateTime.Now.Hour.ToString("d2") +
                 DateTime.Now.Minute.ToString("d2") +
                 ".xlsx";
@@ -425,8 +488,7 @@ namespace TimeKeepr.WPF.ViewModels
             tableWithAllData.Field("IsMeetingHours").TotalsRowFunction = XLTotalsRowFunction.Sum;
             tableWithAllData.Field(0).TotalsRowLabel = "Total Hours";
 
-
-            //wb.NamedRanges.NamedRange("StamData").Ranges.Style = rangeStyle;
+            //TODO Flex week by week table to xlsx
 
             ws.Columns().AdjustToContents();
             ws2.Columns().AdjustToContents();

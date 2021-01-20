@@ -323,13 +323,13 @@ Exit anyway?</value>
     <value>Password:</value>
   </data>
   <data name="PreviousSaldo" xml:space="preserve">
-    <value>Previous overtime</value>
+    <value>Previous flex</value>
   </data>
   <data name="PreviousSaldo_help" xml:space="preserve">
-    <value>Enter the number of previous overtime hours you have, if any</value>
+    <value>Enter the number of previous flex hours you have, if any</value>
   </data>
   <data name="PreviousSaldo_txt" xml:space="preserve">
-    <value>Previous overtime hours:</value>
+    <value>Previous flex hours:</value>
   </data>
   <data name="Register" xml:space="preserve">
     <value>Register</value>

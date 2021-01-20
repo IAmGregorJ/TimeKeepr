@@ -15,7 +15,7 @@
         <Grid x:Name="print" Margin="10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
-                <RowDefinition Height="120" />
+                <RowDefinition Height="auto" />
                 <RowDefinition Height="auto" />
                 <RowDefinition Height="150" />
                 <RowDefinition Height="auto" />
@@ -37,6 +37,7 @@
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
                     <RowDefinition Height="auto" />
+                    <RowDefinition Height="auto" />
                     <RowDefinition Height="*" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
@@ -53,9 +54,16 @@
                            AutomationProperties.Name="{Binding WorkPlace}" AutomationProperties.HelpText="{x:Static p:Resources.Workplace}"
                            Text="{Binding WorkPlace}" />
                 <Label Grid.Row="2" Grid.Column="0" Name="Hours_Per_Week" Content="{x:Static p:Resources.HoursPerWeek_txt}" />
-                <TextBlock Grid.Row="2" Grid.Column="1" Style="{StaticResource normal_font}" Focusable="True" KeyboardNavigation.TabIndex="3"
+                <StackPanel Grid.Row="2" Grid.Column="1" Orientation="Horizontal">
+                    <TextBox Height="18" Width="25" HorizontalAlignment="Left" FontWeight="Normal" VerticalContentAlignment="Center" VerticalAlignment="Center" Name="hoursperweek_txt"
+                         AutomationProperties.Name="{x:Static p:Resources.HoursPerWeek}" AutomationProperties.HelpText="{x:Static p:Resources.HoursPerWeek_help}"
+                         Text="{Binding HoursPerWeek, Mode=TwoWay, ValidatesOnDataErrors=True, ValidatesOnExceptions=True, NotifyOnValidationError=True, TargetNullValue=''}" />
+                    <Button Height="25" Width="25" Margin="5,0,0,0" Padding="0" Content="🗘"
+                            Background="{StaticResource BrushPrimary4}" Command="{Binding UpdateUser}" />
+                </StackPanel>
+                <!--<TextBlock Grid.Row="2" Grid.Column="1" Style="{StaticResource normal_font}" Focusable="True" KeyboardNavigation.TabIndex="3"
                            AutomationProperties.Name="{Binding HoursPerWeek}" AutomationProperties.HelpText="{x:Static p:Resources.HoursPerWeek}"
-                           Text="{Binding HoursPerWeek}" />
+                           Text="{Binding HoursPerWeek}" />-->
                 <Label Grid.Row="3" Grid.Column="0" Name="Current_balance" Content="{x:Static p:Resources.Balance_txt}" />
                 <StackPanel Grid.Row="3" Grid.Column="1" Orientation="Horizontal">
                     <TextBlock Style="{StaticResource normal_font}" Focusable="True" KeyboardNavigation.TabIndex="4"
@@ -67,7 +75,7 @@
 
             <TextBlock Grid.Row="2" Style="{StaticResource header_font}" Focusable="True" KeyboardNavigation.TabIndex="9" 
                        AutomationProperties.Name="{x:Static p:Resources.WorkPerWeek_header}" AutomationProperties.HelpText="{x:Static p:Resources.WorkPerWeek_txt}"
-                       Text="{x:Static p:Resources.WorkPerWeek_title}" Margin="0,10,0,0" />
+                       Text="{x:Static p:Resources.WorkPerWeek_title}" Margin="0,20,0,0" />
             <Grid Grid.Row="3">
                 <DataGrid ItemsSource="{Binding WorkHoursWeek}" 
                           HorizontalAlignment="Left"

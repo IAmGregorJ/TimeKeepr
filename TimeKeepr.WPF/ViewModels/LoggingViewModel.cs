@@ -19,6 +19,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Resources;
 using System.Windows.Input;
+using GJDateTime;
 using TimeKeepr.Domain.Models;
 using TimeKeepr.EntityFramework;
 using TimeKeepr.EntityFramework.Services;
@@ -134,8 +135,7 @@ namespace TimeKeepr.WPF.ViewModels
             }
         }
 
-        //Iso9601 format - from TImeHelper:
-        //public static int GetIso8601WeekOfYear(DateTime time)
+        //Iso9601 format - from WeekNumber assembly:
         private int _weekNr;
         public int WeekNr
         {
@@ -419,13 +419,7 @@ namespace TimeKeepr.WPF.ViewModels
             SelectedMinuteSpT = Minutes.FirstOrDefault();
         }
 
-        public ICommand StartCommandWork
-        {
-            get
-            {
-                return new BaseCommand(ClickStartWork);
-            }
-        }
+        public ICommand StartCommandWork => new BaseCommand(ClickStartWork);
         private void ClickStartWork()
         {
             SelectedMinuteStW = (int)(Math.Round(DateTime.Now.Minute / 15.0) * 15 % 60);
@@ -438,13 +432,7 @@ namespace TimeKeepr.WPF.ViewModels
             StButtonIsEnabled = "true";
         }
 
-        public ICommand StopCommandWork
-        {
-            get
-            {
-                return new BaseCommand(ClickStopWork);
-            }
-        }
+        public ICommand StopCommandWork => new BaseCommand(ClickStopWork);
         private void ClickStopWork()
         {
             SelectedMinuteSpW = (int)(Math.Round(DateTime.Now.Minute / 15.0) * 15 % 60);
@@ -458,13 +446,7 @@ namespace TimeKeepr.WPF.ViewModels
             RegButtonIsEnabled = "false";
         }
 
-        public ICommand RegisterCommandWork
-        {
-            get
-            {
-                return new BaseCommand(ClickRegisterWork);
-            }
-        }
+        public ICommand RegisterCommandWork => new BaseCommand(ClickRegisterWork);
         private async void ClickRegisterWork()
         {
             StartTimeWork = DateWork + new TimeSpan(SelectedHourStW, SelectedMinuteStW, 0);
@@ -487,7 +469,7 @@ namespace TimeKeepr.WPF.ViewModels
                     TimeInHours = (StopTimeWork - StartTimeWork).TotalHours,
                     EventDate = DateWork,
                     Year = DateWork.Year,
-                    WeekNr = TimeHelper.TimeHelper.GetIso8601WeekOfYear(DateWork)
+                    WeekNr = WeekNumber.GetIso8601WeekOfYear(DateWork)
                 };
                 var service = new DataService<Happening>(new TimeKeeprDbContextFactory());
                 await service.Create(happening);
@@ -506,13 +488,7 @@ namespace TimeKeepr.WPF.ViewModels
             }
         }
 
-        public ICommand StartCommand
-        {
-            get
-            {
-                return new BaseCommand(ClickStart);
-            }
-        }
+        public ICommand StartCommand => new BaseCommand(ClickStart);
         private void ClickStart()
         {
             if (StwButtonIsEnabled == "true")
@@ -538,13 +514,7 @@ namespace TimeKeepr.WPF.ViewModels
             }
         }
 
-        public ICommand StopCommand
-        {
-            get
-            {
-                return new BaseCommand(ClickStop);
-            }
-        }
+        public ICommand StopCommand => new BaseCommand(ClickStop);
         private void ClickStop()
         {
             SelectedMinuteSpT = (int)(Math.Round(DateTime.Now.Minute / 15.0) * 15 % 60);
@@ -557,13 +527,7 @@ namespace TimeKeepr.WPF.ViewModels
             RegButtonIsEnabled = "true";
         }
 
-        public ICommand RefreshCategories
-        {
-            get
-            {
-                return new BaseCommand(GetCategories);
-            }
-        }
+        public ICommand RefreshCategories => new BaseCommand(GetCategories);
         private async void GetCategories()
         {
             var service = new DataService<EventCategory>(new TimeKeeprDbContextFactory());
@@ -574,13 +538,7 @@ namespace TimeKeepr.WPF.ViewModels
                 .ToList();
         }
 
-        public ICommand RegisterCommandTask
-        {
-            get
-            {
-                return new BaseCommand(ClickRegisterTask);
-            }
-        }
+        public ICommand RegisterCommandTask => new BaseCommand(ClickRegisterTask);
         private async void ClickRegisterTask()
         {
             StartTime = DateTask + new TimeSpan(SelectedHourStT, SelectedMinuteStT, 0);
@@ -605,7 +563,7 @@ namespace TimeKeepr.WPF.ViewModels
                     TimeInHours = (StopTime - StartTime).TotalHours,
                     EventDate = DateTask,
                     Year = DateTask.Year,
-                    WeekNr = TimeHelper.TimeHelper.GetIso8601WeekOfYear(DateTask)
+                    WeekNr = WeekNumber.GetIso8601WeekOfYear(DateTask)
                 };
 
                 var service = new DataService<Happening>(new TimeKeeprDbContextFactory());

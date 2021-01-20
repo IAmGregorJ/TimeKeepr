@@ -36,6 +36,35 @@ namespace TimeKeepr.EntityFramework.Migrations
                     b.ToTable("EventCategories");
                 });
 
+            modelBuilder.Entity("TimeKeepr.Domain.Models.FlexTime", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<double>("FlexHours")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("HoursPerWeek")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("TotalHoursWeek")
+                        .HasColumnType("REAL");
+
+                    b.Property<string>("UserName")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("WeekNr")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Year")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("FLexTimes");
+                });
+
             modelBuilder.Entity("TimeKeepr.Domain.Models.Happening", b =>
                 {
                     b.Property<int>("Id")

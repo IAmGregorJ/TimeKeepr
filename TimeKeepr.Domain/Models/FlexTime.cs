@@ -14,30 +14,36 @@
 // You should have received a copy of the GNU General Public License
 // along with TimeKeepr.  If not, see <https://www.gnu.org/licenses/>.
 
-using Microsoft.EntityFrameworkCore;
-using TimeKeepr.Domain.Models;
-
-namespace TimeKeepr.EntityFramework
+namespace TimeKeepr.Domain.Models
 {
-    public class TimeKeeprDbContext : DbContext
+    public class FlexTime : DomainObject
     {
-        public TimeKeeprDbContext(DbContextOptions options) : base(options)
+        public string UserName
         {
+            get; set;
         }
 
-        public DbSet<User> Users
+        public int Year
         {
             get; set;
         }
-        public DbSet<Happening> Happenings
+
+        public int WeekNr
         {
             get; set;
         }
-        public DbSet<EventCategory> EventCategories
+
+        public double HoursPerWeek
         {
             get; set;
         }
-        public DbSet<FlexTime> FLexTimes
+
+        public double TotalHoursWeek
+        {
+            get; set;
+        }
+
+        public double FlexHours
         {
             get; set;
         }

@@ -10,12 +10,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="timeKeeperDB.db">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="5.0.1">
       <PrivateAssets>all</PrivateAssets>
@@ -30,6 +24,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\TimeKeepr.Domain\TimeKeepr.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="timeKeeperDB.db">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
 </Project>

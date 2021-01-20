@@ -37,6 +37,22 @@ namespace TimeKeepr.EntityFramework.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "FLexTimes",
+                columns: table => new {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    UserName = table.Column<string>(type: "TEXT", nullable: true),
+                    Year = table.Column<int>(type: "INTEGER", nullable: false),
+                    WeekNr = table.Column<int>(type: "INTEGER", nullable: false),
+                    HoursPerWeek = table.Column<double>(type: "REAL", nullable: false),
+                    TotalHoursWeek = table.Column<double>(type: "REAL", nullable: false),
+                    FlexHours = table.Column<double>(type: "REAL", nullable: false)
+                },
+                constraints: table => {
+                    table.PrimaryKey("PK_FLexTimes", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Happenings",
                 columns: table => new {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
@@ -78,6 +94,9 @@ namespace TimeKeepr.EntityFramework.Migrations
         {
             migrationBuilder.DropTable(
                 name: "EventCategories");
+
+            migrationBuilder.DropTable(
+                name: "FLexTimes");
 
             migrationBuilder.DropTable(
                 name: "Happenings");
