@@ -9,7 +9,7 @@ using TimeKeepr.EntityFramework;
 namespace TimeKeepr.EntityFramework.Migrations
 {
     [DbContext(typeof(TimeKeeprDbContext))]
-    [Migration("20210119102508_initial")]
+    [Migration("20210120123649_initial")]
     partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

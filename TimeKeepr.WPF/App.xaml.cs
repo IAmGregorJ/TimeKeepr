@@ -17,6 +17,8 @@
 using System.Globalization;
 using System.Windows;
 using System.Windows.Markup;
+using Microsoft.EntityFrameworkCore;
+using TimeKeepr.EntityFramework;
 using TimeKeepr.WPF.Views;
 
 namespace TimeKeepr.WPF
@@ -28,6 +30,12 @@ namespace TimeKeepr.WPF
     {
         protected override void OnStartup(StartupEventArgs e)
         {
+            TimeKeeprDbContextFactory contextFactory = new TimeKeeprDbContextFactory();
+            using (var db = contextFactory.CreateDbContext())
+            {
+                db.Database.MigrateAsync();
+            }
+
             //making sure the decimal character is either , or . depending on locale
             FrameworkElement.LanguageProperty.OverrideMetadata(
             typeof(FrameworkElement),
