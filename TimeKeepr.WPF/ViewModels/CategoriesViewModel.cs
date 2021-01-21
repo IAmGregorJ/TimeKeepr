@@ -116,7 +116,8 @@ namespace TimeKeepr.WPF.ViewModels
             {
                 Id = SelectedCategory.Id,
                 Category = SelectedCategory.Category,
-                IsActive = SelectedCategory.IsActive
+                IsActive = SelectedCategory.IsActive,
+                UserName = MyGlobals.userLoggedIn
             };
 
             var service = new DataService<EventCategory>(new TimeKeeprDbContextFactory());
