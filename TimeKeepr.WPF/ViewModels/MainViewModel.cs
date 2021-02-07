@@ -33,10 +33,6 @@ namespace TimeKeepr.WPF.ViewModels
         }
         private void ClickClose()
         {
-            ResourceManager rm = new ResourceManager(typeof(Resources));
-            MessageBoxResult messageBoxResult = MessageBox.Show(rm.GetString("Exit"), "Exit confirmation", MessageBoxButton.YesNo);
-
-            if (messageBoxResult == MessageBoxResult.Yes)
                 CloseApplication();
         }
 

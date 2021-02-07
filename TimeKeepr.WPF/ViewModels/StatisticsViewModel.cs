@@ -408,8 +408,6 @@ namespace TimeKeepr.WPF.ViewModels
         #region Excel
         public ICommand CreateXL => new BaseCommand(ClickToXL);
 
-        //TODO Add edit user logic
-
         //Export data to Excel file
         private async void ClickToXL()
         {

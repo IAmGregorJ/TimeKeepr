@@ -16,8 +16,10 @@
 
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Resources;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Windows.Input;
 using GJDateTime;
 using TimeKeepr.Domain.Models;
@@ -399,24 +401,34 @@ namespace TimeKeepr.WPF.ViewModels
         #endregion
 
         ResourceManager rm = new ResourceManager(typeof(Resources));
-
+        string fileName = "SaveData.dat";
         //constructor
         public LoggingViewModel()
         {
             GetCategories();
-            SpButtonIsEnabled = "false";
-            SpwButtonIsEnabled = "false";
-            StButtonIsEnabled = "false";
-            RegwButtonIsEnabled = "false";
-            RegButtonIsEnabled = "false";
-            SelectedHourStW = Hours.FirstOrDefault();
-            SelectedMinuteStW = Minutes.FirstOrDefault();
-            SelectedHourSpW = Hours.FirstOrDefault();
-            SelectedMinuteSpW = Minutes.FirstOrDefault();
-            SelectedHourStT = Hours.FirstOrDefault();
-            SelectedMinuteStT = Minutes.FirstOrDefault();
-            SelectedHourSpT = Hours.FirstOrDefault();
-            SelectedMinuteSpT = Minutes.FirstOrDefault();
+
+            if (File.Exists(fileName))
+            {
+                PDeserialize();
+                ShowMessageBox("You exited the program without saving your data - it has been restored as it was.");
+            }
+
+            else
+            {
+                SpButtonIsEnabled = "false";
+                SpwButtonIsEnabled = "false";
+                StButtonIsEnabled = "false";
+                RegwButtonIsEnabled = "false";
+                RegButtonIsEnabled = "false";
+                SelectedHourStW = Hours.FirstOrDefault();
+                SelectedMinuteStW = Minutes.FirstOrDefault();
+                SelectedHourSpW = Hours.FirstOrDefault();
+                SelectedMinuteSpW = Minutes.FirstOrDefault();
+                SelectedHourStT = Hours.FirstOrDefault();
+                SelectedMinuteStT = Minutes.FirstOrDefault();
+                SelectedHourSpT = Hours.FirstOrDefault();
+                SelectedMinuteSpT = Minutes.FirstOrDefault();
+            }
         }
 
         public ICommand StartCommandWork => new BaseCommand(ClickStartWork);
@@ -430,6 +442,8 @@ namespace TimeKeepr.WPF.ViewModels
             StwButtonIsEnabled = "false";
             SpwButtonIsEnabled = "true";
             StButtonIsEnabled = "true";
+
+            PSerialize();
         }
 
         public ICommand StopCommandWork => new BaseCommand(ClickStopWork);
@@ -444,6 +458,8 @@ namespace TimeKeepr.WPF.ViewModels
             StButtonIsEnabled = "false";
             RegwButtonIsEnabled = "true";
             RegButtonIsEnabled = "false";
+            PDelete();
+            PSerialize();
         }
 
         public ICommand RegisterCommandWork => new BaseCommand(ClickRegisterWork);
@@ -464,8 +480,6 @@ namespace TimeKeepr.WPF.ViewModels
                     Id = _id,
                     Category = "WorkDay",
                     UserName = MyGlobals.userLoggedIn,
-                    //IsMeeting = _isMeeting,
-                    //TimeInHours = Math.Round(TimeHelper.TimeHelper.NumberOfHoursElapsed(StartTimeWork, StopTimeWork) * 4, MidpointRounding.ToEven) / 4,
                     TimeInHours = (StopTimeWork - StartTimeWork).TotalHours,
                     EventDate = DateWork,
                     Year = DateWork.Year,
@@ -485,6 +499,8 @@ namespace TimeKeepr.WPF.ViewModels
                 SelectedMinuteStW = Minutes.FirstOrDefault();
                 StartTimeWork = DateTime.MinValue;
                 StopTimeWork = DateTime.MaxValue;
+
+                PDelete();
             }
         }
 
@@ -510,6 +526,9 @@ namespace TimeKeepr.WPF.ViewModels
                     StButtonIsEnabled = "false";
                     SpButtonIsEnabled = "true";
                     SpwButtonIsEnabled = "false";
+
+                    PDelete();
+                    PSerialize();
                 }
             }
         }
@@ -525,17 +544,9 @@ namespace TimeKeepr.WPF.ViewModels
 
             SpButtonIsEnabled = "false";
             RegButtonIsEnabled = "true";
-        }
 
-        public ICommand RefreshCategories => new BaseCommand(GetCategories);
-        private async void GetCategories()
-        {
-            var service = new DataService<EventCategory>(new TimeKeeprDbContextFactory());
-            var UnfilteredList = (List<EventCategory>)await service.GetAll();
-            Categories = UnfilteredList
-                .Where(x => x.IsActive)
-                .Where(x => !x.Category.Contains("WorkDay") && x.UserName == MyGlobals.userLoggedIn)
-                .ToList();
+            PDelete();
+            PSerialize();
         }
 
         public ICommand RegisterCommandTask => new BaseCommand(ClickRegisterTask);
@@ -577,7 +588,86 @@ namespace TimeKeepr.WPF.ViewModels
                 SelectedMinuteSpT = Minutes.FirstOrDefault();
                 StartTime = DateTime.MinValue;
                 StopTime = DateTime.MaxValue;
+
+                PDelete();
+                GetCategories();
+                PSerialize();
             }
+        }
+
+        public ICommand RefreshCategories => new BaseCommand(GetCategories);
+        private async void GetCategories()
+        {
+            var service = new DataService<EventCategory>(new TimeKeeprDbContextFactory());
+            var UnfilteredList = (List<EventCategory>)await service.GetAll();
+            Categories = UnfilteredList
+                .Where(x => x.IsActive)
+                .Where(x => !x.Category.Contains("WorkDay") && x.UserName == MyGlobals.userLoggedIn)
+                .ToList();
+        }
+
+        public void PSerialize()
+        {
+            PersistentData pData = new PersistentData()
+            {
+                StButtonIsEnabledP = StButtonIsEnabled,
+                StwButtonIsEnabledP = StwButtonIsEnabled,
+                SpButtonIsEnabledP = SpButtonIsEnabled,
+                SpwButtonIsEnabledP = SpwButtonIsEnabled,
+                RegButtonIsEnabledP = RegButtonIsEnabled,
+                RegwButtonIsEnabledP = RegwButtonIsEnabled,
+                SelectedHourStWP = SelectedHourStW,
+                SelectedMinuteStWP = SelectedMinuteSpW,
+                SelectedHourSpWP = SelectedHourSpW,
+                SelectedMinuteSpWP = SelectedMinuteSpW,
+                SelectedHourStTP = SelectedHourStT,
+                SelectedMinuteStTP = SelectedMinuteStT,
+                SelectedHourSpTP = SelectedHourSpT,
+                SelectedMinuteSpTP = SelectedMinuteSpT,
+                DateWorkP = DateWork,
+                DateTaskP = DateTask,
+                CategoryP = Category,
+                IsMeetingP = IsMeeting
+            };
+            BinaryFormatter binFormat = new BinaryFormatter();
+            using (Stream fStream = new FileStream(fileName, FileMode.Create, FileAccess.ReadWrite, FileShare.None))
+            {
+                binFormat.Serialize(fStream, pData);
+            }
+        }
+
+        public void PDeserialize()
+        {
+            BinaryFormatter binFormat = new BinaryFormatter();
+            PersistentData pData = default;
+            using (Stream fStream = File.OpenRead(fileName))
+            {
+                pData = (PersistentData)binFormat.Deserialize(fStream);
+            }
+            StButtonIsEnabled = pData.StButtonIsEnabledP;
+            StwButtonIsEnabled = pData.StwButtonIsEnabledP;
+            SpButtonIsEnabled = pData.SpButtonIsEnabledP;
+            SpwButtonIsEnabled = pData.SpwButtonIsEnabledP;
+            RegButtonIsEnabled = pData.RegButtonIsEnabledP;
+            RegwButtonIsEnabled = pData.RegwButtonIsEnabledP;
+            SelectedHourStW = pData.SelectedHourStWP;
+            SelectedMinuteStW = pData.SelectedMinuteSpWP;
+            SelectedHourSpW = pData.SelectedHourSpWP;
+            SelectedMinuteSpW = pData.SelectedMinuteSpWP;
+            SelectedHourStT = pData.SelectedHourStTP;
+            SelectedMinuteStT = pData.SelectedMinuteStTP;
+            SelectedHourSpT = pData.SelectedHourSpTP;
+            SelectedMinuteSpT = pData.SelectedMinuteSpTP;
+            DateWork = pData.DateWorkP;
+            DateTask = pData.DateTaskP;
+            Category = pData.CategoryP;
+            IsMeeting = pData.IsMeetingP;
+            SelectedCategory = Categories.Find(x => x.Category == pData.CategoryP);
+        }
+
+        public void PDelete()
+        {
+            File.Delete(fileName);
         }
     }
 }
